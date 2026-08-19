@@ -5,11 +5,12 @@
 from datetime import datetime
 from pathlib import Path
 from google.cloud import bigquery, storage
-import base64
+
 import io
 import joblib
 import numpy as np
 import pandas as pd
+import pydeck as pdk
 import streamlit as st
 import sys
 
@@ -281,10 +282,11 @@ def main():
 
         with col1:
 
+            stations = stations_df["city"].tolist()
             tmp_station = st.selectbox(
-                f"Select station:",
-                options=stations_df["city"].tolist(),
-                index=0,
+                "Select station:",
+                options=stations,
+                index=stations.index("Como")
             )
             station = stations_df[stations_df["city"] == tmp_station].iloc[0]
 
@@ -294,12 +296,39 @@ def main():
             st.metric("Longitude", f"{station['longitude']:.4f}°")
 
         with col2:
-            st.map(
-                stations_df.rename(
-                    columns={
-                        "latitude": "lat",
-                        "longitude": "lon",
-                    }
+
+            map_df = stations_df.copy()
+            map_df["selected"] = map_df["city"] == tmp_station
+
+            layers = [
+                pdk.Layer(
+                    "ScatterplotLayer",
+                    data=map_df[~map_df["selected"]],
+                    get_position="[longitude, latitude]",
+                    get_radius=500,
+                    get_fill_color="[0, 100, 255, 200]",
+                    pickable=True
+                ),
+                pdk.Layer(
+                    "ScatterplotLayer",
+                    data=map_df[map_df["selected"]],
+                    get_position="[longitude, latitude]",
+                    get_radius=500,
+                    get_fill_color="[255, 0, 0, 255]",
+                    pickable=True
+                ),
+            ]
+            view_state = pdk.ViewState(
+                latitude=map_df["latitude"].mean(),
+                longitude=map_df["longitude"].mean(),
+                zoom=8.75
+            )
+            st.pydeck_chart(
+                pdk.Deck(
+                    layers=layers,
+                    map_style="light",
+                    initial_view_state=view_state,
+                    tooltip={"text": "{city}"},
                 ),
                 width="stretch",
                 height="stretch"
