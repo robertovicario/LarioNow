@@ -1,0 +1,482 @@
+[
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.1618830925251942,
+        "RMSE": 0.22624060487571745,
+        "R2": 0.9853994901481243
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.6731288059673899,
+        "RMSE": 0.8544595450564002,
+        "R2": 0.27177827618340156
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.1706491970924467,
+        "RMSE": 0.23312601097439326,
+        "R2": 0.9845400935604561
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.7986538691660022,
+        "RMSE": 1.1102668396790096,
+        "R2": -0.3302310232522696
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.17902947243022035,
+        "RMSE": 0.24118633623266092,
+        "R2": 0.9834865689402821
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.8153559474595609,
+        "RMSE": 1.0513115202394117,
+        "R2": -0.29910336973492635
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.22878610986796347,
+        "RMSE": 0.30971621438196956,
+        "R2": 0.9728030994718428
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.7168001943117049,
+        "RMSE": 0.9021213039012906,
+        "R2": -0.014886557230560982
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.8258600161867344,
+        "RMSE": 1.1794228687246564,
+        "R2": 0.9915180648317568
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 6.695492419292237,
+        "RMSE": 8.85251172163751,
+        "R2": 0.4471205106235915
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.9184471714636675,
+        "RMSE": 1.2896277088710013,
+        "R2": 0.98988382823308
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 5.194055785805539,
+        "RMSE": 6.40260195383341,
+        "R2": 0.7159120054205356
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.9778075892686073,
+        "RMSE": 1.3293573752758487,
+        "R2": 0.989278239225
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 6.031533688266676,
+        "RMSE": 7.637095491271846,
+        "R2": 0.6067132742067157
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 1.22827698987904,
+        "RMSE": 1.6758673355140903,
+        "R2": 0.9830042755750811
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 5.985139544591425,
+        "RMSE": 7.783054237134445,
+        "R2": 0.6006762280555649
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.3555280674098488,
+        "RMSE": 3.465017494486569,
+        "R2": 0.6579728688127401
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.41062566238664877,
+        "RMSE": 1.5277531047823603,
+        "R2": -0.2387946355348356
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.40119679672729575,
+        "RMSE": 3.765144004337416,
+        "R2": 0.595987720579326
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.6912939536441837,
+        "RMSE": 2.315785424744465,
+        "R2": -1.845615670903583
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.44830387801038346,
+        "RMSE": 3.7918549399620565,
+        "R2": 0.5900262393272726
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.4645392608901865,
+        "RMSE": 1.4874451836110292,
+        "R2": -0.17563206527824016
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.46488529006996276,
+        "RMSE": 5.182832333293149,
+        "R2": 0.23364845409178436
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.47298895382723627,
+        "RMSE": 0.5622893958958155,
+        "R2": 0.8313285598138336
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.2253944243517873,
+        "RMSE": 0.33013739223301286,
+        "R2": 0.9933219802384947
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.6284658099007963,
+        "RMSE": 0.8669858951530047,
+        "R2": 0.9435028562334675
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.25951657387456123,
+        "RMSE": 0.3708433951190144,
+        "R2": 0.9916084458085334
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.8384695730459198,
+        "RMSE": 1.2231170125897013,
+        "R2": 0.8893288882884924
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.22071298223766744,
+        "RMSE": 0.3068339002805636,
+        "R2": 0.9942772370149247
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 1.0826928934183044,
+        "RMSE": 1.5791617173132593,
+        "R2": 0.818032857212072
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.23406615669939615,
+        "RMSE": 0.32340517697306775,
+        "R2": 0.9936648952262669
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 1.1637226882149054,
+        "RMSE": 1.4440537646319824,
+        "R2": 0.8481981641987307
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 1.32682594722155,
+        "RMSE": 2.166374410009944,
+        "R2": 0.8597808646182916
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.265405061313354,
+        "RMSE": 3.3667051067587694,
+        "R2": 0.5480978817440728
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.6192869374381256,
+        "RMSE": 0.9289897913335831,
+        "R2": 0.9742328504622205
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.4393633524146034,
+        "RMSE": 4.684917840973152,
+        "R2": 0.12685391084721998
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.8993816184349999,
+        "RMSE": 1.3236704421479384,
+        "R2": 0.9477145303293774
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 4.445508054859324,
+        "RMSE": 5.838402331147126,
+        "R2": -0.35957574676468007
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 0.9246915018801055,
+        "RMSE": 1.3658160159615267,
+        "R2": 0.9443483677024777
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.529345233764523,
+        "RMSE": 4.616309467469611,
+        "R2": 0.13952292886178508
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 1.529489089766285,
+        "RMSE": 2.5901851285770303,
+        "R2": 0.6959539890692514
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.6897458150890388,
+        "RMSE": 5.502336113577249,
+        "R2": 0.3412340289834448
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 1.3435371263955553,
+        "RMSE": 2.183576811893382,
+        "R2": 0.7840142059075286
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.9506847953768003,
+        "RMSE": 4.115867472257428,
+        "R2": 0.6285009429651773
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 1.076618257576078,
+        "RMSE": 1.6787342251169282,
+        "R2": 0.8723671888688223
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.835671791355602,
+        "RMSE": 3.866337913113888,
+        "R2": 0.6725924825641687
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 114383,
+        "MAE": 1.3344573848030066,
+        "RMSE": 2.1669518583091283,
+        "R2": 0.7873735834623439
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.9416466047120235,
+        "RMSE": 3.8633575265109226,
+        "R2": 0.6701289154062271
+    }
+]

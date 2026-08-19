@@ -36,7 +36,7 @@
 # Executables
 *.exe
 *.out
-*.app
+# *.app
 *.i*86
 *.x86_64
 *.hex
@@ -87,7 +87,7 @@ dkms.conf
 # Executables
 *.exe
 *.out
-*.app
+# *.app
 
 # Compiled class file
 *.class
@@ -238,7 +238,7 @@ celerybeat.pid
 # Environments
 .env
 .venv
-env/
+# env/
 venv/
 ENV/
 env.bak/

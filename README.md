@@ -1,10 +1,13 @@
-# Data Science for Business, MSc Course @ University of Insubria
+| <img src="docs/theme/logo.svg" width="128"> |
+| - |
+
+# LarioNow
 
 This repository contains my project work for the Data Science for Business course at the University of Insubria, part of the MSc in Computer Science.
 
 ## Overview
 
-This project is an AI-powered Python application for weather nowcasting in the Lake Como area. It combines data from a network of physical sensor stations, which collect environmental measurements every five minutes, with a machine learning model trained on these observations to generate short-term forecasts (30–120 minutes ahead). By leveraging high-frequency, real-time sensor data, the system aims to provide accurate hyperlocal predictions of rapidly evolving weather conditions.
+This project is an AI-powered Python application for weather nowcasting in the Lake Como area. It combines data from a network of physical sensor stations, which collect environmental measurements every five minutes, with a machine learning model trained on these observations to generate short-term forecasts (30-60-90–120 minutes ahead). By leveraging high-frequency, real-time sensor data, the system aims to provide accurate hyperlocal predictions of rapidly evolving weather conditions.
 
 ## Prerequisites
 
@@ -12,11 +15,10 @@ This project is an AI-powered Python application for weather nowcasting in the L
 >
 > - uv
 > - Docker
-> - Docker Compose
 
 ## User Interface (UI)
 
-| <a href="#"><img src="docs/cover.png" alt="UI" width="512"></a> |
+| <a href="#"><img src="docs/theme/cover.png" alt="UI" width="512"></a> |
 | :-: |
 | **Home - LarioNow** |
 
@@ -25,7 +27,7 @@ This project is an AI-powered Python application for weather nowcasting in the L
 Usage:
 
 ```sh
-bash cmd.sh {setup|collector|deploy_jobs}
+bash cmd.sh {start|stop|setup|debug|collector|retraining|deploy_jobs}
 ```
 
 ### `setup`
@@ -36,6 +38,28 @@ If you haven't built the project yet, you can do so by running:
 bash cmd.sh setup
 ```
 
+...
+
+```sh
+bash cmd.sh debug
+```
+
+### `start`
+
+...
+
+```sh
+bash cmd.sh start
+```
+
+### `stop`
+
+...
+
+```sh
+bash cmd.sh stop
+```
+
 ### `collector`
 
 To collect data, you can run the following command:
@@ -44,7 +68,17 @@ To collect data, you can run the following command:
 bash cmd.sh collector
 ```
 
-It exists a Google Cloud Run workflow that runs the ETL pipeline every 5 minutes.
+It exists a Google Cloud Run job scheduled to run every 5 minutes.
+
+### `retraining`
+
+To retrain the model, you can run the following command:
+
+```sh
+bash cmd.sh collector
+```
+
+It exists a Google Cloud Run job scheduled to run every 6 hours.
 
 ### `deploy_jobs`
 

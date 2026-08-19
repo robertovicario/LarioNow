@@ -3,137 +3,118 @@
         "bellagio_cernobbio": {
             "city": "Bellagio",
             "province": "Como",
-            "latitude": 45.9872549,
-            "longitude": 9.2613001,
-            "altitude_m": 685
+            "latitude": 45.9746,
+            "longitude": 9.2616
         },
         "brunate": {
             "city": "Brunate",
             "province": "Como",
-            "latitude": 45.8194702,
-            "longitude": 9.0959895,
-            "altitude_m": 870
+            "latitude": 45.8200,
+            "longitude": 9.0964
         },
         "co_aeroclub": {
             "city": "Como",
             "province": "Como",
-            "latitude": 45.8115623,
-            "longitude": 9.0830353,
-            "altitude_m": 202
+            "latitude": 45.8106,
+            "longitude": 9.0851
         },
         "cernobbio_rovenna": {
             "city": "Cernobbio",
             "province": "Como",
-            "latitude": 45.8413945,
-            "longitude": 9.0759048,
-            "altitude_m": 391
+            "latitude": 45.8392,
+            "longitude": 9.0747
         },
         "dongo": {
             "city": "Dongo",
             "province": "Como",
-            "latitude": 46.1229363,
-            "longitude": 9.2790794,
-            "altitude_m": 201
+            "latitude": 46.1229,
+            "longitude": 9.2791
         },
         "lenno": {
             "city": "Lenno",
             "province": "Como",
-            "latitude": 45.972983,
-            "longitude": 9.190838,
-            "altitude_m": 213
+            "latitude": 45.9667,
+            "longitude": 9.2000
         },
         "loveno": {
             "city": "Menaggio",
             "province": "Como",
-            "latitude": 46.0197842,
-            "longitude": 9.2389513,
-            "altitude_m": 298
+            "latitude": 46.0198,
+            "longitude": 9.2390
         },
         "moltrasio_lago": {
             "city": "Moltrasio",
             "province": "Como",
-            "latitude": 45.8617868,
-            "longitude": 9.0992314,
-            "altitude_m": 199
+            "latitude": 45.8618,
+            "longitude": 9.0992
         },
         "ossuccio": {
             "city": "Ossuccio",
             "province": "Como",
-            "latitude": 45.9716573,
-            "longitude": 9.1796245,
-            "altitude_m": 211
+            "latitude": 45.9667,
+            "longitude": 9.1833
         },
         "geralario": {
             "city": "Gera Lario",
             "province": "Como",
-            "latitude": 46.1710994,
-            "longitude": 9.3718986,
-            "altitude_m": 201
+            "latitude": 46.1711,
+            "longitude": 9.3719
         },
         "gravedona": {
             "city": "Gravedona ed Uniti",
             "province": "Como",
-            "latitude": 46.1576774,
-            "longitude": 9.184374,
-            "altitude_m": 211
+            "latitude": 46.1471,
+            "longitude": 9.3020
         },
         "torno": {
             "city": "Torno",
             "province": "Como",
-            "latitude": 45.8512433,
-            "longitude": 9.1249739,
-            "altitude_m": 316
+            "latitude": 45.8512,
+            "longitude": 9.1250
         }
     },
     "Lecco": {
         "abbadia": {
             "city": "Abbadia Lariana",
             "province": "Lecco",
-            "latitude": 45.9000453,
-            "longitude": 9.3340562,
-            "altitude_m": 250
+            "latitude": 45.9000,
+            "longitude": 9.3341
         },
         "bonzeno": {
             "city": "Bellano",
             "province": "Lecco",
-            "latitude": 46.0432065,
-            "longitude": 9.304131,
-            "altitude_m": 315
+            "latitude": 46.0432,
+            "longitude": 9.3041
         },
         "dervio": {
             "city": "Dervio",
             "province": "Lecco",
-            "latitude": 46.0765742,
-            "longitude": 9.3045277,
-            "altitude_m": 200
+            "latitude": 46.0766,
+            "longitude": 9.3045
         },
         "lecco": {
             "city": "Lecco",
             "province": "Lecco",
-            "latitude": 45.8553764,
-            "longitude": 9.389605,
-            "altitude_m": 225
+            "latitude": 45.8554,
+            "longitude": 9.3896
         },
         "mandello": {
             "city": "Mandello del Lario",
             "province": "Lecco",
-            "latitude": 45.919183,
-            "longitude": 9.319341,
-            "altitude_m": 226.0
+            "latitude": 45.9192,
+            "longitude": 9.3193
         },
         "perledo_cantone": {
             "city": "Perledo",
             "province": "Lecco",
-            "latitude": 46.0128203,
-            "longitude": 9.2962661,
-            "altitude_m": 439
+            "latitude": 46.0128,
+            "longitude": 9.2963
         },
         "valmadrera": {
             "city": "Valmadrera",
             "province": "Lecco",
-            "latitude": 45.846282,
-            "longitude": 9.358244,
-            "altitude_m": 250
+            "latitude": 45.8463,
+            "longitude": 9.3582
         }
     }
 }

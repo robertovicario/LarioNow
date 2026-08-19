@@ -1,0 +1,6 @@
+google-cloud-bigquery
+loguru
+opencv-python-headless
+paddleocr
+pandas
+requests

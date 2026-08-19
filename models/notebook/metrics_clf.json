@@ -1,0 +1,42 @@
+[
+    {
+        "Model": "LGBM Classifier",
+        "Target": "rain_flag",
+        "Set": "TRAIN",
+        "Size": 91838,
+        "Accuracy": 0.9968640432065158,
+        "Precision": 0.9881889763779528,
+        "Recall": 0.9835423197492164,
+        "F1 Score": 0.98586017282011,
+        "Confusion Matrix": [
+            [
+                81510,
+                120
+            ],
+            [
+                168,
+                10040
+            ]
+        ]
+    },
+    {
+        "Model": "LGBM Classifier",
+        "Target": "rain_flag",
+        "Set": "TEST",
+        "Size": 22960,
+        "Accuracy": 0.9969512195121951,
+        "Precision": 0.9902518277822908,
+        "Recall": 0.9814814814814815,
+        "F1 Score": 0.985847149211484,
+        "Confusion Matrix": [
+            [
+                20452,
+                24
+            ],
+            [
+                46,
+                2438
+            ]
+        ]
+    }
+]

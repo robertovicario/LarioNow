@@ -1,0 +1,12 @@
+altair
+db-dtypes
+flaml[automl]
+google-cloud-bigquery
+joblib
+lightgbm
+loguru
+numpy
+opencv-python-headless
+pandas
+pydeck
+streamlit

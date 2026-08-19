@@ -1,0 +1,12 @@
+db-dtypes
+flaml[automl]
+google-cloud-bigquery
+google-cloud-storage
+joblib
+lightgbm
+loguru
+matplotlib
+numpy
+opencv-python-headless
+pandas
+scikit-learn

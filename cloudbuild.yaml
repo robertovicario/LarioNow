@@ -1,5 +1,6 @@
 steps:
     - name: gcr.io/cloud-builders/docker
+      id: collector
       args:
           - build
           - -f
@@ -8,5 +9,16 @@ steps:
           - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow-dataset/collector:latest
           - .
 
+    - name: gcr.io/cloud-builders/docker
+      id: retraining
+      args:
+          - build
+          - -f
+          - docker/Dockerfile.train
+          - -t
+          - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow-dataset/retraining:latest
+          - .
+
 images:
     - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow-dataset/collector:latest
+    - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow-dataset/retraining:latest

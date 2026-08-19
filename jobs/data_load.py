@@ -23,7 +23,8 @@ from lib import config as the_config
 # Configurations
 # =========================
 
-CLIENT_BQ = bigquery.Client(project=the_config.GCP_PROJECT)
+# GCP
+BQ_CLIENT = bigquery.Client(project=the_config.GCP_PROJECT)
 
 # =========================
 # Methods
@@ -48,20 +49,20 @@ f"""\n
     try:
 
         # GET OPS (1)
-        CLIENT_BQ.get_dataset(dataset_ref)
+        BQ_CLIENT.get_dataset(dataset_ref)
 
     except NotFound:
 
         # CREATE OPS (1)
         logger.warning(f"{the_config.LOG_TIMESTAMP} Dataset not found: {the_config.BQ_DATASET}")
         dataset_ref.location = "EU"
-        CLIENT_BQ.create_dataset(dataset_ref)
+        BQ_CLIENT.create_dataset(dataset_ref)
         logger.success(f"{the_config.LOG_TIMESTAMP} CREATED: {the_config.BQ_DATASET}")
 
     try:
 
         # GET OPS (2)
-        CLIENT_BQ.get_table(the_config.BQ_TABLE)
+        BQ_CLIENT.get_table(the_config.BQ_TABLE)
 
     except NotFound:
 
@@ -85,7 +86,6 @@ f"""\n
                 bigquery.SchemaField("province", "STRING"),
                 bigquery.SchemaField("latitude", "FLOAT"),
                 bigquery.SchemaField("longitude", "FLOAT"),
-                bigquery.SchemaField("altitude_m", "FLOAT"),
                 bigquery.SchemaField("temperature_c", "FLOAT"),
                 bigquery.SchemaField("conf_temperature_c", "FLOAT"),
                 bigquery.SchemaField("humidity_pct", "INTEGER"),
@@ -105,10 +105,10 @@ f"""\n
                 bigquery.SchemaField("conf_overall_gmean", "FLOAT")
             ],
         )
-        CLIENT_BQ.create_table(table)
+        BQ_CLIENT.create_table(table)
         for _ in range(the_config.N_RETRY):
             try:
-                CLIENT_BQ.get_table(table.reference)
+                BQ_CLIENT.get_table(table.reference)
                 break
             except NotFound:
                 time.sleep(1)
@@ -123,8 +123,8 @@ f"""\n
     try:
 
         # INSERT OPS
-        CLIENT_BQ.get_table(the_config.BQ_TABLE)
-        errors = CLIENT_BQ.insert_rows_json(
+        BQ_CLIENT.get_table(the_config.BQ_TABLE)
+        errors = BQ_CLIENT.insert_rows_json(
             the_config.BQ_TABLE,
             new_data
         )

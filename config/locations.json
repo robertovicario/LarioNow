@@ -1,0 +1,240 @@
+{
+    "Como": {
+        "argegno": {
+            "city": "Argegno",
+            "province": "Como",
+            "latitude": 45.9433,
+            "longitude": 9.1283
+        },
+        "bellagio": {
+            "city": "Bellagio",
+            "province": "Como",
+            "latitude": 45.9746,
+            "longitude": 9.2616
+        },
+        "blevio": {
+            "city": "Blevio",
+            "province": "Como",
+            "latitude": 45.8333,
+            "longitude": 9.1000
+        },
+        "brienno": {
+            "city": "Brienno",
+            "province": "Como",
+            "latitude": 45.9000,
+            "longitude": 9.1333
+        },
+        "carate_urio": {
+            "city": "Carate Urio",
+            "province": "Como",
+            "latitude": 45.8689,
+            "longitude": 9.1178
+        },
+        "cernobbio": {
+            "city": "Cernobbio",
+            "province": "Como",
+            "latitude": 45.8392,
+            "longitude": 9.0747
+        },
+        "colonno": {
+            "city": "Colonno",
+            "province": "Como",
+            "latitude": 45.9578,
+            "longitude": 9.1556
+        },
+        "como": {
+            "city": "Como",
+            "province": "Como",
+            "latitude": 45.8106,
+            "longitude": 9.0851
+        },
+        "cremia": {
+            "city": "Cremia",
+            "province": "Como",
+            "latitude": 46.0861,
+            "longitude": 9.2726
+        },
+        "domaso": {
+            "city": "Domaso",
+            "province": "Como",
+            "latitude": 46.1510,
+            "longitude": 9.3281
+        },
+        "dongo": {
+            "city": "Dongo",
+            "province": "Como",
+            "latitude": 46.1229,
+            "longitude": 9.2791
+        },
+        "gera_lario": {
+            "city": "Gera Lario",
+            "province": "Como",
+            "latitude": 46.1711,
+            "longitude": 9.3719
+        },
+        "gravedona_ed_uniti": {
+            "city": "Gravedona ed Uniti",
+            "province": "Como",
+            "latitude": 46.1471,
+            "longitude": 9.3020
+        },
+        "laglio": {
+            "city": "Laglio",
+            "province": "Como",
+            "latitude": 45.8810,
+            "longitude": 9.1380
+        },
+        "lezzeno": {
+            "city": "Lezzeno",
+            "province": "Como",
+            "latitude": 45.9451,
+            "longitude": 9.1941
+        },
+        "menaggio": {
+            "city": "Menaggio",
+            "province": "Como",
+            "latitude": 46.0198,
+            "longitude": 9.2390
+        },
+        "moltrasio": {
+            "city": "Moltrasio",
+            "province": "Como",
+            "latitude": 45.8618,
+            "longitude": 9.0992
+        },
+        "musso": {
+            "city": "Musso",
+            "province": "Como",
+            "latitude": 46.1143,
+            "longitude": 9.2764
+        },
+        "nesso": {
+            "city": "Nesso",
+            "province": "Como",
+            "latitude": 45.9114,
+            "longitude": 9.1571
+        },
+        "pianello_del_lario": {
+            "city": "Pianello del Lario",
+            "province": "Como",
+            "latitude": 46.1028,
+            "longitude": 9.2766
+        },
+        "sala_comacina": {
+            "city": "Sala Comacina",
+            "province": "Como",
+            "latitude": 45.9657,
+            "longitude": 9.1683
+        },
+        "san_siro": {
+            "city": "San Siro",
+            "province": "Como",
+            "latitude": 46.0639,
+            "longitude": 9.2681
+        },
+        "sorico": {
+            "city": "Sorico",
+            "province": "Como",
+            "latitude": 46.1723,
+            "longitude": 9.3799
+        },
+        "torno": {
+            "city": "Torno",
+            "province": "Como",
+            "latitude": 45.8512,
+            "longitude": 9.1250
+        },
+        "tremezzina": {
+            "city": "Tremezzina",
+            "province": "Como",
+            "latitude": 45.9835,
+            "longitude": 9.1915
+        }
+    },
+    "Lecco": {
+        "abbadia_lariana": {
+            "city": "Abbadia Lariana",
+            "province": "Lecco",
+            "latitude": 45.9000,
+            "longitude": 9.3341
+        },
+        "bellano": {
+            "city": "Bellano",
+            "province": "Lecco",
+            "latitude": 46.0432,
+            "longitude": 9.3041
+        },
+        "colico": {
+            "city": "Colico",
+            "province": "Lecco",
+            "latitude": 46.1363,
+            "longitude": 9.3738
+        },
+        "dervio": {
+            "city": "Dervio",
+            "province": "Lecco",
+            "latitude": 46.0766,
+            "longitude": 9.3045
+        },
+        "dorio": {
+            "city": "Dorio",
+            "province": "Lecco",
+            "latitude": 46.1018,
+            "longitude": 9.3193
+        },
+        "lecco": {
+            "city": "Lecco",
+            "province": "Lecco",
+            "latitude": 45.8554,
+            "longitude": 9.3896
+        },
+        "lierna": {
+            "city": "Lierna",
+            "province": "Lecco",
+            "latitude": 45.9592,
+            "longitude": 9.3025
+        },
+        "malgrate": {
+            "city": "Malgrate",
+            "province": "Lecco",
+            "latitude": 45.8526,
+            "longitude": 9.3753
+        },
+        "mandello_del_lario": {
+            "city": "Mandello del Lario",
+            "province": "Lecco",
+            "latitude": 45.9192,
+            "longitude": 9.3193
+        },
+        "oliveto_lario": {
+            "city": "Oliveto Lario",
+            "province": "Lecco",
+            "latitude": 45.9292,
+            "longitude": 9.2859
+        },
+        "perledo": {
+            "city": "Perledo",
+            "province": "Lecco",
+            "latitude": 46.0128,
+            "longitude": 9.2963
+        },
+        "pescate": {
+            "city": "Pescate",
+            "province": "Lecco",
+            "latitude": 45.8324,
+            "longitude": 9.3963
+        },
+        "valmadrera": {
+            "city": "Valmadrera",
+            "province": "Lecco",
+            "latitude": 45.8463,
+            "longitude": 9.3582
+        },
+        "varenna": {
+            "city": "Varenna",
+            "province": "Lecco",
+            "latitude": 46.0099,
+            "longitude": 9.2832
+        }
+    }
+}

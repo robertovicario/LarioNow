@@ -8,6 +8,7 @@ from loguru import logger
 import cv2
 import numpy as np
 import os
+import pandas as pd
 import re
 
 from lib import config as the_config
@@ -248,11 +249,11 @@ def normalize_wind_dir(text):
     if not value:
         return None
 
-    if value in the_config.WIND_DIR_VALUES:
+    if value in the_config.WIND_DIR_MAP:
         return value
 
     best = max(
-        the_config.WIND_DIR_VALUES,
+        the_config.WIND_DIR_MAP,
         key=lambda choice: SequenceMatcher(None, value, choice).ratio()
     )
     score = SequenceMatcher(None, value, best).ratio()
@@ -260,5 +261,94 @@ def normalize_wind_dir(text):
     # -------------------------
 
     return best if score >= 0.6 else None
+
+def feature_engineering_clf(df, inference=False):
+
+    # Rain Flag
+    if not inference:
+        df[the_config.CLASSIFICATION["targets"][0]] = (df["rain_mm"] > 0).astype(int)
+    return df, the_config.CLASSIFICATION["targets"]
+
+def feature_engineering_reg(df, inference=False):
+
+    # Data Cleaning
+    int_cols = df.select_dtypes(include="Int64").columns
+    df[int_cols] = df[int_cols].astype("float64")
+
+    # Data Preparation
+    df["timestamp"] = pd.to_datetime(
+        dict(
+            year=df["year"],
+            month=df["month"],
+            day=df["day"],
+            hour=df["hour"],
+            minute=df["minute"],
+        )
+    )
+    df = (
+        df
+        .sort_values(["latitude", "longitude", "timestamp"])
+        .reset_index(drop=True)
+    )
+    df.drop(columns=["timestamp"], inplace=True)
+
+    # Wind X-Y
+    wind_angle = df["wind_dir"].map(the_config.WIND_DIR_MAP)
+    wind_angle_rad = np.deg2rad(wind_angle)
+    df["wind_x"] = (
+        df["wind_speed_kmh"] * np.cos(wind_angle_rad)
+    )
+    df["wind_y"] = (
+        df["wind_speed_kmh"] * np.sin(wind_angle_rad)
+    )
+
+    # Lag Calculation
+    for feature in the_config.REGRESSION["targets"]:
+        for lag in the_config.LAGS:
+
+            df[f"{feature}_lag_{lag}"] = (
+                df.groupby(["latitude", "longitude"])[feature].shift(lag)
+            )
+
+    # Rolling Features
+    for feature in the_config.REGRESSION["targets"]:
+
+        grouped = df.groupby(["latitude", "longitude"])[feature]
+        for window in the_config.ROLLING_WINDOWS:
+
+            df[f"{feature}_mean_{window}"] = (
+                grouped.transform(lambda x: x.rolling(window).mean())
+            )
+            df[f"{feature}_std_{window}"] = (
+                grouped.transform(lambda x: x.rolling(window).std())
+            )
+            df[f"{feature}_min_{window}"] = (
+                grouped.transform(lambda x: x.rolling(window).min())
+            )
+            df[f"{feature}_max_{window}"] = (
+                grouped.transform(lambda x: x.rolling(window).max())
+            )
+
+    # Lead Calculation
+    leads = [
+        f"{feature}_lead_{forecast}"
+        for forecast in the_config.FORECASTS
+        for feature in the_config.REGRESSION["targets"]
+    ]
+    if not inference:
+        for forecast in the_config.FORECASTS:
+
+            lead_steps = forecast // the_config.SAMPLING_MIN
+            for feature in the_config.REGRESSION["targets"]:
+                target = f"{feature}_lead_{forecast}"
+                df[target] = (
+                    df.groupby(["latitude", "longitude"])[feature]
+                    .shift(-lead_steps)
+                )
+        df = df.dropna().reset_index(drop=True)
+
+    # -------------------------
+
+    return df, leads
 
 # -------------------------

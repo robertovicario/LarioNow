@@ -4,7 +4,7 @@ ENV DISABLE_MODEL_SOURCE_CHECK=True
 
 WORKDIR /app
 
-COPY packages/collector.txt requirements.txt
+COPY packages/etl.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY jobs/ .

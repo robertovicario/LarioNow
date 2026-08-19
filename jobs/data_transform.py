@@ -71,7 +71,6 @@ f"""\n
         province = metadata["province"]
         latitude = metadata["latitude"]
         longitude = metadata["longitude"]
-        altitude = metadata["altitude_m"]
         logger.debug(f"{the_config.LOG_TIMESTAMP} [{i:02d}/{total_img:02d}]")
         logger.debug(f"{the_config.LOG_TIMESTAMP} STATION: {city}")
 
@@ -156,8 +155,7 @@ f"""\n
                 "city": city,
                 "province": province,
                 "latitude": latitude,
-                "longitude": longitude,
-                "altitude_m": altitude
+                "longitude": longitude
             }
             fields = {
                 "temperature_c": the_utils.parse_float,
