@@ -14,27 +14,21 @@ This project is an AI-powered Python application for weather nowcasting in the L
 
 ## User Interface (UI)
 
-| <a href="#"><img src="docs/theme/ui-1.png" alt="UI" width="512"></a> | <a href="#"><img src="docs/theme/ui-2.png" alt="UI" width="512"></a> | <a href="#"><img src="docs/theme/ui-3.png" alt="UI" width="512"></a> |
-| :-: | :-: | :-: |
-| **Reference Station** | **Actual Measurements** | **Weather Nowcasting** |
+| <a href="#"><img src="docs/theme/ui-1.png" alt="UI" width="512"></a> | <a href="#"><img src="docs/theme/ui-2.png" alt="UI" width="512"></a> | <a href="#"><img src="docs/theme/ui-3.png" alt="UI" width="512"></a> | <a href="#"><img src="docs/theme/ui-4.png" alt="UI" width="512"></a> |
+| :-: | :-: | :-: | :-: |
+| **Reference Station** | **Actual Measurements** | **Weather Nowcasting** | **Insights** |
 
 ## Instructions
 
 Usage:
 
 ```sh
-bash cmd.sh {start|stop|build|setup|collector|retraining|deploy}
+bash cmd.sh {start|stop|build|clean|setup|collector|retraining|deploy}
 ```
 
-### `build`
+### `setup`
 
-If you haven't built the project yet, you can do so by running:
-
-```sh
-bash cmd.sh build [--dev|--app]
-```
-
-To run test workspace such as notebooks and the projects' resources, you can use the `--dev` flag. To build the application put in the production server, you can use the `--app` flag.
+...
 
 > [!WARNING]
 > To perform some operations, it could be necessary to authenticate with Google Cloud using your Google account by running sequentially in the terminal the two following commands:
@@ -63,6 +57,16 @@ To stop the program, simply run:
 bash cmd.sh stop
 ```
 
+### `clean`
+
+By running the following command, you can clean the project:
+
+```sh
+bash cmd.sh clean [--env|--docker]
+```
+
+If you want to clean the virtual environment, you can choose the `--env` option, while if you want to clean the Docker images, you can choose the `--docker` option.
+
 ### `collector`
 
 To collect new data, you can run the following command:
@@ -81,15 +85,17 @@ To retrain the model, the following command can be used:
 bash cmd.sh retraining
 ```
 
-There is a Google Cloud Run job scheduled to run every hour to retrain the model with the latest data.
+There is a Google Cloud Run job scheduled to run every 2 hours to retrain the model with the latest data.
 
 ### `deploy`
 
-The jobs running on the server could be deployed by running the following command after every update:
+The services and jobs running on the server could be deployed by running the following command after every update:
 
 ```sh
-bash cmd.sh deploy
+bash cmd.sh deploy [--app|--jobs]
 ```
+
+If you want to deploy the application, you can choose the `--app` option, while if you want to deploy the jobs, you can choose the `--jobs` option.
 
 ## Credits
 

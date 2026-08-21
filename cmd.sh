@@ -22,7 +22,6 @@ BLUE="\033[34m"
 MAGENTA="\033[35m"
 CYAN="\033[36m"
 
-
 # =========================
 # Constants
 # =========================
@@ -85,19 +84,24 @@ start() {
     # Docker
     printer -start "Starting the project..."
     if docker ps -a --format '{{.Names}}' | grep -qx "${APP_CONTAINER}"; then
-        docker start "${APP_CONTAINER}" >/dev/null
+        docker start "${APP_CONTAINER}" >/dev/null || {
+            handler $?
+            return
+        }
     else
         docker run -d \
             --name "${APP_CONTAINER}" \
             -p "${APP_PORT}:8501" \
             -v "${ADC_HOST_PATH}:${ADC_CONTAINER_PATH}:ro" \
             -e "GOOGLE_APPLICATION_CREDENTIALS=${ADC_CONTAINER_PATH}" \
-            "${APP_IMAGE}:latest"
+            "${APP_IMAGE}:latest" || {
+            handler $?
+            return
+        }
     fi
 
     # Handler
-    STATUS=$?
-    handler $STATUS
+    handler 0
 }
 
 stop() {
@@ -105,15 +109,14 @@ stop() {
     # Docker
     printer -stop "Stopping the project..."
     if docker ps -a --format '{{.Names}}' | grep -qx "${APP_CONTAINER}"; then
-        docker stop "${APP_CONTAINER}"
-    else
-        printer -success "No app container to stop"
-        return
+        docker stop "${APP_CONTAINER}" || {
+            handler $?
+            return
+        }
     fi
 
     # Handler
-    STATUS=$?
-    handler $STATUS
+    handler 0
 }
 
 build() {
@@ -130,38 +133,100 @@ build() {
         -p "${APP_PORT}:8501" \
         -v "${ADC_HOST_PATH}:${ADC_CONTAINER_PATH}:ro" \
         -e "GOOGLE_APPLICATION_CREDENTIALS=${ADC_CONTAINER_PATH}" \
-        "${APP_IMAGE}:latest"
+        "${APP_IMAGE}:latest" || {
+        handler $?
+        return
+    }
 
     # Handler
-    STATUS=$?
-    handler $STATUS
+    handler 0
 }
 
 setup() {
 
-    # Environment
+    # Virtual Environment
     printer -setup "Set up the project..."
-    uv python install 3.12.10
-    uv venv --python 3.12.10
-
-    # Requirements
-    uv pip install -r packages/etl.txt
-    uv pip install -r packages/train.txt
-    uv pip install -r packages/notebook.txt
+    uv python install 3.12.10 || {
+        handler $?
+        return
+    }
+    uv venv --python 3.12.10 || {
+        handler $?
+        return
+    }
+    uv pip install -r packages/etl.txt || {
+        handler $?
+        return
+    }
+    uv pip install -r packages/train.txt || {
+        handler $?
+        return
+    }
+    uv pip install -r packages/notebook.txt || {
+        handler $?
+        return
+    }
 
     # Handler
-    STATUS=$?
-    handler $STATUS
+    handler 0
+}
+
+clean() {
+
+    # TARGET
+    printer -clean "Cleaning the project..."
+    case "$1" in
+        --env|--docker)
+            ;;
+        *)
+            usage
+            ;;
+    esac
+
+    # CLEAN
+    case "$1" in
+        --env)
+            if [ -d "${PROJECT_ROOT}/.venv" ]; then
+                rm -fv "${PROJECT_ROOT}/.venv" || {
+                    handler $?
+                    return
+                }
+            fi
+            ;;
+        --docker)
+            if docker ps -a --format '{{.Names}}' | grep -qx "${APP_CONTAINER}"; then
+                docker rm -f "${APP_CONTAINER}" >/dev/null 2>&1 || {
+                    handler $?
+                    return
+                }
+            fi
+            if docker image inspect "${APP_IMAGE}:latest" >/dev/null 2>&1; then
+                docker rmi "${APP_IMAGE}:latest" >/dev/null 2>&1 || {
+                    handler $?
+                    return
+                }
+            fi
+            ;;
+    esac
+
+    # Handler
+    handler 0
 }
 
 collector() {
 
     # COLLECTOR
     printer -start "Collecting data..."
-    cd jobs || exit 1
+    cd jobs || {
+        handler $?
+        return
+    }
     uv run python job_collector.py
     STATUS=$?
-    cd - >/dev/null || exit 1
+    cd - >/dev/null || {
+        handler $?
+        return
+    }
 
     # Handler
     handler $STATUS
@@ -171,10 +236,16 @@ retraining() {
 
     # RETRAINING
     printer -start "Retraining the model..."
-    cd jobs || exit 1
+    cd jobs || {
+        handler $?
+        return
+    }
     uv run python job_retraining.py
     STATUS=$?
-    cd - >/dev/null || exit 1
+    cd - >/dev/null || {
+        handler $?
+        return
+    }
 
     # Handler
     handler $STATUS
@@ -226,7 +297,7 @@ deploy() {
     esac
 
     # Handler
-    handler $?
+    handler 0
 }
 
 # =========================
@@ -245,9 +316,10 @@ usage() {
     - [${ICON_STOP}] stop
     - [${ICON_SETUP}] build
     - [${ICON_SETUP}] setup
+    - [${ICON_CLEAN}] clean [--env|--docker]
     - [${ICON_START}] collector
     - [${ICON_START}] retraining
-    - [${ICON_SETUP}] deploy --[app|jobs]
+    - [${ICON_SETUP}] deploy [--app|--jobs]
 
 EOF
     exit 1
@@ -321,6 +393,9 @@ case $1 in
         ;;
     setup)
         setup
+        ;;
+    clean)
+        clean $2
         ;;
     collector)
         collector

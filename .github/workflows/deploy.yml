@@ -1,0 +1,126 @@
+name: Build and Deploy to Cloud Run
+
+on:
+    push:
+        branches:
+            - main
+
+env:
+    PROJECT_ID: uninsubria-data-science
+    REGION: europe-west8
+    ARTIFACT_REPOSITORY: larionow-dataset
+    APP_SERVICE: larionow
+    COLLECTOR_JOB: collector
+    RETRAINING_JOB: retraining
+    RUNTIME_SERVICE_ACCOUNT: 289545143980-compute@developer.gserviceaccount.com
+    BQ_DATASET: larionow_dataset
+    BQ_TABLE_NAME: measurements
+    GCS_BUCKET: uninsubria-data-science-models
+    GCS_PREFIX_MODELS: models/
+    WORKLOAD_IDENTITY_PROVIDER: projects/123456789/locations/global/workloadIdentityPools/github/providers/github
+    DEPLOY_SERVICE_ACCOUNT: github-deploy@uninsubria-data-science.iam.gserviceaccount.com
+
+jobs:
+    deploy:
+        name: Build and Deploy
+        runs-on: ubuntu-latest
+
+        permissions:
+            contents: read
+            id-token: write
+
+        steps:
+
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Authenticate to Google Cloud
+              id: auth
+              uses: google-github-actions/auth@v2
+              with:
+                  workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+                  service_account: ${{ env.DEPLOY_SERVICE_ACCOUNT }}
+
+            - name: Configure Docker authentication
+              run: |
+                  gcloud auth configure-docker \
+                    "${{ env.REGION }}-docker.pkg.dev" \
+                    --quiet
+
+            - name: Build application image
+              run: |
+                  docker build \
+                    -f docker/Dockerfile.app \
+                    -t "${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPOSITORY }}/app:${{ github.sha }}" \
+                    .
+
+            - name: Build collector image
+              run: |
+                  docker build \
+                    -f docker/Dockerfile.etl \
+                    -t "${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPOSITORY }}/collector:${{ github.sha }}" \
+                    .
+
+            - name: Build retraining image
+              run: |
+                  docker build \
+                    -f docker/Dockerfile.train \
+                    -t "${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPOSITORY }}/retraining:${{ github.sha }}" \
+                    .
+
+            - name: Push application image
+              run: |
+                  docker push \
+                    "${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPOSITORY }}/app:${{ github.sha }}"
+
+            - name: Push collector image
+              run: |
+                  docker push \
+                    "${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPOSITORY }}/collector:${{ github.sha }}"
+
+            - name: Push retraining image
+              run: |
+                  docker push \
+                    "${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPOSITORY }}/retraining:${{ github.sha }}"
+
+            - name: Deploy application to Cloud Run
+              uses: google-github-actions/deploy-cloudrun@v2
+              with:
+                  service: ${{ env.APP_SERVICE }}
+                  region: ${{ env.REGION }}
+                  image: ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPOSITORY }}/app:${{ github.sha }}
+                  flags: >-
+                      --port=8501
+                      --memory=2Gi
+                      --cpu=1
+                      --service-account=${{ env.RUNTIME_SERVICE_ACCOUNT }}
+                      --allow-unauthenticated
+                      --set-env-vars=GCP_PROJECT=${{ env.PROJECT_ID }},BQ_DATASET=${{ env.BQ_DATASET }},BQ_TABLE_NAME=${{ env.BQ_TABLE_NAME }}
+
+            - name: Deploy collector job
+              run: |
+                  gcloud run jobs deploy "${{ env.COLLECTOR_JOB }}" \
+                    --image="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPOSITORY }}/collector:${{ github.sha }}" \
+                    --region="${{ env.REGION }}" \
+                    --memory=2Gi \
+                    --cpu=2 \
+                    --task-timeout=30m \
+                    --service-account="${{ env.RUNTIME_SERVICE_ACCOUNT }}" \
+                    --set-env-vars="GCP_PROJECT=${{ env.PROJECT_ID }},BQ_DATASET=${{ env.BQ_DATASET }},BQ_TABLE_NAME=${{ env.BQ_TABLE_NAME }}"
+
+            - name: Deploy retraining job
+              run: |
+                  gcloud run jobs deploy "${{ env.RETRAINING_JOB }}" \
+                    --image="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPOSITORY }}/retraining:${{ github.sha }}" \
+                    --region="${{ env.REGION }}" \
+                    --memory=4Gi \
+                    --cpu=2 \
+                    --task-timeout=60m \
+                    --service-account="${{ env.RUNTIME_SERVICE_ACCOUNT }}" \
+                    --set-env-vars="GCP_PROJECT=${{ env.PROJECT_ID }},BQ_DATASET=${{ env.BQ_DATASET }},BQ_TABLE_NAME=${{ env.BQ_TABLE_NAME }},GCS_BUCKET=${{ env.GCS_BUCKET }},GCS_PREFIX_MODELS=${{ env.GCS_PREFIX_MODELS }}"
+
+            - name: Show Cloud Run URL
+              run: |
+                  gcloud run services describe "${{ env.APP_SERVICE }}" \
+                    --region="${{ env.REGION }}" \
+                    --format="value(status.url)"
