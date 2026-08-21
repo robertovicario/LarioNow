@@ -23,20 +23,18 @@ IMG_URL = "http://rete.centrometeolombardo.com/{province}/{tag}/immagini/v.png"
 # Paths
 ROOT_PATH = Path(__file__).resolve().parents[1]
 MODELS_PATH = ROOT_PATH / "models"
-MODELS_NB_PATH = MODELS_PATH / "notebook"
 MODELS_LATEST_PATH = MODELS_PATH / "latest"
-NB_OUT_PATH = ROOT_PATH / "notebook/out"
 TMP_IMG_PATH = ROOT_PATH / "tmp/img"
 LOCATIONS_JSON = ROOT_PATH / "config/locations.json"
 STATIONS_JSON = ROOT_PATH / "config/stations.json"
+ICON_SVG = ROOT_PATH / "docs/theme/logo.svg"
 PATHS = [
     MODELS_PATH,
-    MODELS_NB_PATH,
     MODELS_LATEST_PATH,
-    NB_OUT_PATH,
     TMP_IMG_PATH,
     LOCATIONS_JSON,
-    STATIONS_JSON
+    STATIONS_JSON,
+    ICON_SVG
 ]
 
 # -------------------------
@@ -89,7 +87,7 @@ GCS_PREFIX_LATEST = f"{GCS_PREFIX_MODELS}latest/"
 # -------------------------
 
 # Feature Engineering
-WIND_DIR_MAP = {
+FENG_WIND_DIR_MAP = {
     "N": 0,
     "NNE": 22.5,
     "NE": 45,
@@ -107,18 +105,18 @@ WIND_DIR_MAP = {
     "NW": 315,
     "NNW": 337.5
 }
-LAGS = [1, 2, 3, 6, 12, 18, 24]
-ROLLING_WINDOWS = [6, 12, 24]
-FORECASTS = [30, 60, 90, 120]
-HOLDOUT_MIN = 120
-SAMPLING_MIN = 5
-HOLDOUT_STEPS = HOLDOUT_MIN // SAMPLING_MIN
+FENG_LAGS = [1, 2, 3, 6, 12, 18, 24]
+FENG_ROLLING_WINDOWS = [6, 12, 24]
+FENG_FORECASTS = [30, 60, 90, 120]
+FENG_HOLDOUT_MIN = 120
+FENG_SAMPLING_MIN = 5
+FENG_HOLDOUT_STEPS = FENG_HOLDOUT_MIN // FENG_SAMPLING_MIN
 
 # Machine Learning
-N_COLLECTION = 5472
-N_SUBSAMPLING = 0  # 0 if no subsampling
-HYPER_SPACE = {
-	"sampling": N_COLLECTION * N_SUBSAMPLING,
+ML_DAILY_COLL = 5472  # 1 day of data (5 min sampling)
+ML_SAMPLING = 7       # 0 if no subsampling
+ML_HYPER_SPACE = {
+	"sampling": ML_DAILY_COLL * ML_SAMPLING,
     "automl_clf": {
 		"time_budget": 60,
 		"metric": "roc_auc"
@@ -129,6 +127,13 @@ HYPER_SPACE = {
 	}
 }
 CLASSIFICATION = {
+    "to_drop": [
+        "date", "year", "month", "day", "hour", "minute",
+        "quarter", "week_of_year", "day_of_year", "day_of_week",
+        "province", "city", "station",
+        "wind_dir",
+        "rain_mm", "rain_mmh"
+    ],
     "targets": [
         "rain_flag"
 	],
@@ -137,36 +142,64 @@ CLASSIFICATION = {
     "seed": 42
 }
 REGRESSION = {
+    "to_drop": [
+        "date",
+        "province", "city", "station",
+        "wind_dir",
+        "rain_mm", "rain_mmh"
+    ],
     "targets" : [
 		"temperature_c",
 		"humidity_pct",
 		"dew_point_c",
 		"pressure_hpa",
-		"wind_x",
-		"wind_y"
+        "wind_speed_kmh", "wind_x", "wind_y"
 	],
 	"seed": 42
 }
 
 # Inference
-N_STATIONS = (
+INF_N_STATIONS = (
     sum(len(stations)
     for stations in STATIONS.values())
 )
-INF_ROWS = N_STATIONS * HOLDOUT_STEPS
+INF_ROWS = INF_N_STATIONS * FENG_HOLDOUT_STEPS
+INF_ACTUAL_COLS = [
+    "timestamp",
+    "station",
+    "city",
+    "latitude",
+    "longitude",
+    "temperature_c",
+    "humidity_pct",
+    "dew_point_c",
+    "pressure_hpa",
+    "wind_speed_kmh", "wind_x", "wind_y",
+    "rain_mm"
+]
+INF_RES_COLS = [
+    "timestamp",
+    "station", "city", "latitude", "longitude",
+    "lead",
+    "temperature_c",
+    "humidity_pct",
+    "dew_point_c",
+    "pressure_hpa",
+    "wind_speed_kmh", "wind_x", "wind_y",
+    "rain_proba"
+]
 
 # Computer Vision
-DEVICE = "cpu"
-OCR_MODEL = "PP-OCRv5_server_rec"
-OCR_FIELDS = [
+CV_DEVICE = "cpu"
+CV_OCR_MODEL = "PP-OCRv5_server_rec"
+CV_OCR_FIELDS = [
     "temperature_c",
     "humidity_pct",
     "dew_point_c",
     "wind_speed_kmh",
     "wind_dir",
     "pressure_hpa",
-    "rain_mm",
-    "rain_mmh"
+    "rain_mm", "rain_mmh"
 ]
 
 # -------------------------

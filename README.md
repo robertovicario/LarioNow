@@ -3,11 +3,7 @@
 
 # LarioNow
 
-This repository contains my project work for the Data Science for Business course at the University of Insubria, part of the MSc in Computer Science.
-
-## Overview
-
-This project is an AI-powered Python application for weather nowcasting in the Lake Como area. It combines data from a network of physical sensor stations, which collect environmental measurements every five minutes, with a machine learning model trained on these observations to generate short-term forecasts (30-60-90–120 minutes ahead). By leveraging high-frequency, real-time sensor data, the system aims to provide accurate hyperlocal predictions of rapidly evolving weather conditions.
+This project is an AI-powered Python application for weather nowcasting in the Lake Como area. It combines data from a network of physical sensor stations, which collect environmental measurements every 5 minutes, with a multi-state machine learning model trained on these observations to generate short-term forecasts (30-60-90–120 minutes ahead). By leveraging high-frequency, real-time sensor data, the system aims to provide accurate hyperlocal predictions of rapidly evolving weather conditions.
 
 ## Prerequisites
 
@@ -18,35 +14,42 @@ This project is an AI-powered Python application for weather nowcasting in the L
 
 ## User Interface (UI)
 
-| <a href="#"><img src="docs/theme/cover.png" alt="UI" width="512"></a> |
-| :-: |
-| **Home - LarioNow** |
+| <a href="#"><img src="docs/theme/ui-1.png" alt="UI" width="512"></a> | <a href="#"><img src="docs/theme/ui-2.png" alt="UI" width="512"></a> | <a href="#"><img src="docs/theme/ui-3.png" alt="UI" width="512"></a> |
+| :-: | :-: | :-: |
+| **Reference Station** | **Actual Measurements** | **Weather Nowcasting** |
 
 ## Instructions
 
 Usage:
 
 ```sh
-bash cmd.sh {start|stop|setup|debug|collector|retraining|deploy_jobs}
+bash cmd.sh {start|stop|build|setup|collector|retraining|deploy}
 ```
 
-### `setup`
+### `build`
 
 If you haven't built the project yet, you can do so by running:
 
 ```sh
-bash cmd.sh setup
+bash cmd.sh build [--dev|--app]
 ```
 
-...
+To run test workspace such as notebooks and the projects' resources, you can use the `--dev` flag. To build the application put in the production server, you can use the `--app` flag.
+
+> [!WARNING]
+> To perform some operations, it could be necessary to authenticate with Google Cloud using your Google account by running sequentially in the terminal the two following commands:
 
 ```sh
-bash cmd.sh debug
+gcloud auth login
+```
+
+```sh
+gcloud auth application-default login
 ```
 
 ### `start`
 
-...
+The application can be started by running the following command:
 
 ```sh
 bash cmd.sh start
@@ -54,7 +57,7 @@ bash cmd.sh start
 
 ### `stop`
 
-...
+To stop the program, simply run:
 
 ```sh
 bash cmd.sh stop
@@ -62,7 +65,7 @@ bash cmd.sh stop
 
 ### `collector`
 
-To collect data, you can run the following command:
+To collect new data, you can run the following command:
 
 ```sh
 bash cmd.sh collector
@@ -72,17 +75,21 @@ It exists a Google Cloud Run job scheduled to run every 5 minutes.
 
 ### `retraining`
 
-To retrain the model, you can run the following command:
+To retrain the model, the following command can be used:
 
 ```sh
-bash cmd.sh collector
+bash cmd.sh retraining
 ```
 
-It exists a Google Cloud Run job scheduled to run every 6 hours.
+There is a Google Cloud Run job scheduled to run every hour to retrain the model with the latest data.
 
-### `deploy_jobs`
+### `deploy`
 
-...
+The jobs running on the server could be deployed by running the following command after every update:
+
+```sh
+bash cmd.sh deploy
+```
 
 ## Credits
 

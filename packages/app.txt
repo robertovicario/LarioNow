@@ -2,11 +2,13 @@ altair
 db-dtypes
 flaml[automl]
 google-cloud-bigquery
+google-cloud-storage
 joblib
 lightgbm
 loguru
 numpy
 opencv-python-headless
 pandas
+plotly
 pydeck
 streamlit

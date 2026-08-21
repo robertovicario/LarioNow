@@ -249,11 +249,11 @@ def normalize_wind_dir(text):
     if not value:
         return None
 
-    if value in the_config.WIND_DIR_MAP:
+    if value in the_config.FENG_WIND_DIR_MAP:
         return value
 
     best = max(
-        the_config.WIND_DIR_MAP,
+        the_config.FENG_WIND_DIR_MAP,
         key=lambda choice: SequenceMatcher(None, value, choice).ratio()
     )
     score = SequenceMatcher(None, value, best).ratio()
@@ -293,7 +293,7 @@ def feature_engineering_reg(df, inference=False):
     df.drop(columns=["timestamp"], inplace=True)
 
     # Wind X-Y
-    wind_angle = df["wind_dir"].map(the_config.WIND_DIR_MAP)
+    wind_angle = df["wind_dir"].map(the_config.FENG_WIND_DIR_MAP)
     wind_angle_rad = np.deg2rad(wind_angle)
     df["wind_x"] = (
         df["wind_speed_kmh"] * np.cos(wind_angle_rad)
@@ -304,7 +304,7 @@ def feature_engineering_reg(df, inference=False):
 
     # Lag Calculation
     for feature in the_config.REGRESSION["targets"]:
-        for lag in the_config.LAGS:
+        for lag in the_config.FENG_LAGS:
 
             df[f"{feature}_lag_{lag}"] = (
                 df.groupby(["latitude", "longitude"])[feature].shift(lag)
@@ -314,7 +314,7 @@ def feature_engineering_reg(df, inference=False):
     for feature in the_config.REGRESSION["targets"]:
 
         grouped = df.groupby(["latitude", "longitude"])[feature]
-        for window in the_config.ROLLING_WINDOWS:
+        for window in the_config.FENG_ROLLING_WINDOWS:
 
             df[f"{feature}_mean_{window}"] = (
                 grouped.transform(lambda x: x.rolling(window).mean())
@@ -332,13 +332,13 @@ def feature_engineering_reg(df, inference=False):
     # Lead Calculation
     leads = [
         f"{feature}_lead_{forecast}"
-        for forecast in the_config.FORECASTS
+        for forecast in the_config.FENG_FORECASTS
         for feature in the_config.REGRESSION["targets"]
     ]
     if not inference:
-        for forecast in the_config.FORECASTS:
+        for forecast in the_config.FENG_FORECASTS:
 
-            lead_steps = forecast // the_config.SAMPLING_MIN
+            lead_steps = forecast // the_config.FENG_SAMPLING_MIN
             for feature in the_config.REGRESSION["targets"]:
                 target = f"{feature}_lead_{forecast}"
                 df[target] = (
@@ -350,5 +350,122 @@ def feature_engineering_reg(df, inference=False):
     # -------------------------
 
     return df, leads
+
+def exec_inference(clf, reg, clf_df, reg_df):
+
+    latest = (
+            reg_df
+            .sort_values(["station", "timestamp"])
+            .groupby("station")
+            .tail(1)
+        )
+    to_drop = [
+        *the_config.REGRESSION["to_drop"],
+        "timestamp"
+    ]
+    to_drop += [c for c in reg_df.columns if c.lower().startswith("conf_")]
+    X_latest_reg = latest.drop(columns=[c for c in to_drop if c in latest.columns])
+
+    reg_features = getattr(next(iter(reg.model_.values())), "feature_names_in_", None)
+    if reg_features is not None:
+        X_latest_reg = X_latest_reg[list(reg_features)]
+
+    # Prediction -- Regression
+    y_pred_reg = reg.predict(X_latest_reg)
+
+    # Results -- Regression
+    results_df = (
+        y_pred_reg
+        .rename_axis("row_index")
+        .reset_index()
+        .melt(id_vars="row_index", var_name="variable", value_name="value")
+        .assign(
+            lead=lambda x: x["variable"].str.extract(r"_lead_(\d+)$")[0].astype(int),
+            variable=lambda x: x["variable"].str.replace(
+                r"_lead_\d+$", "", regex=True
+            )
+        )
+        .pivot(
+            index=["row_index", "lead"],
+            columns="variable",
+            values="value"
+        )
+        .reset_index()
+        .rename_axis(None, axis=1)
+    )
+
+    # -------------------------
+
+    # Feature Selection -- Classification
+    station = latest[
+        ["station", "city", "latitude", "longitude", "timestamp"]
+    ].rename_axis("row_index").reset_index()
+    results_df = results_df.merge(station, on="row_index")
+    results_df["timestamp"] += pd.to_timedelta(results_df["lead"], unit="m")
+
+    clf_features = getattr(clf.model_, "feature_names_in_", None)
+    if clf_features is None:
+
+        to_drop = [
+            *the_config.CLASSIFICATION["to_drop"],
+            "timestamp"
+        ]
+        to_drop += [c for c in clf_df.columns if c.lower().startswith("conf_")]
+        clf_features = (
+            clf_df
+            .drop(columns=[c for c in to_drop if c in clf_df.columns])
+            .columns.tolist()
+        )
+
+    # Prediction -- Classification
+    results_df["rain_proba"] = clf.predict_proba(
+        results_df[list(clf_features)]
+    )[:, 1]
+
+    # Results -- Classification
+    results_df = results_df[the_config.INF_RES_COLS]
+    actual_df = (
+        latest[the_config.INF_ACTUAL_COLS]
+        .assign(
+            lead=0,
+            rain_proba=lambda x: x["rain_mm"].gt(0).astype(int),
+        )
+        .drop(columns=["rain_mm"])
+    )
+
+    # -------------------------
+
+    return (
+        pd.concat([actual_df, results_df], ignore_index=True)
+        [the_config.INF_RES_COLS]
+        .sort_values(["city", "station", "lead"])
+        .reset_index(drop=True)
+    )
+
+def build_stations_df():
+
+    return pd.DataFrame([
+        {
+            "city": info["city"],
+            "province": info["province"],
+            "latitude": info["latitude"],
+            "longitude": info["longitude"],
+        }
+        for _, tags in the_config.STATIONS.items()
+        for _, info in tags.items()
+    ])
+
+def get_wind_direction(wind_x, wind_y):
+
+    return min(
+        the_config.FENG_WIND_DIR_MAP.items(),
+        key=lambda item: abs(
+            (
+                np.degrees(np.arctan2(wind_x, wind_y)) % 360
+                - item[1]
+                + 180
+            ) % 360 - 180
+        ),
+    )[0]
 
 # -------------------------

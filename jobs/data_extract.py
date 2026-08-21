@@ -9,11 +9,11 @@ import requests
 import sys
 import time
 
-PROJECT_ROOT = Path(__file__).resolve().parent
-if PROJECT_ROOT.name == "jobs":
-    PROJECT_ROOT = PROJECT_ROOT.parent
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
+ROOT_PATH = Path(__file__).resolve().parent
+if ROOT_PATH.name in ["jobs", "notebook"]:
+    ROOT_PATH = ROOT_PATH.parent
+if str(ROOT_PATH) not in sys.path:
+    sys.path.insert(0, str(ROOT_PATH))
 
 from lib import config as the_config
 

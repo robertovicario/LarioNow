@@ -13,11 +13,11 @@ import os
 import paddle
 import sys
 
-PROJECT_ROOT = Path(__file__).resolve().parent
-if PROJECT_ROOT.name == "jobs":
-    PROJECT_ROOT = PROJECT_ROOT.parent
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
+ROOT_PATH = Path(__file__).resolve().parent
+if ROOT_PATH.name in ["jobs", "notebook"]:
+    ROOT_PATH = ROOT_PATH.parent
+if str(ROOT_PATH) not in sys.path:
+    sys.path.insert(0, str(ROOT_PATH))
 
 from lib import config as the_config
 from lib import utils as the_utils
@@ -33,8 +33,8 @@ paddle.disable_signal_handler()
 
 # Models
 MODEL_OCR = TextRecognition(
-    model_name=the_config.OCR_MODEL,
-    device=the_config.DEVICE
+    model_name=the_config.CV_OCR_MODEL,
+    device=the_config.CV_DEVICE
 )
 
 # =========================
@@ -126,7 +126,7 @@ f"""\n
             pieces = the_utils.get_pieces(img_cv, green_mask, all_rois)
             values = the_utils.ocr_predict(
                 MODEL_OCR,
-                the_config.OCR_FIELDS,
+                the_config.CV_OCR_FIELDS,
                 pieces,
                 verbose=verbose
             )

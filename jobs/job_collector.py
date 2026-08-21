@@ -1,0 +1,43 @@
+# =========================
+# Dependencies
+# =========================
+
+from pathlib import Path
+import sys
+
+ROOT_PATH = Path(__file__).resolve().parent
+if ROOT_PATH.name in ["jobs", "notebook"]:
+    ROOT_PATH = ROOT_PATH.parent
+if str(ROOT_PATH) not in sys.path:
+    sys.path.insert(0, str(ROOT_PATH))
+
+from lib import config as the_config
+from lib import utils as the_utils
+
+from data_extract import extract_data
+from data_transform import transform_data
+from data_load import load_data
+
+# =========================
+# Configurations
+# =========================
+
+# Paths
+for path in the_config.PATHS:
+    the_utils.ensure_path(path)
+
+# =========================
+# Pipeline
+# =========================
+
+def run_pipeline() -> None:
+
+    the_config.refresh_logging()
+    stations = extract_data()
+    new_data = transform_data(stations, verbose=False)
+    load_data(new_data)
+
+if __name__ == "__main__":
+    run_pipeline()
+
+# -------------------------

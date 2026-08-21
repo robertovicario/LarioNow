@@ -21,4 +21,4 @@ COPY jobs/ .
 COPY config/ config/
 COPY lib/ lib/
 
-CMD ["python", "retraining.py"]
+CMD ["python", "job_retraining.py"]

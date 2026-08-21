@@ -26,10 +26,12 @@ CYAN="\033[36m"
 # =========================
 # Constants
 # =========================
+
 # App
-APP_IMAGE="app-larionow"
+APP_IMAGE="larionow"
 APP_CONTAINER="larionow"
 APP_PORT="8501"
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # GCP
 PROJECT_ID="uninsubria-data-science"
@@ -39,9 +41,21 @@ BQ_TABLE_NAME="measurements"
 GCS_BUCKET="uninsubria-data-science-models"
 GCS_PREFIX_MODELS="models/"
 REGION_RUN="europe-west8"
-JOB_COLLECTOR="collector"
-JOB_RETRAINING="retraining"
 SERVICE_ACCOUNT="289545143980-compute@developer.gserviceaccount.com"
+ADC_HOST_PATH="${HOME}/.config/gcloud/application_default_credentials.json"
+ADC_CONTAINER_PATH="/tmp/gcp-credentials.json"
+WS_APP="larionow"
+ARGS_APP=(
+    --image="${REGION_RUN}-docker.pkg.dev/${PROJECT_ID}/${DATASET_ID}/app:latest"
+    --region="${REGION_RUN}"
+    --port=8501
+    --memory=2Gi
+    --cpu=1
+    --service-account="${SERVICE_ACCOUNT}"
+    --allow-unauthenticated
+    --set-env-vars="GCP_PROJECT=${PROJECT_ID},BQ_DATASET=${BQ_DATASET},BQ_TABLE_NAME=${BQ_TABLE_NAME}"
+)
+JOB_COLLECTOR="collector"
 ARGS_COLLECTOR=(
     --image="${REGION_RUN}-docker.pkg.dev/${PROJECT_ID}/${DATASET_ID}/${JOB_COLLECTOR}:latest"
     --region="${REGION_RUN}"
@@ -51,6 +65,7 @@ ARGS_COLLECTOR=(
     --service-account="${SERVICE_ACCOUNT}"
     --set-env-vars="GCP_PROJECT=${PROJECT_ID},BQ_DATASET=${BQ_DATASET},BQ_TABLE_NAME=${BQ_TABLE_NAME}"
 )
+JOB_RETRAINING="retraining"
 ARGS_RETRAINING=(
     --image="${REGION_RUN}-docker.pkg.dev/${PROJECT_ID}/${DATASET_ID}/${JOB_RETRAINING}:latest"
     --region="${REGION_RUN}"
@@ -65,47 +80,6 @@ ARGS_RETRAINING=(
 # Methods
 # =========================
 
-setup() {
-
-    printer -setup "Setting up the project..."
-    case "$1" in
-
-        --dev)
-
-            # Environment
-            uv python install 3.12.10
-            uv venv --python 3.12.10
-
-            # Requirements
-            uv pip install -r packages/etl.txt
-            uv pip install -r packages/train.txt
-            uv pip install -r packages/notebook.txt
-            ;;
-
-        --app)
-
-            # Docker
-            docker build -f docker/Dockerfile.app -t "${APP_IMAGE}:latest" . || {
-                handler $?
-                return
-            }
-            docker rm -f "${APP_CONTAINER}" >/dev/null 2>&1 || true
-            docker run -d \
-                --name "${APP_CONTAINER}" \
-                -p "${APP_PORT}:8501" \
-                "${APP_IMAGE}:latest"
-            ;;
-
-        *)
-            usage
-            ;;
-    esac
-
-    # Handler
-    STATUS=$?
-    handler $STATUS
-}
-
 start() {
 
     # Docker
@@ -116,6 +90,8 @@ start() {
         docker run -d \
             --name "${APP_CONTAINER}" \
             -p "${APP_PORT}:8501" \
+            -v "${ADC_HOST_PATH}:${ADC_CONTAINER_PATH}:ro" \
+            -e "GOOGLE_APPLICATION_CREDENTIALS=${ADC_CONTAINER_PATH}" \
             "${APP_IMAGE}:latest"
     fi
 
@@ -140,19 +116,38 @@ stop() {
     handler $STATUS
 }
 
-debug() {
+build() {
 
     # Docker
-    printer -setup "Starting debug..."
-    docker rm -f "${APP_CONTAINER}" >/dev/null 2>&1 || true
-    docker build --no-cache -f docker/Dockerfile.app -t "${APP_IMAGE}:latest" . || {
+    printer -setup "Building the project..."
+    docker build -f docker/Dockerfile.app -t "${APP_IMAGE}:latest" . || {
         handler $?
         return
     }
+    docker rm -f "${APP_CONTAINER}" >/dev/null 2>&1 || true
     docker run -d \
         --name "${APP_CONTAINER}" \
         -p "${APP_PORT}:8501" \
+        -v "${ADC_HOST_PATH}:${ADC_CONTAINER_PATH}:ro" \
+        -e "GOOGLE_APPLICATION_CREDENTIALS=${ADC_CONTAINER_PATH}" \
         "${APP_IMAGE}:latest"
+
+    # Handler
+    STATUS=$?
+    handler $STATUS
+}
+
+setup() {
+
+    # Environment
+    printer -setup "Set up the project..."
+    uv python install 3.12.10
+    uv venv --python 3.12.10
+
+    # Requirements
+    uv pip install -r packages/etl.txt
+    uv pip install -r packages/train.txt
+    uv pip install -r packages/notebook.txt
 
     # Handler
     STATUS=$?
@@ -161,10 +156,10 @@ debug() {
 
 collector() {
 
-    # JOB
-    printer -start "Starting the data collection..."
+    # COLLECTOR
+    printer -start "Collecting data..."
     cd jobs || exit 1
-    uv run python collector.py
+    uv run python job_collector.py
     STATUS=$?
     cd - >/dev/null || exit 1
 
@@ -175,9 +170,9 @@ collector() {
 retraining() {
 
     # RETRAINING
-    printer -start "Starting the model retraining..."
+    printer -start "Retraining the model..."
     cd jobs || exit 1
-    uv run python retraining.py
+    uv run python job_retraining.py
     STATUS=$?
     cd - >/dev/null || exit 1
 
@@ -185,24 +180,50 @@ retraining() {
     handler $STATUS
 }
 
-deploy_jobs() {
+deploy() {
+
+    # TARGET
+    printer -setup "Deploying jobs on Google Cloud Run..."
+    case "$1" in
+        --app|--jobs)
+            ;;
+        *)
+            usage
+            ;;
+    esac
 
     # BUILD
-    printer -setup "Deploying jobs on Google Cloud Run..."
     gcloud builds submit --config cloudbuild.yaml . || {
         handler $?
         return
     }
 
     # DEPLOY
-    gcloud run jobs deploy "${JOB_COLLECTOR}" \
-        "${ARGS_COLLECTOR[@]}" || {
-            handler $?
-            return
-        }
+    case $1 in
+        --app)
+            gcloud run deploy "${WS_APP}" \
+                "${ARGS_APP[@]}" || {
+                    handler $?
+                    return
+                }
+            ;;
+        --jobs)
+            gcloud run jobs deploy "${JOB_COLLECTOR}" \
+                "${ARGS_COLLECTOR[@]}" || {
+                    handler $?
+                    return
+                }
 
-    gcloud run jobs deploy "${JOB_RETRAINING}" \
-        "${ARGS_RETRAINING[@]}"
+            gcloud run jobs deploy "${JOB_RETRAINING}" \
+                "${ARGS_RETRAINING[@]}" || {
+                    handler $?
+                    return
+                }
+            ;;
+        *)
+            usage
+            ;;
+    esac
 
     # Handler
     handler $?
@@ -222,11 +243,11 @@ usage() {
 2. Commands:
     - [${ICON_START}] start
     - [${ICON_STOP}] stop
-    - [${ICON_SETUP}] setup [--dev|--app]
-    - [${ICON_SETUP}] debug
+    - [${ICON_SETUP}] build
+    - [${ICON_SETUP}] setup
     - [${ICON_START}] collector
     - [${ICON_START}] retraining
-    - [${ICON_SETUP}] deploy_jobs
+    - [${ICON_SETUP}] deploy --[app|jobs]
 
 EOF
     exit 1
@@ -295,11 +316,11 @@ case $1 in
     stop)
         stop
         ;;
-    setup)
-        setup "$2"
+    build)
+        build
         ;;
-    debug)
-        debug
+    setup)
+        setup
         ;;
     collector)
         collector
@@ -307,8 +328,8 @@ case $1 in
     retraining)
         retraining
         ;;
-    deploy_jobs)
-        deploy_jobs
+    deploy)
+        deploy $2
         ;;
     *)
         usage
