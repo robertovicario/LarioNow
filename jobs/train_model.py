@@ -56,21 +56,19 @@ f"""\n
             DATETIME(year, month, day, hour, minute, 0)
         )
     """
-    df = BQ_CLIENT.query(query).to_dataframe()
-    logger.info(f"{'[LOAD]':<8}{'[BQ]':<6}{'Rows:':<10}{len(df)}")
+    train_df = BQ_CLIENT.query(query).to_dataframe()
+    logger.info(f"{'[LOAD]':<8}{'[BQ]':<6}{'Rows:':<10}{len(train_df)}")
 
     # -------------------------
     # Feature Engineering
     # -------------------------
 
     # Feature Engineering -- Classification
-    # clf_df = df.iloc[-the_config.ML_HYPER_SPACE["sampling"]:]
-    clf_df, target_clf = the_utils.feature_engineering_clf(clf_df)
+    clf_df, target_clf = the_utils.feature_engineering_clf(train_df)
     logger.debug(f"[LIST] Targets ({len(target_clf)}): {target_clf}")
 
     # Feature Engineering -- Regression
-    # reg_df = df.iloc[-the_config.ML_HYPER_SPACE["sampling"]:]
-    reg_df, targets_reg = the_utils.feature_engineering_reg(reg_df)
+    reg_df, targets_reg = the_utils.feature_engineering_reg(train_df)
     logger.debug(f"[LIST] Targets ({len(targets_reg)}): {targets_reg}")
 
     # -------------------------
