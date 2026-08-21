@@ -18,6 +18,14 @@ This project is an AI-powered Python application for weather nowcasting in the L
 | :-: | :-: | :-: | :-: |
 | **Reference Station** | **Actual Measurements** | **Weather Nowcasting** | **Insights** |
 
+## Dataset
+
+...
+
+## Results
+
+...
+
 ## Instructions
 
 Usage:

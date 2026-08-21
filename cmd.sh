@@ -254,7 +254,7 @@ retraining() {
 deploy() {
 
     # TARGET
-    printer -setup "Deploying jobs on Google Cloud Run..."
+    printer -setup "Deploying on Google Cloud Run..."
     case "$1" in
         --app|--jobs)
             ;;

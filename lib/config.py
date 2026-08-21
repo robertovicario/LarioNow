@@ -27,14 +27,14 @@ MODELS_LATEST_PATH = MODELS_PATH / "latest"
 TMP_IMG_PATH = ROOT_PATH / "tmp/img"
 LOCATIONS_JSON = ROOT_PATH / "config/locations.json"
 STATIONS_JSON = ROOT_PATH / "config/stations.json"
-ICON_SVG = ROOT_PATH / "docs/theme/logo.svg"
+LOGO_SVG = ROOT_PATH / "docs/theme/logo.svg"
 PATHS = [
     MODELS_PATH,
     MODELS_LATEST_PATH,
     TMP_IMG_PATH,
     LOCATIONS_JSON,
     STATIONS_JSON,
-    ICON_SVG
+    LOGO_SVG
 ]
 
 # -------------------------

@@ -127,7 +127,7 @@ def main():
     # Settings
     st.set_page_config(
         page_title="LarioNow",
-        page_icon=the_config.ICON_SVG,
+        page_icon=the_config.LOGO_SVG,
         layout="wide"
     )
 
@@ -139,7 +139,9 @@ def main():
     # Introduction
     # =========================
 
-    logo_b64 = base64.b64encode(the_config.ICON_SVG.read_bytes()).decode()
+    logo_b64 = base64.b64encode(
+        the_config.LOGO_SVG.read_bytes()
+    ).decode()
     html_code = f"""
         <div style="margin-bottom: 24px;display: flex;justify-content: center; align-items: center;">
             <div style="display: flex;align-items: center;gap: 24px;margin-bottom: 24px;">
@@ -148,7 +150,9 @@ def main():
             </div>
         </div>
     """
-    st.markdown(html_code, unsafe_allow_html=True)
+
+    with st.container():
+        st.html(html_code)
 
     # =========================
     # Reference Station
@@ -225,7 +229,7 @@ def main():
             st.pydeck_chart(
                 pdk.Deck(
                     layers=layers,
-                    map_style="light",
+                    map_style=st.get_option("theme.base"),
                     initial_view_state=view_state,
                     tooltip={
                         "text": "{city}",
@@ -247,7 +251,7 @@ def main():
         .reset_index(drop=True)
     )
 
-    def metric_values(column, multiplier=1):
+    def compute_actual_delta(column, multiplier=1):
 
         values = meas_df[column].to_numpy() * multiplier
         value = values[0]
@@ -256,13 +260,13 @@ def main():
         return value, delta, chart_data
 
     temperature_value, temperature_delta, temperature_chart = (
-        metric_values("temperature_c")
+        compute_actual_delta("temperature_c")
     )
     humidity_value, humidity_delta, humidity_chart = (
-        metric_values("humidity_pct")
+        compute_actual_delta("humidity_pct")
     )
     rain_value, rain_delta, rain_chart = (
-        metric_values("rain_proba", multiplier=100)
+        compute_actual_delta("rain_proba", multiplier=100)
     )
 
     with st.container(border=True):
@@ -271,9 +275,9 @@ def main():
             anchor=False
         )
         st.badge(
-            f"Last update: {pd.to_datetime(meas_df["timestamp"].iloc[0]).strftime("%Y-%m-%d %H:%M")}",
+            f"Last update: {pd.to_datetime(meas_df["timestamp"].iloc[0]).strftime("%H:%M")}",
             icon=":material/schedule:",
-            color="gray"
+            color="green"
         )
 
         row = st.container(horizontal=True)
@@ -322,9 +326,9 @@ def main():
             anchor=False
         )
         st.badge(
-            f"Last update: {pd.to_datetime(meas_df["timestamp"].iloc[0]).strftime("%Y-%m-%d %H:%M")}",
+            f"Last update: {pd.to_datetime(meas_df["timestamp"].iloc[0]).strftime("%H:%M")}",
             icon=":material/schedule:",
-            color="gray"
+            color="green"
         )
 
         nowcast_df = (
@@ -337,7 +341,11 @@ def main():
         )
 
         cols = st.columns(4)
-        for col, lead in zip(cols, [30, 60, 90, 120]):
+        for col, lead, lead_color in zip(
+            cols,
+            [30, 60, 90, 120],
+            ["blue", "violet", "orange", "red"]
+        ):
 
             row = nowcast_df[nowcast_df["lead"] == lead]
             if row.empty:
@@ -361,8 +369,8 @@ def main():
                     st.metric(
                         label="Time",
                         value=f"{pd.to_datetime(data["timestamp"]).strftime("%H:%M")}",
-                        delta=f"{lead} minutes",
-                        delta_color="off",
+                        delta=f"+{lead} min",
+                        delta_color=lead_color,
                         delta_arrow="off",
                         icon=":material/schedule:"
                     )
@@ -395,9 +403,9 @@ def main():
             anchor=False
         )
         st.badge(
-            f"Last update: {pd.to_datetime(meas_df["timestamp"].iloc[0]).strftime("%Y-%m-%d %H:%M")}",
+            f"Last update: {pd.to_datetime(meas_df["timestamp"].iloc[0]).strftime("%H:%M")}",
             icon=":material/schedule:",
-            color="gray"
+            color="green"
         )
 
         plot_df = (
@@ -419,6 +427,7 @@ def main():
                     anchor=False
                 )
 
+                # Temperature
                 fig = go.Figure()
                 fig.add_trace(go.Scatter(
                     x=plot_df["lead"],
@@ -431,6 +440,8 @@ def main():
                         "<extra></extra>"
                     )
                 ))
+
+                # Dew Point
                 fig.add_trace(go.Scatter(
                     x=plot_df["lead"],
                     y=plot_df["dew_point_c"],
@@ -442,6 +453,8 @@ def main():
                         "<extra></extra>"
                     )
                 ))
+
+                # Humidity
                 fig.add_trace(go.Scatter(
                     x=plot_df["lead"],
                     y=plot_df["humidity_pct"],
@@ -463,11 +476,13 @@ def main():
                         side="right",
                         range=[0, 100]
                     ),
-                    hovermode="x unified"
+                    hovermode="x unified",
+                    margin=dict(l=20, r=20, t=20, b=20)
                 )
                 st.plotly_chart(
                     fig,
-                    width="stretch"
+                    width="stretch",
+                    config={"displayModeBar": False},
                 )
 
             # Wind Rose
@@ -541,18 +556,22 @@ def main():
                             direction="clockwise",
                             rotation=90,
                             tickmode="array",
-                            tickvals=list(the_config.FENG_WIND_DIR_MAP.keys()),
-                            ticktext=list(the_config.FENG_WIND_DIR_MAP.values())
+                            tickvals=list(the_config.FENG_WIND_DIR_MAP.values()),
+                            ticktext=list(the_config.FENG_WIND_DIR_MAP.keys())
                         ),
                         radialaxis=dict(
                             showticklabels=True,
                             ticksuffix=""
                         )
                     ),
-                    legend=dict(title="Wind speed<br>(km/h)"),
-                    margin=dict(l=20, r=20, t=60, b=20)
+                    legend=dict(title="Wind speed"),
+                    margin=dict(l=20, r=20, t=10, b=20)
                 )
-                st.plotly_chart(fig, width="stretch")
+                st.plotly_chart(
+                    fig,
+                    width="stretch",
+                    config={"displayModeBar": False},
+                )
 
             # Rain & Pressure
             with st.container(border=True):
@@ -566,6 +585,7 @@ def main():
                 )
                 pressure = plot_df["pressure_hpa"]
 
+                # Rain
                 fig = go.Figure()
                 fig.add_trace(
                     go.Scatter(
@@ -591,7 +611,7 @@ def main():
                         x=plot_df["lead"],
                         y=pressure,
                         mode="lines+markers",
-                        name="Pressure (hPa)",
+                        name="Pressure",
                         line=dict(width=2, dash="dash"),
                         marker=dict(size=8),
                         yaxis="y2",
@@ -629,9 +649,13 @@ def main():
                         xanchor="center",
                         x=0.5
                     ),
-                    margin=dict(l=20, r=20, t=80, b=20)
+                    margin=dict(l=20, r=20, t=20, b=20)
                 )
-                st.plotly_chart(fig, width="stretch")
+                st.plotly_chart(
+                    fig,
+                    width="stretch",
+                    config={"displayModeBar": False},
+                )
 
     # =========================
     # Raw Predictions
@@ -641,9 +665,9 @@ def main():
 
         st.subheader(":material/table: Raw Predictions", anchor=False)
         st.badge(
-            f"Last update: {pd.to_datetime(meas_df["timestamp"].iloc[0]).strftime("%Y-%m-%d %H:%M")}",
+            f"Last update: {pd.to_datetime(meas_df["timestamp"].iloc[0]).strftime("%H:%M")}",
             icon=":material/schedule:",
-            color="gray"
+            color="green"
         )
         st.dataframe(
             (
@@ -664,12 +688,12 @@ def main():
         html_code = f"""
             <br>
             <div style="text-align: center;">
-                Copyright &copy; {datetime.now().year} <a href="https://www.robertovicario.com" target="_blank"><strong>Roberto Vicario</strong></a>. All rights reserved.
+                Copyright &copy; {datetime.now().year} <strong>Roberto Vicario</strong>. All rights reserved.
             </div>
         """
 
         st.divider()
-        st.markdown(html_code, unsafe_allow_html=True)
+        st.html(html_code)
 
 if __name__ == "__main__":
     main()
