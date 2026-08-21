@@ -1,9 +1,11 @@
 # API App
 
 > [!IMPORTANT]
-> Due to project complexity and different running resources, you can find the files you ask to be placed in this folder in the following paths:
+> Due to the complexity of the project and the different resources used to run it, the files requested for this folder are located in the following paths:
 
-1. These are all the dockerfiles deployed on the Google Cloud Platform, to run the cloud services "app", "collector", and "retraining":
+### 1. Dockerfiles
+
+The following Dockerfiles are deployed on **Google Cloud Platform (GCP)** and are used to run the `app`, `collector`, and `retraining` services:
 
 ```sh
 .
@@ -13,11 +15,18 @@
     └── Dockerfile.train
 ```
 
-2. These scripts contains the "collector" cron job (0 */5 * * *) for the data collection and the "retraining" one cron (0 */2 * * *) for the model retraining. All the scripts starting with "data_*" are part of the ETL process, and the retraining ones starting with "train_*".
+### 2. Scheduled Jobs
 
-```sh
+The following scripts implement the scheduled `collector` and `retraining` jobs:
+
+- The **collector** job runs every 5 minutes: `*/5 * * * *`
+- The **retraining** job runs every 2 hours: `0 */2 * * *`
+
+All scripts starting with `data_` are part of the **ETL pipeline**, while scripts starting with `train_` are related to **model retraining**.
+
+```text
 .
-└── jobs
+└── sh
     ├── data_extract.py
     ├── data_load.py
     ├── data_transform.etl
@@ -27,9 +36,12 @@
     └── train_model.py
 ```
 
-3. This file represents the source code of the running application:
+### 3. Application Source Code
 
-```sh
+The following file contains the source code of the running application:
+
+```text
 .
-└── app
+└── sh
     └── app.py
+```
