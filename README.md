@@ -16,11 +16,11 @@ This project is an AI-powered Python application for weather nowcasting in the L
 
 ## User Interface (UI)
 
-| <a href="#"><img src="docs/theme/cover.png" alt="UI" width="512"></a> |
+| <img src="docs/theme/cover.png" alt="UI" width="512"> |
 | :-: |
 | **Home - LarioNow** |
 
-| <a href="#"><img src="docs/img/ui-1.png" alt="UI" width="512"></a> | <a href="#"><img src="docs/img/ui-2.png" alt="UI" width="512"></a> | <a href="#"><img src="docs/img/ui-3.png" alt="UI" width="512"></a> | <a href="#"><img src="docs/img/ui-4.png" alt="UI" width="512"></a> |
+| <img src="docs/img/ui-1.png" alt="UI" width="512"> | <img src="docs/img/ui-2.png" alt="UI" width="512"> | <img src="docs/img/ui-3.png" alt="UI" width="512"> | <img src="docs/img/ui-4.png" alt="UI" width="512"> |
 | :-: | :-: | :-: | :-: |
 | **Reference Station** | **Actual Measurements** | **Weather Nowcasting** | **Insights** |
 
@@ -121,68 +121,67 @@ If you want to deploy the application, you can choose the `--app` option, while 
 
 ## Dataset
 
-The used the dataset is a collection of environmental measurements collected from a network of physical sensor stations, property of the ***Centro Meteo Lombardo (CML)***, located in the Lake Como area. The data is collected **_every 5 minutes_**, since August 2026 starting, and includes **_various weather parameters_** such as temperature, humidity, dew point, wind speed, wind direction, pressure, and rainfall.
+The dataset consists of environmental measurements collected from a network of physical sensor stations, property of the ***Centro Meteo Lombardo (CML)***, located around Lake Como. The data is collected *******_every 5 minutes_*******, starting from August 2026, and includes *******_various weather parameters_******* such as temperature, humidity, dew point, wind speed, wind direction, pressure, and rainfall.
 
-| <img src="docs/img/data-1.png" alt="data-1" width="512"> |
-| - |
-| **Figure 1:** A representation of the lakeside provinces (left) against the available meteorological station near the lake (right). |
+| <img src="docs/img/data-1.png" alt="data-1" width="512">                                                                             |
+| ------------------------------------------------------------------------------------------------------------------------------------ |
+| ****Figure 1:**** A representation of the lakeside provinces (left) and the available meteorological stations near the lake (right). |
+
+<br>
 
 ### ETL Pipeline
 
-To collect the data, an ***ETL pipeline*** has been implemented to extract the data from the physical sensor stations, transform it into a suitable format, and load it into a ***Google BigQuery*** table for further analysis and modeling.
+To collect and prepare the data, an ***ETL pipeline*** has been implemented. The pipeline extracts the measurements from the physical sensor stations, transforms them into a structured format, and finally loads them into a ***Google BigQuery*** table for further analysis and modeling.
+
+<br>
 
 > ***Extraction***
 
-To perform the extraction, the web server of the physical sensor stations is scraped to ***retrieve the data in real-time***. The scraping, performed for each station, returns an image containing the weather parameters, as shown in ***Figure 2***.
+The first step consists of collecting the data from the web server of each physical sensor station. The server provides an image containing the current weather measurements, as shown in ***Figure 2***.
 
-| <img src="docs/img/data-2.png" alt="data-2" width="512"> |
-| - |
-| **Figure 2:** An example of what the web server of the physical sensor stations returns for a sample station. |
+| <img src="docs/img/data-2.png" alt="data-2" width="512">                                           |
+| -------------------------------------------------------------------------------------------------- |
+| ****Figure 2:**** An example of the image returned by the web server of a physical sensor station. |
+
+<br>
 
 > ***Transformation***
 
-The second step of the pipeline consists of transforming the image into a suitable format for further analysis and modeling. To do this, a proper ***Computer Vision algorithm*** was implemented to extract all the parameters, using an ***OCR (Optical Character Recognition) model***, which is able to recognize the text in the image and convert it into a structured format.
+The second step converts the image into structured weather measurements. Since the image contains several parameters and additional information, applying OCR directly to the full image could introduce unnecessary noise. For this reason, the image is first processed to isolate the relevant areas before applying the ***OCR (Optical Character Recognition) model***.
 
-As it can be seen in the ***Figure 2***, there are many measurements and some additional information that could influence negatively the OCR model by introducing noise. To overcome this issue, a proper ***image pre-processing*** has been implemented to enhance the image and improve the OCR model's performance.
-
-First of all, the image containing green and blue text: by segmenting the image into two channels (green and blue), helps to isolate the region of interest, as ***Figure 3*** shown.
+The first step is to separate the green and blue text into two different channels. This makes the weather measurements easier to identify and removes part of the information that is not needed for the extraction.
 
 | <img src="docs/img/data-2.png" alt="data-2" width="512"><img src="docs/img/data-3.png" alt="data-3" width="512"><img src="docs/img/data-4.png" alt="data-4" width="512"> |
-| - |
-| **Figure 3:** The first image shows the original image, while the second and third images show the segmented green and blue channels, respectively. |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ****Figure 3:**** The original image is shown on the left, while the segmented green and blue channels are shown in the center and on the right, respectively.           |
 
-For second, the image needs to be split into $N$ sub-images, where $N$ corresponds to the number of weather parameters to be extracted. Rather than applying the OCR model directly to the entire image, each parameter is first localized and isolated into a separate ***Region of Interest (ROI)***. This reduces the amount of irrelevant information provided to the OCR model and allows each measurement to be processed independently.
+<br>
 
-To identify the position of each parameter, the segmented color masks are first processed using a morphological dilation operation. This operation connects nearby pixels belonging to the same textual element, making it possible to identify each field as a single connected component. Subsequently, the contours of the resulting mask are extracted using the ***OpenCV*** contour detection algorithm. For each contour, a bounding box is computed and used to define the corresponding ROI. Very small regions are discarded as they are unlikely to contain meaningful measurements, while a small padding is added around each bounding box to preserve the complete characters at the boundaries.
+After the color segmentation, the image is divided into separate ***Regions of Interest (ROIs)***, one for each weather parameter. In this way, the OCR model receives only the part of the image containing the measurement that needs to be extracted.
 
-**Algorithm 1:**
+To find these regions, the segmented image is first slightly enlarged using a morphological dilation operation. This connects nearby pixels belonging to the same text and makes each field easier to identify. The resulting areas are then detected using the ***OpenCV*** contour detection algorithm.
 
-$$
-\begin{array}{ll}
-\textbf{Input:} & I, M, C \\
-\textbf{Output:} & R \\[3mm]
-\textbf{function}: \\
-& K \leftarrow \text{RectangularKernel}(15,3) \\
-& M' \leftarrow \text{Dilate}(M,K) \\
-& C \leftarrow \text{FindContours}(M') \\
-& R \leftarrow \emptyset \\
-& \textbf{for each } c \in C \textbf{ do} \\
-& \quad (x,y,w,h) \leftarrow \text{BoundingRect}(c) \\
-& \quad \textbf{if } w < 15 \lor h < 15 \textbf{ then continue} \\
-& \quad (x_1,y_1,x_2,y_2) \leftarrow \text{Expand}(x,y,w,h,3) \\
-& \quad r \leftarrow I[y_1:y_2,x_1:x_2] \\
-& \quad R \leftarrow R \cup \{(x_1,y_1,x_2,y_2,r)\} \\
-& \textbf{return } R
-\end{array}
-$$
+For each detected area, a bounding box is created and used to extract the corresponding ROI. Very small areas are discarded, while a small padding is added around each box to avoid cutting characters near the borders.
 
-The final result of the transformation step is a structured dataset containing the extracted weather parameters, along with their corresponding confidence scores, as shown in ***Figure 4***.
+The complete process is summarized in ***Algorithm 1***.
+
+| <img src="docs/img/algo-1.png" alt="algo-1" width="768">                                                        |
+| --------------------------------------------------------------------------------------------------------------- |
+| ****Algorithm 1:**** The process used to identify and extract the Regions of Interest from the segmented image. |
+
+| <img src="docs/img/data-5.png" alt="data-5" width="512">                                 |
+| ---------------------------------------------------------------------------------------- |
+| ****Figure 4:**** A practical application of the segmentation before merging the fields. |
+
+The extracted regions are then passed to the OCR model, which returns the corresponding weather measurements together with a confidence score. The final result of the transformation step is therefore a structured dataset containing the extracted parameters and their confidence scores, as shown in ***Figure 5***.
 
 | <img src="docs/img/data-6.png" alt="data-6" width="512"><img src="docs/img/data-7.png" alt="data-7" width="512"><img src="docs/img/data-8.png" alt="data-8" width="512"><img src="docs/img/data-9.png" alt="data-9" width="512"><img src="docs/img/data-10.png" alt="data-10" width="512"><img src="docs/img/data-11.png" alt="data-11" width="512"><img src="docs/img/data-12.png" alt="data-11" width="512"><img src="docs/img/data-13.png" alt="data-13" width="512"> |
-| - |
-| **Figure 4:** The image shows the final input to the OCR model, which consists of the extracted weather parameters along with their corresponding confidence scores. |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ****Figure 5:**** The final input to the OCR model, consisting of the extracted weather parameters and their corresponding confidence scores.                                                                                                                                                                                                                                                                                                                            |
 
-To highlight the precision of the OCR model after the transformation step, following are reported the confidence scores for each extracted parameter in the figures above:
+<br>
+
+To give a more practical example of the OCR performance, the confidence scores obtained for the measurements shown in the figures above are reported below:
 
 ```sh
 2026-08-22 10:39:23.814 | DEBUG    | lib.utils:ocr_predict:166 -  temperature_c:   13.2 (confidence=1.000)
@@ -195,27 +194,31 @@ To highlight the precision of the OCR model after the transformation step, follo
 2026-08-22 10:39:24.322 | DEBUG    | lib.utils:ocr_predict:166 -       rain_mmh:    0.0 (confidence=0.991)
 ```
 
-To provide a more general qualitative overview of the OCR model's performance, the ***Figure 5*** shows the confidence scores for each extracted parameter over all the samples actually collected in the dataset.
+<br>
 
-| <img src="docs/img/data-14.png" alt="data-14" width="512"> |
-| - |
-| **Figure 6:** The image shows the confidence scores for each extracted parameter over all the samples actually collected in the dataset. |
+To provide a more general overview of the OCR model's performance, ***Figure 6*** shows the confidence scores obtained for each extracted parameter across all the samples collected in the dataset.
+
+| <img src="docs/img/data-14.png" alt="data-14" width="512">                                                        |
+| ----------------------------------------------------------------------------------------------------------------- |
+| ****Figure 6:**** Confidence scores for each extracted parameter across all the samples collected in the dataset. |
+
+<br>
 
 > ***Loading***
 
-The final stage consists of loading the structured dataset into a ***Google BigQuery*** table for further analysis and modeling.
+The final step consists of loading the structured data into a ***Google BigQuery*** table. The resulting table can then be used for the following analysis and modeling steps.
 
-Below, you can find the technical instructions to replicate the ETL pipeline and the data collection process.
+Below are the technical instructions to replicate the ETL pipeline and the data collection process.
 
 ### `collector`
 
-To collect new data, you can run the following command:
+To collect new data, the following command can be executed:
 
 ```sh
 bash cmd.sh collector
 ```
 
-It exists a Google Cloud Run job scheduled to run every 5 minutes (`*/5 * * * *`).
+A Google Cloud Run job is scheduled to run this command every 5 minutes (`*/5 * * * *`), allowing the dataset to be continuously updated with new measurements.
 
 ## Results
 
