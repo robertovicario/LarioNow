@@ -20,9 +20,13 @@ This project is an AI-powered Python application for weather nowcasting in the L
 | :-: |
 | **Home - LarioNow** |
 
-| <img src="docs/img/ui-1.png" alt="UI" width="512"> | <img src="docs/img/ui-2.png" alt="UI" width="512"> | <img src="docs/img/ui-3.png" alt="UI" width="512"> | <img src="docs/img/ui-4.png" alt="UI" width="512"> |
-| :-: | :-: | :-: | :-: |
-| **Reference Station** | **Actual Measurements** | **Weather Nowcasting** | **Insights** |
+| <img src="docs/img/ui-1.png" alt="ui-1" width="512"> | <img src="docs/img/ui-2.png" alt="ui-2" width="512"> |
+| :-: | :-: |
+| **Reference Station** | **Actual Measurements** |
+
+| <img src="docs/img/ui-3.png" alt="ui-3" width="512"> | <img src="docs/img/ui-4.png" alt="ui-4" width="512"> |
+| :-: | :-: |
+| **Weather Nowcasting** | **Insights** |
 
 ## Instructions
 
