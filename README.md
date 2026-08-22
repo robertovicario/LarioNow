@@ -5,6 +5,7 @@
 
 This project is an AI-powered Python application for weather nowcasting in the Lake Como area. It combines data from a network of physical sensor stations, which collect environmental measurements every 5 minutes, with a multi-state machine learning model trained on these observations to generate short-term forecasts (30-60-90–120 minutes ahead). By leveraging high-frequency, real-time sensor data, the system aims to provide accurate hyperlocal predictions of rapidly evolving weather conditions.
 
+> [!NOTE]
 > LarioNow is accessible online at the following link: [https://larionow-289545143980.europe-west8.run.app](https://larionow-289545143980.europe-west8.run.app)
 
 ## Prerequisites
