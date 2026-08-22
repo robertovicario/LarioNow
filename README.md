@@ -18,14 +18,6 @@ This project is an AI-powered Python application for weather nowcasting in the L
 | :-: | :-: | :-: | :-: |
 | **Reference Station** | **Actual Measurements** | **Weather Nowcasting** | **Insights** |
 
-## Dataset
-
-...
-
-## Results
-
-...
-
 ## Instructions
 
 Usage:
@@ -48,6 +40,10 @@ gcloud auth login
 ```sh
 gcloud auth application-default login
 ```
+
+### `build`
+
+...
 
 ### `start`
 
@@ -104,6 +100,14 @@ bash cmd.sh deploy [--app|--jobs]
 ```
 
 If you want to deploy the application, you can choose the `--app` option, while if you want to deploy the jobs, you can choose the `--jobs` option.
+
+## Dataset
+
+...
+
+## Results
+
+...
 
 ## Credits
 

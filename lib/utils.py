@@ -353,12 +353,14 @@ def feature_engineering_reg(df, inference=False):
 
 def exec_inference(clf, reg, clf_df, reg_df):
 
+    # Feature Selection -- Regression
     latest = (
-            reg_df
-            .sort_values(["station", "timestamp"])
-            .groupby("station")
-            .tail(1)
-        )
+        reg_df
+        .sort_values(["station", "timestamp"])
+        .groupby("station")
+        .tail(1)
+        .copy()
+    )
     to_drop = [
         *the_config.REGRESSION["to_drop"],
         "timestamp"
@@ -370,7 +372,7 @@ def exec_inference(clf, reg, clf_df, reg_df):
     if reg_features is not None:
         X_latest_reg = X_latest_reg[list(reg_features)]
 
-    # Prediction -- Regression
+    # Predictions -- Regression
     y_pred_reg = reg.predict(X_latest_reg)
 
     # Results -- Regression
@@ -417,7 +419,7 @@ def exec_inference(clf, reg, clf_df, reg_df):
             .columns.tolist()
         )
 
-    # Prediction -- Classification
+    # Predictions -- Classification
     results_df["rain_proba"] = clf.predict_proba(
         results_df[list(clf_features)]
     )[:, 1]

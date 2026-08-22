@@ -92,6 +92,7 @@ def build_results_df():
     # -------------------------
 
     # Feature Engineering -- Classification
+    clf_df = inf_df.copy()
     clf_df, _ = the_utils.feature_engineering_clf(
         inf_df, inference=True
     )
@@ -104,6 +105,7 @@ def build_results_df():
     # -------------------------
 
     # Feature Engineering -- Regression
+    reg_df = inf_df.copy()
     reg_df, _ = the_utils.feature_engineering_reg(
         inf_df, inference=True
     )

@@ -64,23 +64,46 @@ f"""\n
     # -------------------------
 
     # Feature Engineering -- Classification
-    clf_df, target_clf = the_utils.feature_engineering_clf(train_df)
+    clf_df = train_df.copy()
+    clf_df, target_clf = the_utils.feature_engineering_clf(clf_df)
+    clf_df = clf_df.assign(
+        timestamp=lambda x: pd.to_datetime(
+            x[["year", "month", "day", "hour", "minute"]]
+        )
+    )
     logger.debug(f"[LIST] Targets ({len(target_clf)}): {target_clf}")
-
-    # Feature Engineering -- Regression
-    reg_df, targets_reg = the_utils.feature_engineering_reg(train_df)
-    logger.debug(f"[LIST] Targets ({len(targets_reg)}): {targets_reg}")
-
-    # -------------------------
 
     # Feature Selection -- Classification
     to_drop = [
         *the_config.CLASSIFICATION["to_drop"],
-        the_config.CLASSIFICATION["targets"][0]
+        the_config.CLASSIFICATION["targets"][0],
+        "timestamp"
     ]
     to_drop += [c for c in clf_df.columns if c.lower().startswith("conf_")]
     X_clf = clf_df.drop(columns=to_drop)
     y_clf = clf_df[the_config.CLASSIFICATION["targets"][0]]
+
+    # Feature Engineering -- Regression
+    reg_df = train_df.copy()
+    reg_df, targets_reg = the_utils.feature_engineering_reg(reg_df)
+    reg_df = reg_df.assign(
+        timestamp=lambda x: pd.to_datetime(
+            x[["year", "month", "day", "hour", "minute"]]
+        )
+    )
+    logger.debug(f"[LIST] Targets ({len(targets_reg)}): {targets_reg}")
+
+    # Feature Selection -- Regression
+    to_drop = [
+        *the_config.REGRESSION["to_drop"],
+        *targets_reg,
+        "timestamp"
+    ]
+    to_drop += [c for c in reg_df.columns if c.lower().startswith("conf_")]
+    X_reg = reg_df.drop(columns=to_drop)
+    y_reg = reg_df[targets_reg]
+
+    # -------------------------
 
     # Train-Test Split -- Classification
     X_train_clf, X_test_clf, y_train_clf, y_test_clf = train_test_split(
@@ -94,17 +117,6 @@ f"""\n
     logger.debug(f"{'[LIST]':<8}{'[CLF]':<6}{'Labels:':<10}{y_train_clf.name}")
     logger.debug(f"{'[TRAIN]':<8}{'[CLF]':<6}{'Shape:':<10}{y_train_clf.shape}")
     logger.debug(f"{'[TEST]':<8}{'[CLF]':<6}{'Shape:':<10}{y_test_clf.shape}")
-
-    # -------------------------
-
-    # Feature Selection -- Regression
-    to_drop = [
-        *the_config.REGRESSION["to_drop"],
-        *targets_reg
-    ]
-    to_drop += [c for c in reg_df.columns if c.lower().startswith("conf_")]
-    X_reg = reg_df.drop(columns=to_drop)
-    y_reg = reg_df[targets_reg]
 
     # Train-Test Split -- Regression
     X_train_reg = X_reg.iloc[:-the_config.INF_ROWS]
