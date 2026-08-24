@@ -5,25 +5,17 @@
 from google.cloud import bigquery
 from loguru import logger
 from matplotlib import pyplot as plt
-from pathlib import Path
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split
 import joblib
 import json
 import numpy as np
 import pandas as pd
-import sys
 
-ROOT_PATH = Path(__file__).resolve().parent
-if ROOT_PATH.name in ["jobs", "notebook"]:
-    ROOT_PATH = ROOT_PATH.parent
-if str(ROOT_PATH) not in sys.path:
-    sys.path.insert(0, str(ROOT_PATH))
-
-from lib import config as the_config
-from lib import utils as the_utils
+from config import config as the_config
 from lib import ml_metrics as metrics_lib
 from lib.automl import AutoMLClassifier, AutoMLRegressor
+from utils import pipeline as the_pipeline
 
 # =========================
 # Configurations
@@ -57,7 +49,6 @@ f"""\n
         )
     """
     train_df = BQ_CLIENT.query(query).to_dataframe()
-    logger.info(f"{'[LOAD]':<8}{'[BQ]':<6}{'Rows:':<10}{len(train_df)}")
 
     # -------------------------
     # Feature Engineering
@@ -65,7 +56,7 @@ f"""\n
 
     # Feature Engineering -- Classification
     clf_df = train_df.copy()
-    clf_df, target_clf = the_utils.feature_engineering_clf(clf_df)
+    clf_df, target_clf = the_pipeline.feature_engineering_clf(clf_df)
     clf_df = clf_df.assign(
         timestamp=lambda x: pd.to_datetime(
             x[["year", "month", "day", "hour", "minute"]]
@@ -85,7 +76,7 @@ f"""\n
 
     # Feature Engineering -- Regression
     reg_df = train_df.copy()
-    reg_df, targets_reg = the_utils.feature_engineering_reg(reg_df)
+    reg_df, targets_reg = the_pipeline.feature_engineering_reg(reg_df)
     reg_df = reg_df.assign(
         timestamp=lambda x: pd.to_datetime(
             x[["year", "month", "day", "hour", "minute"]]

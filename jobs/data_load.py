@@ -5,19 +5,11 @@
 from google.api_core.exceptions import NotFound
 from google.cloud import bigquery
 from loguru import logger
-from pathlib import Path
 from typing import Any
 import shutil
-import sys
 import time
 
-ROOT_PATH = Path(__file__).resolve().parent
-if ROOT_PATH.name in ["jobs", "notebook"]:
-    ROOT_PATH = ROOT_PATH.parent
-if str(ROOT_PATH) not in sys.path:
-    sys.path.insert(0, str(ROOT_PATH))
-
-from lib import config as the_config
+from config import config as the_config
 
 # =========================
 # Configurations

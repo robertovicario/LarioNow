@@ -37,6 +37,13 @@ PATHS = [
     LOGO_SVG
 ]
 
+def ensure_path(path):
+
+    if os.path.splitext(path)[1]:
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+    else:
+        os.makedirs(path, exist_ok=True)
+
 # -------------------------
 
 # Artifacts

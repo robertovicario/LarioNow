@@ -6,15 +6,14 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-COPY packages/app.txt requirements.txt
+COPY packages/api.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app/ .
 COPY config/ config/
-COPY docs/theme/ docs/theme/
 COPY lib/ lib/
 COPY utils/ utils/
 
-EXPOSE 8501
+EXPOSE 8080
 
-CMD ["streamlit", "run", "app.py", "--server.address=0.0.0.0", "--server.port=8501", "--server.headless=true"]
+CMD ["sh", "-c", "uvicorn api:app --host 0.0.0.0 --port 8080"]

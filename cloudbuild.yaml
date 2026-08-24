@@ -7,7 +7,17 @@ steps:
           - -f
           - docker/Dockerfile.app
           - -t
-          - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow-dataset/app:latest
+          - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow/app:latest
+          - .
+
+    - name: gcr.io/cloud-builders/docker
+      id: api
+      args:
+          - build
+          - -f
+          - docker/Dockerfile.api
+          - -t
+          - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow/api:latest
           - .
 
     - name: gcr.io/cloud-builders/docker
@@ -17,7 +27,7 @@ steps:
           - -f
           - docker/Dockerfile.etl
           - -t
-          - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow-dataset/collector:latest
+          - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow/collector:latest
           - .
 
     - name: gcr.io/cloud-builders/docker
@@ -27,10 +37,11 @@ steps:
           - -f
           - docker/Dockerfile.train
           - -t
-          - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow-dataset/retraining:latest
+          - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow/retraining:latest
           - .
 
 images:
-    - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow-dataset/app:latest
-    - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow-dataset/collector:latest
-    - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow-dataset/retraining:latest
+    - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow/app:latest
+    - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow/api:latest
+    - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow/collector:latest
+    - europe-west8-docker.pkg.dev/uninsubria-data-science/larionow/retraining:latest

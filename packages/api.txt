@@ -1,4 +1,5 @@
 db-dtypes
+fastapi
 flaml[automl]
 google-cloud-bigquery
 google-cloud-bigquery-storage
@@ -7,6 +8,4 @@ joblib
 lightgbm
 numpy
 pandas
-plotly
-pydeck
-streamlit
+uvicorn[standard]

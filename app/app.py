@@ -3,7 +3,6 @@
 # =========================
 
 from datetime import datetime
-from pathlib import Path
 from google.cloud import bigquery, storage
 
 import base64
@@ -14,25 +13,16 @@ import pandas as pd
 import plotly.graph_objects as go
 import pydeck as pdk
 import streamlit as st
-import sys
 
-# Paths
-ROOT_PATH = Path(__file__).resolve().parent
-if ROOT_PATH.name in ["app", "jobs", "notebook"]:
-    ROOT_PATH = ROOT_PATH.parent
-if str(ROOT_PATH) not in sys.path:
-    sys.path.insert(0, str(ROOT_PATH))
-
-from lib import config as the_config
-from lib import utils as the_utils
+from config import config as the_config
+from utils import pipeline as the_pipeline
 
 # =========================
-# Code
+# Configurations
 # =========================
 
 @st.cache_data(ttl=300)
 def load_data():
-
     return (
         bigquery
         .Client(project=the_config.GCP_PROJECT)
@@ -93,7 +83,7 @@ def build_results_df():
 
     # Feature Engineering -- Classification
     clf_df = inf_df.copy()
-    clf_df, _ = the_utils.feature_engineering_clf(
+    clf_df, _ = the_pipeline.feature_engineering_clf(
         inf_df, inference=True
     )
     clf_df = clf_df.assign(
@@ -106,7 +96,7 @@ def build_results_df():
 
     # Feature Engineering -- Regression
     reg_df = inf_df.copy()
-    reg_df, _ = the_utils.feature_engineering_reg(
+    reg_df, _ = the_pipeline.feature_engineering_reg(
         inf_df, inference=True
     )
     reg_df = reg_df.assign(
@@ -118,7 +108,11 @@ def build_results_df():
     # -------------------------
 
     # Inference
-    return the_utils.exec_inference(clf, reg, clf_df, reg_df)
+    return the_pipeline.exec_inference(clf, reg, clf_df, reg_df)
+
+# =========================
+# Application
+# =========================
 
 def main():
 
@@ -134,7 +128,16 @@ def main():
     )
 
     # Scripts
-    stations_df = the_utils.build_stations_df()
+    stations_df = pd.DataFrame([
+        {
+            "city": info["city"],
+            "province": info["province"],
+            "latitude": info["latitude"],
+            "longitude": info["longitude"],
+        }
+        for _, tags in the_config.STATIONS.items()
+        for _, info in tags.items()
+    ])
     results_df = build_results_df()
 
     # =========================
@@ -353,6 +356,18 @@ def main():
             if row.empty:
                 continue
 
+            def get_wind_direction(wind_x, wind_y):
+                return min(
+                    the_config.FENG_WIND_DIR_MAP.items(),
+                    key=lambda item: abs(
+                        (
+                            np.degrees(np.arctan2(wind_x, wind_y)) % 360
+                            - item[1]
+                            + 180
+                        ) % 360 - 180
+                    ),
+                )[0]
+
             data = row.iloc[0]
             temperature = data["temperature_c"]
             humidity = data["humidity_pct"]
@@ -360,7 +375,7 @@ def main():
             pressure = data["pressure_hpa"]
             rain_proba = data["rain_proba"] * 100
             wind_speed = data["wind_speed_kmh"]
-            wind_dir = the_utils.get_wind_direction(
+            wind_dir = get_wind_direction(
                 data["wind_x"], data["wind_y"]
             )
 
@@ -696,6 +711,10 @@ def main():
 
         st.divider()
         st.html(html_code)
+
+# =========================
+# Entry Point
+# =========================
 
 if __name__ == "__main__":
     main()

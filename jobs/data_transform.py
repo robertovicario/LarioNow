@@ -5,22 +5,14 @@
 from glob import glob
 from loguru import logger
 import numpy as np
-from pathlib import Path
 from paddleocr import TextRecognition
 from typing import Any
 import cv2
 import os
 import paddle
-import sys
 
-ROOT_PATH = Path(__file__).resolve().parent
-if ROOT_PATH.name in ["jobs", "notebook"]:
-    ROOT_PATH = ROOT_PATH.parent
-if str(ROOT_PATH) not in sys.path:
-    sys.path.insert(0, str(ROOT_PATH))
-
-from lib import config as the_config
-from lib import utils as the_utils
+from config import config as the_config
+from utils import etl as the_etl
 
 # -------------------------
 
@@ -65,7 +57,7 @@ f"""\n
 
         # Filename
         filename = os.path.basename(img_file)
-        station, time_features = the_utils.parse_filename(filename)
+        station, time_features = the_etl.parse_filename(filename)
         metadata = stations[station]
         city = metadata["city"]
         province = metadata["province"]
@@ -116,15 +108,15 @@ f"""\n
             # -------------------------
 
             # ROIs Extraction (2)
-            green_rois = the_utils.extract_rois(img_cv, green_mask, "green")
-            blue_rois  = the_utils.extract_rois(img_cv, blue_mask, "blue")
+            green_rois = the_etl.extract_rois(img_cv, green_mask, "green")
+            blue_rois  = the_etl.extract_rois(img_cv, blue_mask, "blue")
             all_rois = sorted(green_rois + blue_rois, key=lambda r: r["bbox"][0])
 
             # -------------------------
 
             # OCR Prediction
-            pieces = the_utils.get_pieces(img_cv, green_mask, all_rois)
-            values = the_utils.ocr_predict(
+            pieces = the_etl.get_pieces(img_cv, green_mask, all_rois)
+            values = the_etl.ocr_predict(
                 MODEL_OCR,
                 the_config.CV_OCR_FIELDS,
                 pieces,
@@ -158,14 +150,14 @@ f"""\n
                 "longitude": longitude
             }
             fields = {
-                "temperature_c": the_utils.parse_float,
-                "humidity_pct": the_utils.parse_int,
-                "dew_point_c": the_utils.parse_float,
-                "wind_speed_kmh": the_utils.parse_float,
-                "wind_dir": the_utils.normalize_wind_dir,
-                "pressure_hpa": the_utils.parse_float,
-                "rain_mm": the_utils.parse_float,
-                "rain_mmh": the_utils.parse_float
+                "temperature_c": the_etl.parse_float,
+                "humidity_pct": the_etl.parse_int,
+                "dew_point_c": the_etl.parse_float,
+                "wind_speed_kmh": the_etl.parse_float,
+                "wind_dir": the_etl.normalize_wind_dir,
+                "pressure_hpa": the_etl.parse_float,
+                "rain_mm": the_etl.parse_float,
+                "rain_mmh": the_etl.parse_float
             }
             conf_fields = {
                 "temperature_c": "conf_temperature_c",

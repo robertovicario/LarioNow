@@ -20,5 +20,6 @@ RUN pip install --no-cache-dir --upgrade pip \
 COPY jobs/ .
 COPY config/ config/
 COPY lib/ lib/
+COPY utils/ utils/
 
 CMD ["python", "job_retraining.py"]

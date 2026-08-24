@@ -10,6 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY jobs/ .
 COPY config/ config/
 COPY lib/ lib/
+COPY utils/ utils/
 
 RUN python -c "from paddleocr import TextRecognition; TextRecognition(model_name='PP-OCRv5_server_rec', device='cpu')"
 
