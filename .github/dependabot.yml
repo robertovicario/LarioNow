@@ -5,7 +5,7 @@
 
 version: 2
 updates:
-  - package-ecosystem: "pip" # See documentation for possible values
-    directory: "./app" # Location of package manifests
-    schedule:
-      interval: "weekly"
+    - package-ecosystem: "pip" # See documentation for possible values
+      directory: "./packages" # Location of package manifests
+      schedule:
+          interval: "weekly"
