@@ -22,6 +22,7 @@ IMG_URL = "http://rete.centrometeolombardo.com/{province}/{tag}/immagini/v.png"
 
 # Paths
 ROOT_PATH = Path(__file__).resolve().parents[1]
+DOCS_IMG_PATH = ROOT_PATH / "docs/img"
 MODELS_PATH = ROOT_PATH / "models"
 MODELS_LATEST_PATH = MODELS_PATH / "latest"
 TMP_IMG_PATH = ROOT_PATH / "tmp/img"
@@ -29,6 +30,7 @@ LOCATIONS_JSON = ROOT_PATH / "config/locations.json"
 STATIONS_JSON = ROOT_PATH / "config/stations.json"
 LOGO_SVG = ROOT_PATH / "docs/theme/logo.svg"
 PATHS = [
+    DOCS_IMG_PATH,
     MODELS_PATH,
     MODELS_LATEST_PATH,
     TMP_IMG_PATH,

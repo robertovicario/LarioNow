@@ -48,13 +48,13 @@ bash cmd.sh <command>
 - [⚙] build
 - [⚙] setup
 - [♻] clean <target>
-    ├──  --env        |> environment resources
-    ├──  --docker     |> docker resources
-    └──  --all        |> all related resources
+    ├──  --env
+    ├──  --docker
+    └──  --all
 - [⚙] deploy [option] <target>
-    ├──  --app        |> web services
-    ├──  --jobs       |> job services
-    └──  --all        |> all web instances
+    ├──  --app
+    ├──  --jobs
+    └──  --all
 ```
 
 <br>
@@ -127,13 +127,17 @@ If you want to deploy the web services, you can choose the `--app` option, while
 
 The dataset consists of environmental measurements collected from a network of physical sensor stations, property of the ***Centro Meteo Lombardo (CML)***, located around Lake Como. The data is collected ***_every 5 minutes_***, starting from August 2026, and includes ***_various weather parameters_*** such as temperature, humidity, dew point, wind speed, wind direction, pressure, and rainfall.
 
-| <img src="docs/img/data-1.png" alt="data-1" width="512"> |
+<br>
+
+| <img src="docs/img/summary-1.png" alt="summary-1" width="512"> |
 | - |
-| ***Figure 1:*** Geographic overview of the provinces surrounding Lake Como (left) and distribution of the available meteorological sensor stations in the area (right). |
+| **Figure 1:** Geographic overview of the provinces surrounding Lake Como (left) and distribution of the available meteorological sensor stations in the area (right). |
 
 ### Columns
 
 The dataset contains **32 columns**, organized into four main groups: ***Temporal, Inferential, Meteorological, and Benchmarking*** features.
+
+<br>
 
 > ***Temporal Features***
 
@@ -150,6 +154,8 @@ The dataset contains **32 columns**, organized into four main groups: ***Tempora
 | `day_of_year` | Day number within the year. |
 | `day_of_week` | Day of the week. |
 
+<br>
+
 > ***Inferential Features***
 
 | **Column** | **Description** |
@@ -159,6 +165,8 @@ The dataset contains **32 columns**, organized into four main groups: ***Tempora
 | `province` | Province where the station is located. |
 | `latitude` | Latitude of the sensor station. |
 | `longitude` | Longitude of the sensor station. |
+
+<br>
 
 > ***Meteorological Features***
 
@@ -172,6 +180,8 @@ The dataset contains **32 columns**, organized into four main groups: ***Tempora
 | `pressure_hpa` | Atmospheric pressure in hectopascals. |
 | `rain_mm` | Accumulated rainfall in millimetres. |
 | `rain_mmh` | Rainfall intensity in millimetres per hour. |
+
+<br>
 
 > ***Benchmarking Features***
 
@@ -197,9 +207,11 @@ To collect and prepare the data, an ***ETL pipeline*** has been implemented. The
 
 The first step consists of collecting the data from the web server of each physical sensor station. The server provides an image containing the current weather measurements, as shown in ***Figure 2***.
 
-| <img src="docs/img/data-2.png" alt="data-2" width="512"> |
+<br>
+
+| <img src="docs/img/summary-2.png" alt="summary-2" width="512"> |
 | - |
-| ***Figure 2:*** Example of the image retrieved from the web server of a physical meteorological sensor station, containing the current weather measurements. |
+| **Figure 2:** Example of the image retrieved from the web server of a physical meteorological sensor station, containing the current weather measurements. |
 
 <br>
 
@@ -209,9 +221,11 @@ The second step converts the image into structured weather measurements. Since t
 
 The first step is to separate the green and blue text into two different channels. This makes the weather measurements easier to identify and removes part of the information that is not needed for the extraction.
 
-| <img src="docs/img/data-2.png" alt="data-2" width="512"><img src="docs/img/data-3.png" alt="data-3" width="512"><img src="docs/img/data-4.png" alt="data-4" width="512"> |
+<br>
+
+| <img src="docs/img/summary-2.png" alt="summary-2" width="512"><img src="docs/img/summary-3.png" alt="summary-3" width="512"><img src="docs/img/summary-4.png" alt="summary-4" width="512"> |
 | - |
-| ***Figure 3:*** Color-channel segmentation of the weather station image. The original image is shown on the left, while the segmented green and blue text channels are shown in the center and on the right, respectively. |
+| **Figure 3:** Color-channel segmentation of the weather station image. The original image is shown on the left, while the segmented green and blue text channels are shown in the center and on the right, respectively. |
 
 <br>
 
@@ -221,46 +235,29 @@ To find these regions, the segmented image is first slightly enlarged using a mo
 
 For each detected area, a bounding box is created and used to extract the corresponding ROI. Very small areas are discarded, while a small padding is added around each box to avoid cutting characters near the borders.
 
-The complete process is summarized in ***Algorithm 1***.
+<br>
 
-| <img src="docs/img/algo-1.png" alt="algo-1" width="512"> |
+| <img src="docs/img/summary-5.png" alt="summary-5" width="512"> |
 | - |
-| ***Algorithm 1:*** Procedure used to identify and extract the Regions of Interest (ROIs) containing the individual weather measurements from the segmented image. |
-
-| <img src="docs/img/data-5.png" alt="data-5" width="512"> |
-| - |
-| ***Figure 4:*** Example of the ROI extraction process after color segmentation, showing the identified measurement fields before they are merged into the final input regions. |
+| **Figure 4:** Example of the ROI extraction process after color segmentation, showing the identified measurement fields before they are merged into the final input regions. |
 
 The extracted regions are then passed to the OCR model, which returns the corresponding weather measurements together with a confidence score. The final result of the transformation step is therefore a structured dataset containing the extracted parameters and their confidence scores, as shown in ***Figure 5***.
 
-| <img src="docs/img/data-6.png" alt="data-6" width="512"><img src="docs/img/data-7.png" alt="data-7" width="512"><img src="docs/img/data-8.png" alt="data-8" width="512"><img src="docs/img/data-9.png" alt="data-9" width="512"><img src="docs/img/data-10.png" alt="data-10" width="512"><img src="docs/img/data-11.png" alt="data-11" width="512"><img src="docs/img/data-12.png" alt="data-11" width="512"><img src="docs/img/data-13.png" alt="data-13" width="512"> |
-| - |
-| ***Figure 5:*** Input regions provided to the OCR model, showing the extracted weather parameters together with their corresponding OCR confidence scores. |
-
 <br>
 
-To give a more practical example of the OCR performance, the confidence scores obtained for the measurements shown in the figures above are reported below:
-
-| **Parameter** | **Value** | **Confidence** |
-| - | - | - |
-| temperature_c | 13.2 | 1.000 |
-| humidity_pct | 97 | 1.000 |
-| dew_point_c | 12.7 | 0.981 |
-| wind_speed_kmh | 3.2 | 0.999 |
-| wind_dir | N | 0.994 |
-| pressure_hpa | 1013.9 | 1.000 |
-| rain_mm | 0.3 | 0.999 |
-| rain_mmh | 0.0 | 0.991 | |
-
-***Table 1:*** Example of the OCR confidence scores obtained for the extracted weather measurements shown in the figures above.
+| <img src="docs/img/summary-6.png" alt="summary-6" width="512"><img src="docs/img/summary-7.png" alt="summary-7" width="512"><img src="docs/img/summary-8.png" alt="summary-8" width="512"><img src="docs/img/summary-9.png" alt="summary-9" width="512"><img src="docs/img/summary-10.png" alt="summary-10" width="512"><img src="docs/img/summary-11.png" alt="summary-11" width="512"><img src="docs/img/summary-12.png" alt="summary-11" width="512"><img src="docs/img/summary-13.png" alt="summary-13" width="512"> |
+| - |
+| **Figure 5:** Input regions provided to the OCR model, showing the extracted weather parameters together with their corresponding OCR confidence scores. |
 
 <br>
 
 To provide a more general overview of the OCR model's performance, ***Figure 6*** shows the confidence scores obtained for each extracted parameter across all the samples collected in the dataset.
 
-| <img src="docs/img/data-14.png" alt="data-14" width="512"> |
+<br>
+
+| <img src="docs/img/summary-15.png" alt="summary-15" width="512"> |
 | - |
-| ***Figure 6:*** Distribution of OCR confidence scores for each extracted weather parameter across all samples collected in the dataset. |
+| **Figure 6:** Distribution of OCR confidence scores for each extracted weather parameter across all samples collected in the dataset. |
 
 <br>
 

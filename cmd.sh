@@ -375,13 +375,13 @@ usage() {
     - [${ICON_SETUP}] build
     - [${ICON_SETUP}] setup
     - [${ICON_CLEAN}] clean <target>
-       ├──  --env        |> environment resources
-       ├──  --docker     |> docker resources
-       └──  --all        |> all related resources
+       ├──  --env
+       ├──  --docker
+       └──  --all
     - [${ICON_SETUP}] deploy [option] <target>
-       ├──  --app        |> web services
-       ├──  --jobs       |> job services
-       └──  --all        |> all web instances
+       ├──  --app
+       ├──  --jobs
+       └──  --all
 
 EOF
     exit 1
