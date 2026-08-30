@@ -314,8 +314,6 @@ The models were evaluated according to the ***following challenges:***
 
 - **Forecast Horizon Degradation:** As the forecast horizon increases from 30 to 120 minutes, predictive performance generally ***deteriorates across all models***, as reflected by increasing MAE and RMSE and decreasing $R^2$. However, ***XGBoost exhibits a more limited degradation compared with the other evaluated models***, maintaining more stable predictive performance as the forecasting horizon increases. For example, for temperature, XGBoost $R^2$ decreases from 0.982 at 30 minutes to 0.934 at 120 minutes, while for wind speed it decreases from 0.689 to 0.620. Similar behavior is observed across the other weather parameters, indicating that XGBoost is ***more robust to increasing forecast horizons*** and better preserves its predictive capability as the prediction interval extends further into the future.
 
-<br>
-
 > [!NOTE]
 > 
 > The metrics for this task can be found within the project as: `models/metrics_reg.json` and `models/stats_reg.json`.
@@ -331,8 +329,6 @@ The key findings from the classification task are presented below:
 - **Bagging vs. Boosting Models:** The Random Forest classifier, representing the bagging approach, achieves a test F1 score of 98.65%. The boosting-based models perform slightly better, with XGBoost reaching 98.67% and LGBM reaching 98.73%. Although LGBM obtains the highest F1 score, the difference with XGBoost is marginal, while ***XGBoost achieves a slightly higher recall (98.59% vs. 98.54%)***, which is particularly ***relevant for identifying rainfall events***.
 
 - **Best Model vs. AutoML Models:** The performance of XGBoost is comparable to that of the AutoML classifier, with test F1 scores of 98.67% and 98.71%, respectively. While AutoML achieves a marginally higher F1 score, ***XGBoost provides essentially equivalent predictive performance*** while offering a specific, interpretable, and reproducible model configuration, supporting its selection as the final classifier.
-
-<br>
 
 > [!NOTE]
 > 
