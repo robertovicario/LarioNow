@@ -23,6 +23,7 @@ from utils import pipeline as the_pipeline
 
 @st.cache_data(ttl=300)
 def load_data():
+
     return (
         bigquery
         .Client(project=the_config.GCP_PROJECT)
@@ -79,8 +80,6 @@ def build_results_df():
     inf_df = load_data()
     clf, reg = load_models()
 
-    # -------------------------
-
     # Feature Engineering -- Classification
     clf_df = inf_df.copy()
     clf_df, _ = the_pipeline.feature_engineering_clf(
@@ -91,8 +90,6 @@ def build_results_df():
             x[["year", "month", "day", "hour", "minute"]]
         )
     )
-
-    # -------------------------
 
     # Feature Engineering -- Regression
     reg_df = inf_df.copy()
@@ -107,7 +104,6 @@ def build_results_df():
 
     # -------------------------
 
-    # Inference
     return the_pipeline.exec_inference(clf, reg, clf_df, reg_df)
 
 # =========================

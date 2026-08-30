@@ -6,7 +6,10 @@
 This project is an AI-powered Python application for weather nowcasting in the Lake Como area. It combines data from a network of physical sensor stations, which collect environmental measurements every 5 minutes, with a multi-state machine learning model trained on these observations to generate short-term forecasts (30-60-90–120 minutes ahead). By leveraging high-frequency, real-time sensor data, the system aims to provide accurate hyperlocal predictions of rapidly evolving weather conditions.
 
 > [!NOTE]
-> LarioNow is accessible online at the following link: <a href="https://larionow-289545143980.europe-west8.run.app" target="_blank">https://larionow-289545143980.europe-west8.run.app</a>
+> LarioNow is accessible online at the following links:
+>
+> - **Web Interface:** <a href="https://larionow-app-289545143980.europe-west8.run.app/" target="_blank">https://larionow-app-289545143980.europe-west8.run.app</a>
+> - **API:** <a href="https://larionow-api-289545143980.europe-west8.run.app" target="_blank">https://larionow-api-289545143980.europe-west8.run.app</a>
 
 ## Prerequisites
 
@@ -31,11 +34,38 @@ This project is an AI-powered Python application for weather nowcasting in the L
 
 ## Instructions
 
-Usage:
+1. Usage:
 
 ```sh
-bash cmd.sh {start|stop|build|clean|setup|collector|retraining|deploy}
+bash cmd.sh <command>
 ```
+
+2. Commands:
+
+```sh
+- [▶] start
+- [■] stop
+- [⚙] build
+- [⚙] setup
+- [♻] clean <target>
+    ├──  --env        |> environment resources
+    ├──  --docker     |> docker resources
+    └──  --all        |> all related resources
+- [⚙] deploy [option] <target>
+    ├──  --app        |> web services
+    ├──  --jobs       |> job services
+    └──  --all        |> all web instances
+```
+
+<br>
+
+> [!WARNING]
+> To perform some operations, it could be necessary to authenticate with Google Cloud using your Google account by running sequentially in the terminal the two following commands:
+>
+> ```sh
+> gcloud auth login
+> gcloud auth application-default login
+> ```
 
 ### `setup`
 
@@ -47,17 +77,6 @@ bash cmd.sh setup
 
 A virtual environment will be created in the `.venv` folder, all the required dependencies will be installed, and a Jupyter kernel will be available for the project.
 
-> [!WARNING]
-> To perform some operations, it could be necessary to authenticate with Google Cloud using your Google account by running sequentially in the terminal the two following commands:
-
-```sh
-gcloud auth login
-```
-
-```sh
-gcloud auth application-default login
-```
-
 ### `build`
 
 Once the project has been set up, build the application to prepare it for execution:
@@ -66,7 +85,7 @@ Once the project has been set up, build the application to prepare it for execut
 bash cmd.sh build
 ```
 
-Once the build process is complete, the application will be accessible at [http://localhost:8501](http://localhost:8501), and the related API will be available at [http://localhost:8080](http://localhost:8080).
+Once the build process is complete, the application will be accessible at [http://localhost:8501](http://localhost:8501/), and the related API will be available at [http://localhost:8080](http://localhost:8080/).
 
 ### `start`
 
@@ -112,7 +131,61 @@ The dataset consists of environmental measurements collected from a network of p
 | - |
 | ***Figure 1:*** Geographic overview of the provinces surrounding Lake Como (left) and distribution of the available meteorological sensor stations in the area (right). |
 
-<br>
+### Columns
+
+The dataset contains **32 columns**, organized into four main groups: ***Temporal, Inferential, Meteorological, and Benchmarking*** features.
+
+> ***Temporal Features***
+
+| **Column** | **Description** |
+| - | - |
+| `date` | Date and time of the measurement. |
+| `year` | Year of the observation. |
+| `month` | Month of the observation. |
+| `day` | Day of the month. |
+| `hour` | Hour of the observation. |
+| `minute` | Minute of the observation. |
+| `quarter` | Quarter of the year. |
+| `week_of_year` | Week number within the year. |
+| `day_of_year` | Day number within the year. |
+| `day_of_week` | Day of the week. |
+
+> ***Inferential Features***
+
+| **Column** | **Description** |
+| - | - |
+| `station` | Identifier of the meteorological sensor station. |
+| `city` | City where the station is located. |
+| `province` | Province where the station is located. |
+| `latitude` | Latitude of the sensor station. |
+| `longitude` | Longitude of the sensor station. |
+
+> ***Meteorological Features***
+
+| **Column** | **Description** |
+| - | - |
+| `temperature_c` | Air temperature in degrees Celsius. |
+| `humidity_pct` | Relative humidity as a percentage. |
+| `dew_point_c` | Dew point temperature in degrees Celsius. |
+| `wind_speed_kmh` | Wind speed in kilometres per hour. |
+| `wind_dir` | Wind direction expressed as a cardinal direction. |
+| `pressure_hpa` | Atmospheric pressure in hectopascals. |
+| `rain_mm` | Accumulated rainfall in millimetres. |
+| `rain_mmh` | Rainfall intensity in millimetres per hour. |
+
+> ***Benchmarking Features***
+
+| **Column** | **Description** |
+| - | - |
+| `conf_temperature_c`  | OCR confidence score for the temperature measurement. |
+| `conf_humidity_pct` | OCR confidence score for the humidity measurement. |
+| `conf_dew_point_c` | OCR confidence score for the dew point measurement. |
+| `conf_wind_speed_kmh` | OCR confidence score for the wind speed measurement. |
+| `conf_wind_dir` | OCR confidence score for the wind direction measurement. |
+| `conf_pressure_hpa` | OCR confidence score for the pressure measurement. |
+| `conf_rain_mm` | OCR confidence score for the rainfall measurement. |
+| `conf_rain_mmh` | OCR confidence score for the rainfall intensity measurement. |
+| `conf_overall_gmean` | Overall geometric mean of the OCR confidence scores. |
 
 ### Data Collection
 
@@ -195,37 +268,9 @@ To provide a more general overview of the OCR model's performance, ***Figure 6**
 
 The final step consists of loading the structured data into a ***Google BigQuery*** table. The resulting table can then be used for the following analysis and modeling steps.
 
-> ***Reproducibility***
-
-Below are the technical instructions to replicate the ETL pipeline and the data collection process.
-
-### `collector`
-
-To collect the data from the physical sensor stations and update the dataset, run the following command:
-
-```sh
-bash cmd.sh collector
-```
-
-A Google Cloud Run job is scheduled to run this command every 5 minutes (`*/5 * * * *`), allowing the dataset to be continuously updated with new measurements.
-
-### Columns
-
-...
-
 ## Results
 
 ...
-
-### `retraining`
-
-Start the model retraining process using the following command:
-
-```sh
-bash cmd.sh retraining
-```
-
-A Google Cloud Run job is scheduled to run this command every 2 hours (`*/2 * * * *`), aiming to keep the model up-to-date with the latest data and improve its performance over time.
 
 ## Credits
 

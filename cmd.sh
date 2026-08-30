@@ -137,7 +137,7 @@ start() {
 
     # Helpers
     start_fx() {
-        
+
         if docker ps -a --format '{{.Names}}' | grep -qx "$1"; then
             docker start "$1" >/dev/null || {
                 handler $?
@@ -290,81 +290,33 @@ clean() {
     handler 0
 }
 
-collector() {
-
-    # COLLECTOR
-    printer -start "Collecting data..."
-    exec_docker_build "${DOCKERFILE_ETL}" "${IMAGE_ETL_NAME}" || {
-        handler $?
-        return
-    }
-    docker run --rm \
-        --platform "${DOCKER_PLATFORM}" \
-        --name "${JOB_ETL}" \
-        -v "${ADC_HOST_PATH}:${ADC_CONTAINER_PATH}:ro" \
-        -e "GOOGLE_APPLICATION_CREDENTIALS=${ADC_CONTAINER_PATH}" \
-        -e "GCP_PROJECT=${GCP_PROJECT}" \
-        -e "BQ_DATASET=${BQ_DATASET}" \
-        -e "BQ_TABLE_NAME=${BQ_TABLE_NAME}" \
-        "${IMAGE_ETL_NAME}" || {
-        handler $?
-        return
-    }
-
-    # Handler
-    STATUS=$?
-    handler $STATUS
-}
-
-retraining() {
-
-    # RETRAINING
-    printer -start "Retraining the model..."
-    exec_docker_build "${DOCKERFILE_TRAIN}" "${IMAGE_TRAIN_NAME}" || {
-        handler $?
-        return
-    }
-    docker run --rm \
-        --platform "${DOCKER_PLATFORM}" \
-        --name "${JOB_TRAIN}" \
-        -v "${ADC_HOST_PATH}:${ADC_CONTAINER_PATH}:ro" \
-        -e "GOOGLE_APPLICATION_CREDENTIALS=${ADC_CONTAINER_PATH}" \
-        -e "GCP_PROJECT=${GCP_PROJECT}" \
-        -e "BQ_DATASET=${BQ_DATASET}" \
-        -e "BQ_TABLE_NAME=${BQ_TABLE_NAME}" \
-        -e "GCS_BUCKET=${GCS_BUCKET}" \
-        -e "GCS_PREFIX_MODELS=${GCS_PREFIX_MODELS}" \
-        "${IMAGE_TRAIN_NAME}" || {
-        handler $?
-        return
-    }
-
-    # Handler
-    STATUS=$?
-    handler $STATUS
-}
-
 deploy() {
 
     # Helpers
     deploy_fx() {
 
-        exec_docker_build "$2" "$3" || {
+        local TARGET="$1"
+        local DOCKERFILE="$2"
+        local IMAGE="$3"
+        local NAME="$4"
+        shift 4
+
+        exec_docker_build "${DOCKERFILE}" "${IMAGE}" || {
             handler $?
             return
         }
-        docker push "$3" || {
+        docker push "${IMAGE}" || {
             handler $?
             return
         }
 
-        if [ "$1" = "jobs" ]; then
-            gcloud run jobs deploy "${@:1}" || {
+        if [ "${TARGET}" = "jobs" ]; then
+            gcloud run jobs deploy "${NAME}" "${@:1}" || {
                 handler $?
                 return
             }
         else
-            gcloud run deploy "${@:1}" || {
+            gcloud run deploy "${NAME}" "${@:1}" || {
                 handler $?
                 return
             }
@@ -379,8 +331,8 @@ deploy() {
 
     deploy_jobs() {
 
-        deploy_fx jobs "${DOCKERFILE_ETL}" "${IMAGE_ETL}" "${ARGS_ETL[@]}"
-        deploy_fx jobs "${DOCKERFILE_TRAIN}" "${IMAGE_TRAIN}" "${ARGS_TRAIN[@]}"
+        deploy_fx jobs "${DOCKERFILE_ETL}" "${IMAGE_ETL}" "${JOB_ETL}" "${ARGS_ETL[@]}"
+        deploy_fx jobs "${DOCKERFILE_TRAIN}" "${IMAGE_TRAIN}" "${JOB_TRAIN}" "${ARGS_TRAIN[@]}"
     }
 
     # TARGET
@@ -411,6 +363,7 @@ deploy() {
 
 usage() {
 
+    # Operations
     cat <<EOF
 
 1. Usage:
@@ -425,8 +378,6 @@ usage() {
        ├──  --env        |> environment resources
        ├──  --docker     |> docker resources
        └──  --all        |> all related resources
-    - [${ICON_START}] collector
-    - [${ICON_START}] retraining
     - [${ICON_SETUP}] deploy [option] <target>
        ├──  --app        |> web services
        ├──  --jobs       |> job services
@@ -438,6 +389,7 @@ EOF
 
 printer() {
 
+    # Operations
     local STATUS="$1"
     local MESSAGE="$2"
     local ICON=""
@@ -483,6 +435,7 @@ printer() {
 
 handler() {
 
+    # Operations
     local STATUS=$1
     if [ $STATUS -eq 0 ]; then
         printer -success "Process completed successfully"
@@ -507,12 +460,6 @@ case $1 in
         ;;
     clean)
         clean $2
-        ;;
-    collector)
-        collector
-        ;;
-    retraining)
-        retraining
         ;;
     deploy)
         shift
