@@ -3,7 +3,7 @@
 
 # LarioNow
 
-This project is an AI-powered Python application for weather nowcasting in the Lake Como area. It combines data from a network of physical sensor stations, which collect environmental measurements every 5 minutes, with a multi-state machine learning model trained on these observations to generate short-term forecasts (30-60-90–120 minutes ahead). By leveraging high-frequency, real-time sensor data, the system aims to provide accurate hyperlocal predictions of rapidly evolving weather conditions.
+This project is an AI-powered Python application for weather nowcasting in the Lake Como area. It combines data from a network of physical sensor stations, which collect environmental measurements every 5 minutes, with a multi-state machine learning model trained on these observations to generate short-term forecasts (30, 60, 90, and 120 minutes ahead). By leveraging high-frequency, real-time sensor data, the system aims to provide accurate hyperlocal predictions of rapidly evolving weather conditions.
 
 > [!NOTE]
 > 
@@ -57,8 +57,6 @@ bash cmd.sh <command>
    ├──  --jobs
    └──  --all
 ```
-
-<br>
 
 > [!WARNING]
 > 
@@ -127,7 +125,7 @@ If you want to deploy the web services, you can choose the `--app` option, while
 
 ## Dataset
 
-The dataset consists of environmental measurements collected from a network of physical sensor stations, property of the ***Centro Meteo Lombardo (CML)***, located around Lake Como. The data is collected ***_every 5 minutes_***, starting from August 2026, and includes ***_various weather parameters_*** such as temperature, humidity, dew point, wind speed, wind direction, pressure, and rainfall.
+The dataset consists of environmental measurements collected from a network of physical sensor stations, property of the ***Centro Meteo Lombardo (CML)***, located around Lake Como. The data is collected ***_every 5 minutes_*** (`*/5 * * * *`), starting from August 2026, and includes ***_various weather parameters_*** such as temperature, humidity, dew point, wind speed, wind direction, pressure, and rainfall.
 
 <br>
 
@@ -271,6 +269,8 @@ To provide a more general overview of the OCR model's performance, ***Figure 6**
 | - |
 | **Figure 6:** Distribution of OCR confidence scores for each extracted weather parameter across all samples collected in the dataset. |
 
+<br>
+
 ### Predictive Modeling
 
 The predictive modeling task was conducted to forecast the weather parameters for the next 30, 60, 90, and 120 minutes. The designed approach involved to use a multi-state machine learning model, as shown in ***Figure 7***, which was trained on the historical data collected from the sensor stations.
@@ -298,10 +298,9 @@ The models were evaluated according to the ***following challenges:***
 - **Best Model vs. AutoML Models:** Comparing the performance of the best-performing model with that of AutoML models to assess whether automated approaches can achieve comparable or superior results.
 - **Forecast Horizon Degradation:** Analyzing how model performance changes as the forecast horizon increases, considering predictions 30, 60, 90, and 120 minutes ahead.
 
-
 > [!NOTE]
 > 
-> The metrics for this step can be queried using the API application at <a href="https://larionow-api-289545143980.europe-west8.run.app/api/model/metrics" target="_blank">https://larionow-api-289545143980.europe-west8.run.app/api/model/metrics</a>.
+> The metrics of the actual deployed model since the last training session (`0 */6 * * *`), can be queried using the API application at <a href="https://larionow-api-289545143980.europe-west8.run.app/api/model/metrics" target="_blank">https://larionow-api-289545143980.europe-west8.run.app/api/model/metrics</a>.
 
 <br>
 
@@ -338,8 +337,6 @@ The key findings from the classification task are presented below:
 > [!NOTE]
 > 
 > The metrics for this task can be found within the project as: `models/metrics_clf.json` and `models/stats_clf.json`.
-
-<br>
 
 ## Credits
 
