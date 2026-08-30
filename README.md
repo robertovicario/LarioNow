@@ -324,8 +324,6 @@ The models were evaluated according to the ***following challenges:***
 
 > ***Classification***
 
-The key findings from the classification task are presented below:
-
 - **Baseline vs. Other Models:** The ***Dummy Classifier*** achieves a test accuracy of 69.53%, while ***completely failing to detect rainfall events***, resulting in 0.00 precision, recall, and F1 score. In contrast, all machine learning models achieve test accuracies above 99.1% and F1 scores above 98.6%, demonstrating a substantial ***improvement over the baseline***.
 
 - **Bagging vs. Boosting Models:** The Random Forest classifier, representing the bagging approach, achieves a test F1 score of 98.65%. The boosting-based models perform slightly better, with XGBoost reaching 98.67% and LGBM reaching 98.73%. Although LGBM obtains the highest F1 score, the difference with XGBoost is marginal, while ***XGBoost achieves a slightly higher recall (98.59% vs. 98.54%)***, which is particularly ***relevant for identifying rainfall events***.
