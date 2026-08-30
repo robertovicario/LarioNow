@@ -343,11 +343,13 @@ The key findings from the classification task are presented below:
 > Please use this project responsibly, it was created by me for an exam session that I completed at _University of Insubria_. If you use or reference this project, please cite it as follows:
 >
 > ```bib
-> @misc{vicario2026larionow,
->     author = {R. Vicario},
->     title  = {LarioNow},
->     year   = {2026},
->     url    = {https://github.com/robertovicario/LarioNow}
+> @software{Vicario_LarioNow_2026,
+>     author = {Vicario, Roberto},
+>     month = sep,
+>     title = {{LarioNow}},
+>     url = {https://github.com/robertovicario/LarioNow},
+>     version = {1.0.0},
+>     year = {2026}
 > }
 > ```
 
