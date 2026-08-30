@@ -1,0 +1,2802 @@
+[
+    {
+        "Model": "Dummy Regressor",
+        "Target": "dew_point_c",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.4208838299211768,
+        "RMSE": 1.773174004799192,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "dew_point_c",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.8715878352268336,
+        "RMSE": 1.1241504779780873,
+        "R2": -0.5477260824044554
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "dew_point_c",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.28880329681931943,
+        "RMSE": 0.4413558894292259,
+        "R2": 0.9380451741249125
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "dew_point_c",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.3661146410767815,
+        "RMSE": 0.471333908791815,
+        "R2": 0.7279162701780839
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.008918948027759655,
+        "RMSE": 0.04342946146129659,
+        "R2": 0.9994001175225175
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.42303179859548856,
+        "RMSE": 0.5698432459660467,
+        "R2": 0.6022996136769947
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "dew_point_c",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.019739552674450038,
+        "RMSE": 0.026552547525477407,
+        "R2": 0.9997757617589672
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "dew_point_c",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.3887296618076793,
+        "RMSE": 0.5182259159409425,
+        "R2": 0.6710851678427545
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "dew_point_c",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.12238621018157225,
+        "RMSE": 0.16776291825631254,
+        "R2": 0.9910486356922648
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "dew_point_c",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.4707744950600424,
+        "RMSE": 0.6153896635519773,
+        "R2": 0.5361841378605644
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "dew_point_c",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.4196654366900354,
+        "RMSE": 1.7724867158011108,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "dew_point_c",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.8771288166059601,
+        "RMSE": 1.129144004567789,
+        "R2": -0.5508341956676455
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "dew_point_c",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.3864500968344164,
+        "RMSE": 0.5405980996325495,
+        "R2": 0.9069785614588614
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "dew_point_c",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.47293888479816154,
+        "RMSE": 0.5941419174588259,
+        "R2": 0.5706147816098136
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.16440669129307578,
+        "RMSE": 0.22788192489386136,
+        "R2": 0.983470725937123
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.42686254992489525,
+        "RMSE": 0.545035192455826,
+        "R2": 0.6386602055279648
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "dew_point_c",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.09578960928809191,
+        "RMSE": 0.13308611556454464,
+        "R2": 0.9943623316904756
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "dew_point_c",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.4226282713706032,
+        "RMSE": 0.5267728226945735,
+        "R2": 0.6624691879837095
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "dew_point_c",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.16440669129307578,
+        "RMSE": 0.22788192489386136,
+        "R2": 0.983470725937123
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "dew_point_c",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.42686254992489525,
+        "RMSE": 0.545035192455826,
+        "R2": 0.6386602055279648
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "dew_point_c",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.4186660426953341,
+        "RMSE": 1.7718539262075192,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "dew_point_c",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.8815210080053048,
+        "RMSE": 1.1328978689063676,
+        "R2": -0.5527246619975654
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "dew_point_c",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.4538544310806416,
+        "RMSE": 0.6126769646870922,
+        "R2": 0.8804341174881549
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "dew_point_c",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.5245302790383678,
+        "RMSE": 0.6436721909839098,
+        "R2": 0.49876380545199817
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.17591036277304184,
+        "RMSE": 0.24558315948081785,
+        "R2": 0.9807893820893971
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.5182682792025568,
+        "RMSE": 0.6399750240454591,
+        "R2": 0.5045053359351803
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "dew_point_c",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.10213327387508486,
+        "RMSE": 0.14119453064707546,
+        "R2": 0.9936499094584303
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "dew_point_c",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.5005331056159839,
+        "RMSE": 0.6296008390722065,
+        "R2": 0.5204393639232515
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "dew_point_c",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.14079685284274124,
+        "RMSE": 0.1895203483609981,
+        "R2": 0.9885592140189243
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "dew_point_c",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.5804818870678502,
+        "RMSE": 0.761210904630725,
+        "R2": 0.2989920657859757
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "dew_point_c",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.4177072653732727,
+        "RMSE": 1.7709887737670655,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "dew_point_c",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.8850750668770814,
+        "RMSE": 1.1364538765422976,
+        "R2": -0.5593622119615251
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "dew_point_c",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.49064471816582045,
+        "RMSE": 0.6515171831366872,
+        "R2": 0.8646618822423909
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "dew_point_c",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.6018286373859567,
+        "RMSE": 0.7244893753695179,
+        "R2": 0.36626540018139553
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.17364042195903154,
+        "RMSE": 0.24568556720415963,
+        "R2": 0.9807545676158953
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "dew_point_c",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.5481715116562481,
+        "RMSE": 0.6866842449559019,
+        "R2": 0.4306785544710825
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "dew_point_c",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.10176321136726141,
+        "RMSE": 0.14158667042206605,
+        "R2": 0.9936083479989943
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "dew_point_c",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.6488758020233689,
+        "RMSE": 0.8308610455408769,
+        "R2": 0.1665104243307136
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "dew_point_c",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.14362638516686838,
+        "RMSE": 0.19269990085867247,
+        "R2": 0.9881605544102124
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "dew_point_c",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.6169504441534055,
+        "RMSE": 0.7811305652201458,
+        "R2": 0.2633000495284138
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "humidity_pct",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 8.579669502654607,
+        "RMSE": 10.491846427824022,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "humidity_pct",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 11.589184299030936,
+        "RMSE": 13.021810649634137,
+        "R2": -0.0012924411004824332
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "humidity_pct",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.7698798128505828,
+        "RMSE": 2.791068839567104,
+        "R2": 0.9292319471796381
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "humidity_pct",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.194974298066796,
+        "RMSE": 2.9974731065014573,
+        "R2": 0.9469446997994857
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.05072730460731815,
+        "RMSE": 0.27935883459077443,
+        "R2": 0.9992910412443912
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.117121706262043,
+        "RMSE": 2.9577506117500754,
+        "R2": 0.9483415594840595
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "humidity_pct",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.5869539673666868,
+        "RMSE": 0.8375612336917537,
+        "R2": 0.9936272147231308
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "humidity_pct",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 1.7293664614359539,
+        "RMSE": 2.4336652488467334,
+        "R2": 0.9650264379717574
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "humidity_pct",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.3197876630358536,
+        "RMSE": 1.8744168066821139,
+        "R2": 0.9680825277736222
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "humidity_pct",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 1.8468199951515645,
+        "RMSE": 2.6079162775927758,
+        "R2": 0.9598389114401387
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "humidity_pct",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 8.58262316872414,
+        "RMSE": 10.500330764746598,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "humidity_pct",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 11.673910769890478,
+        "RMSE": 13.129881795387988,
+        "R2": -0.004673451888709934
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "humidity_pct",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.322919073351921,
+        "RMSE": 3.2141260867575334,
+        "R2": 0.9063042569151801
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "humidity_pct",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.529656722530552,
+        "RMSE": 3.335175124353436,
+        "R2": 0.9351752904426884
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.06397928977094287,
+        "RMSE": 0.38538000101875475,
+        "R2": 0.9986529851374855
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.1808425434294842,
+        "RMSE": 4.234302332749904,
+        "R2": 0.8955118544631969
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "humidity_pct",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.5082691004521234,
+        "RMSE": 0.7157158732956294,
+        "R2": 0.9953540413635095
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "humidity_pct",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.4285394768965873,
+        "RMSE": 3.084382961776235,
+        "R2": 0.944557872839131
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "humidity_pct",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.750704492353872,
+        "RMSE": 1.025187117726836,
+        "R2": 0.990467642512597
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "humidity_pct",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.2612795105859504,
+        "RMSE": 4.3242253845659935,
+        "R2": 0.8910267414265122
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "humidity_pct",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 8.596569756775375,
+        "RMSE": 10.52459476212958,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "humidity_pct",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 11.78510236618974,
+        "RMSE": 13.276233747538875,
+        "R2": -0.010321301754050438
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "humidity_pct",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.691042195608596,
+        "RMSE": 3.612273297786595,
+        "R2": 0.8821986042980343
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "humidity_pct",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.9590875866998276,
+        "RMSE": 3.862609195885578,
+        "R2": 0.9144792955406118
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.0701853348939259,
+        "RMSE": 0.4080655184923978,
+        "R2": 0.9984966883213628
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.9222076825344376,
+        "RMSE": 4.077921990994124,
+        "R2": 0.9046792267529362
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "humidity_pct",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.5457550497679814,
+        "RMSE": 0.755046958818525,
+        "R2": 0.9948532015712832
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "humidity_pct",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.8846511840820312,
+        "RMSE": 3.9065926816923033,
+        "R2": 0.9125205601005196
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "humidity_pct",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.9753300071693012,
+        "RMSE": 1.3544950977619372,
+        "R2": 0.9834368052046436
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "humidity_pct",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.976015542947336,
+        "RMSE": 3.9397153668819858,
+        "R2": 0.911030853915076
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "humidity_pct",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 8.61610155977553,
+        "RMSE": 10.557395389098396,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "humidity_pct",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 11.930609697114749,
+        "RMSE": 13.478707610063005,
+        "R2": -0.01851229802412102
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "humidity_pct",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.9040788818479193,
+        "RMSE": 3.8599651914038695,
+        "R2": 0.8663240734571206
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "humidity_pct",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.354455129665329,
+        "RMSE": 4.568913936089001,
+        "R2": 0.8829703982107321
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.08184371101132035,
+        "RMSE": 0.4977668553689214,
+        "R2": 0.9977770055600936
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "humidity_pct",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 4.229810986780044,
+        "RMSE": 5.386149259346999,
+        "R2": 0.8373603087986045
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "humidity_pct",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.5491824777962827,
+        "RMSE": 0.7699442152645836,
+        "R2": 0.9946813067054614
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "humidity_pct",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.8338446533470822,
+        "RMSE": 3.8979600172803623,
+        "R2": 0.9148186472625759
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "humidity_pct",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.007211777223097,
+        "RMSE": 1.409084245050825,
+        "R2": 0.9821860452586391
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "humidity_pct",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.527211001026842,
+        "RMSE": 4.668613983032319,
+        "R2": 0.877807175013128
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.3286026508132855,
+        "RMSE": 12.031559135440276,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 1.070643459757831,
+        "RMSE": 1.2947269503619112,
+        "R2": -0.001718670983607895
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.0715002823493525,
+        "RMSE": 5.840456416501128,
+        "R2": 0.7643595980313336
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 10.654302138509522,
+        "RMSE": 44.48961935471439,
+        "R2": -1181.7876259516047
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.34684889209093117,
+        "RMSE": 11.451234266988576,
+        "R2": 0.09414063403864026
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.17423649883451106,
+        "RMSE": 0.28503174682114146,
+        "R2": 0.9514514949614851
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.3616542891729662,
+        "RMSE": 8.54642406990115,
+        "R2": 0.4954257804858022
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.7493228845429059,
+        "RMSE": 3.5502917884407013,
+        "R2": -6.53212447094559
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.3809816850631318,
+        "RMSE": 11.332865484381209,
+        "R2": 0.11277116509341134
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.2797899873777132,
+        "RMSE": 0.5961291878182735,
+        "R2": 0.7876412476481661
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.3257270697451724,
+        "RMSE": 12.030985020324314,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 1.0640426604738351,
+        "RMSE": 1.2925713337554663,
+        "R2": -0.002821752005263578
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.42519811141261293,
+        "RMSE": 4.7253943195355275,
+        "R2": 0.8457327500381921
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.3298360487333075,
+        "RMSE": 0.4098361170945232,
+        "R2": 0.8991826768698368
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.4509744948941182,
+        "RMSE": 11.315157494982758,
+        "R2": 0.1154572354231661
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.2666740592064055,
+        "RMSE": 0.46955420707295636,
+        "R2": 0.8676615091995882
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.11834612780374908,
+        "RMSE": 0.8158207936118788,
+        "R2": 0.9954018072887147
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 12.267489516944218,
+        "RMSE": 71.75618682978211,
+        "R2": -3089.5331719343803
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.47710991032611166,
+        "RMSE": 3.327014388071943,
+        "R2": 0.923527201044675
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.8829861824972642,
+        "RMSE": 15.725228610797283,
+        "R2": -147.4255412221309
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.3231366089499152,
+        "RMSE": 12.030433864554185,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 1.060100664657234,
+        "RMSE": 1.290877216667797,
+        "R2": -0.003990824388433234
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.3408260933393392,
+        "RMSE": 9.967561968312179,
+        "R2": 0.3135398850062412
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 1.1170288785099372,
+        "RMSE": 1.349405403525964,
+        "R2": -0.0970963292630378
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.5269935613505387,
+        "RMSE": 11.54200537531184,
+        "R2": 0.07955050348921333
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.26690299162204495,
+        "RMSE": 0.3540721426946377,
+        "R2": 0.9244658423313346
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.10328793956048571,
+        "RMSE": 0.13744867750947412,
+        "R2": 0.9998694675314715
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.44237188707318,
+        "RMSE": 45.51342079720347,
+        "R2": -1247.069668976399
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.14480848031845608,
+        "RMSE": 0.8735640661806772,
+        "R2": 0.994727374298089
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.2352427599722855,
+        "RMSE": 42.19879646908015,
+        "R2": -1071.9018690358348
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.3207063837990285,
+        "RMSE": 12.029860382896903,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 1.0573208280043556,
+        "RMSE": 1.2898734667034122,
+        "R2": -0.005380241549524323
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.7266677828612278,
+        "RMSE": 5.170283206971873,
+        "R2": 0.815282734307037
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 5.302927227915338,
+        "RMSE": 34.769395420294224,
+        "R2": -729.5171325375727
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.6398130629693018,
+        "RMSE": 11.538515746325707,
+        "R2": 0.08001929232082505
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.5860383014049763,
+        "RMSE": 0.9865445944703447,
+        "R2": 0.41187509568069325
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.42141623627788793,
+        "RMSE": 10.870282286501814,
+        "R2": 0.18349195053407752
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.4771583155581846,
+        "RMSE": 0.9416111041175104,
+        "R2": 0.46422891657058607
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.7266677828612264,
+        "RMSE": 5.170283206971872,
+        "R2": 0.8152827343070371
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "pressure_hpa",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 5.302927227915307,
+        "RMSE": 34.76939542029423,
+        "R2": -729.5171325375728
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "temperature_c",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.596893868175097,
+        "RMSE": 3.170407926877806,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "temperature_c",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.324213493090407,
+        "RMSE": 3.7241402132202968,
+        "R2": -0.01614745155592545
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "temperature_c",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.38483771253210497,
+        "RMSE": 0.6190008184135385,
+        "R2": 0.9618800645915285
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "temperature_c",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.4360099010839158,
+        "RMSE": 0.5716391458160788,
+        "R2": 0.9760586515225674
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.014580956478766347,
+        "RMSE": 0.10103614325395709,
+        "R2": 0.9989843987432079
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.4490031606958132,
+        "RMSE": 0.566899289867122,
+        "R2": 0.9764540340965175
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "temperature_c",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.10443252783565676,
+        "RMSE": 0.15123933635337847,
+        "R2": 0.9977243826536238
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "temperature_c",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.3900110838706034,
+        "RMSE": 0.4935914964098448,
+        "R2": 0.9821499259133329
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "temperature_c",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.15281444477348688,
+        "RMSE": 0.21737613690327837,
+        "R2": 0.9952989654557197
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "temperature_c",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.5456964482908975,
+        "RMSE": 0.7225145020411551,
+        "R2": 0.9617529607188038
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "temperature_c",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.602870764528522,
+        "RMSE": 3.1775053933148647,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "temperature_c",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.3614555145858107,
+        "RMSE": 3.7627779242147823,
+        "R2": -0.009963846927678155
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "temperature_c",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.5527993930572426,
+        "RMSE": 0.7892891037683818,
+        "R2": 0.9382979459337567
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "temperature_c",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.7031901364605032,
+        "RMSE": 0.9354601104311379,
+        "R2": 0.9375777815098326
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.019236160836785136,
+        "RMSE": 0.1352816103717715,
+        "R2": 0.9981873876442838
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.6664131894042317,
+        "RMSE": 0.862952015078411,
+        "R2": 0.9468795252854958
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "temperature_c",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.11205136425847169,
+        "RMSE": 0.16383615738180266,
+        "R2": 0.9973414372576052
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "temperature_c",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.5416944654364335,
+        "RMSE": 0.6630709860681183,
+        "R2": 0.9686376423609019
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "temperature_c",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.1750494559405854,
+        "RMSE": 0.247906110911353,
+        "R2": 0.9939130200410936
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "temperature_c",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.8439812014917195,
+        "RMSE": 1.0613197385192819,
+        "R2": 0.9196508779402832
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "temperature_c",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.610993112614177,
+        "RMSE": 3.186695095690725,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "temperature_c",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.4038534413339017,
+        "RMSE": 3.8103869385183313,
+        "R2": -0.005079679979295371
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "temperature_c",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.6350070517416678,
+        "RMSE": 0.8724201376681799,
+        "R2": 0.9250502239853369
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "temperature_c",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.7987436292623503,
+        "RMSE": 1.0249824975970563,
+        "R2": 0.9272730738460723
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.02068545160605819,
+        "RMSE": 0.1483282948647495,
+        "R2": 0.9978334586388234
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.7457805608163263,
+        "RMSE": 1.0146867782092714,
+        "R2": 0.9287267872152714
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "temperature_c",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.11971096984225783,
+        "RMSE": 0.17110901305582432,
+        "R2": 0.9971168665242868
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "temperature_c",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.6690456925776966,
+        "RMSE": 0.8361054832035849,
+        "R2": 0.9516067848974924
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "temperature_c",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.1954776245435688,
+        "RMSE": 0.2707875124715203,
+        "R2": 0.9927793508789422
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "temperature_c",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.9342382625003154,
+        "RMSE": 1.2372267802566579,
+        "R2": 0.8940353624405826
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "temperature_c",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.6209675594210418,
+        "RMSE": 3.197462297141886,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "temperature_c",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.4461031353073603,
+        "RMSE": 3.8612528882578316,
+        "R2": -0.001733140011793477
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "temperature_c",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.7036639277665013,
+        "RMSE": 0.9471472501246679,
+        "R2": 0.9122546438625958
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "temperature_c",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.9371528397884211,
+        "RMSE": 1.2274355496548246,
+        "R2": 0.898773797615064
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.024388407378345123,
+        "RMSE": 0.17840998624923152,
+        "R2": 0.9968866535222137
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "temperature_c",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.7300119658193954,
+        "RMSE": 0.9796861527595545,
+        "R2": 0.935513398694418
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "temperature_c",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.12179034896748674,
+        "RMSE": 0.17389068145565326,
+        "R2": 0.997042384221646
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "temperature_c",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.7892247777236137,
+        "RMSE": 0.9917431608187056,
+        "R2": 0.9339163567946276
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "temperature_c",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.024388407378345123,
+        "RMSE": 0.17840998624923152,
+        "R2": 0.9968866535222137
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "temperature_c",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 0.7300119658193954,
+        "RMSE": 0.9796861527595545,
+        "R2": 0.935513398694418
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 3.7854595131048616,
+        "RMSE": 5.318237470193133,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 4.2491529733813005,
+        "RMSE": 6.387619553493472,
+        "R2": -0.11154843666860659
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.896187482328386,
+        "RMSE": 3.0319436575165897,
+        "R2": 0.6749824576808603
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.496610967035807,
+        "RMSE": 3.6548909190955645,
+        "R2": 0.6360856772629506
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.516528235045681,
+        "RMSE": 2.3190355763264923,
+        "R2": 0.8098574248967729
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.44032142968211,
+        "RMSE": 3.297431687965137,
+        "R2": 0.7037884947021067
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.7761566480562121,
+        "RMSE": 1.1509959840632038,
+        "R2": 0.9531605091565056
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.4832693995090955,
+        "RMSE": 3.3767891883580115,
+        "R2": 0.6893594073074234
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.649982353919598,
+        "RMSE": 2.5349208034300754,
+        "R2": 0.7728078403064345
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.2743564502450457,
+        "RMSE": 3.268203493837614,
+        "R2": 0.709016415983328
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 3.788307664905826,
+        "RMSE": 5.32123408656365,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 4.458589716261664,
+        "RMSE": 6.772665497188143,
+        "R2": -0.12887465191757408
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.17588971361862,
+        "RMSE": 3.339453615321525,
+        "R2": 0.6061543053990025
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.047244846690207,
+        "RMSE": 4.2253435328894815,
+        "R2": 0.5606096474692202
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.6394242517255326,
+        "RMSE": 2.448938467318071,
+        "R2": 0.7881975315349532
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.6221229342472028,
+        "RMSE": 3.6939574362478558,
+        "R2": 0.6641771501982823
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.8055795211438632,
+        "RMSE": 1.1887212124537627,
+        "R2": 0.9500960069986752
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.697061900611509,
+        "RMSE": 3.6982202537748066,
+        "R2": 0.6634016255430981
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.6320457712006697,
+        "RMSE": 2.3927394836300744,
+        "R2": 0.7978070058767197
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.6002708786984914,
+        "RMSE": 3.578465303714389,
+        "R2": 0.6848479835404471
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 3.7934717689960866,
+        "RMSE": 5.327313366474964,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 4.65359855425832,
+        "RMSE": 7.057431098835949,
+        "R2": -0.14920992394985344
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.3281849366672436,
+        "RMSE": 3.486928998782913,
+        "R2": 0.5715800157666341
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.214728983145632,
+        "RMSE": 4.504790940567035,
+        "R2": 0.5317741833068115
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.6854020397273675,
+        "RMSE": 2.451438563723512,
+        "R2": 0.7882489659978821
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.846867838290875,
+        "RMSE": 3.814802782160082,
+        "R2": 0.6642235328876809
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.6974142672395348,
+        "RMSE": 0.9612297751126017,
+        "R2": 0.9674434825569838
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.7926056577448257,
+        "RMSE": 3.8124970415171475,
+        "R2": 0.6646293098132847
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.6854020397273675,
+        "RMSE": 2.451438563723512,
+        "R2": 0.7882489659978821
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.846867838290875,
+        "RMSE": 3.814802782160082,
+        "R2": 0.6642235328876809
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 3.7974815454534565,
+        "RMSE": 5.3316724323984594,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 4.820720521105237,
+        "RMSE": 7.243320599475822,
+        "R2": -0.16617900168117772
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.39948944955871,
+        "RMSE": 3.5214914217880326,
+        "R2": 0.5637591298895738
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.6177458047169604,
+        "RMSE": 5.1474834514260595,
+        "R2": 0.411048246480463
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.720597553914972,
+        "RMSE": 2.5211299338488424,
+        "R2": 0.7764042527504894
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.8485186414452617,
+        "RMSE": 3.9096888786653206,
+        "R2": 0.6602384737950824
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.8154742588025419,
+        "RMSE": 1.1991466518702334,
+        "R2": 0.949415474596262
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.028901438676474,
+        "RMSE": 4.132462077320536,
+        "R2": 0.6204163000874483
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.696688889975867,
+        "RMSE": 2.4595370467031428,
+        "R2": 0.787195984660773
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_speed_kmh",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.1307781311588907,
+        "RMSE": 4.191345964505854,
+        "R2": 0.6095217743497635
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_x",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.6804327014033498,
+        "RMSE": 5.180685190695505,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_x",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.0291150923453185,
+        "RMSE": 4.756283663815997,
+        "R2": -0.07446915823428424
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_x",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.5826544156502875,
+        "RMSE": 2.9172406418440713,
+        "R2": 0.6829190832463345
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_x",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.034334560048731,
+        "RMSE": 3.038271215698963,
+        "R2": 0.5615586196287213
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.2800763733829557,
+        "RMSE": 2.1196117589912675,
+        "R2": 0.8326066369083118
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.0481089786463214,
+        "RMSE": 2.990576430954872,
+        "R2": 0.5752158822324507
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_x",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.6688348725506614,
+        "RMSE": 1.0685414033867195,
+        "R2": 0.9574589403165309
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_x",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.0437332829276076,
+        "RMSE": 3.043898975734749,
+        "R2": 0.5599328739902978
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_x",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.3249271837099947,
+        "RMSE": 2.214535969876798,
+        "R2": 0.817277902481007
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_x",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.1189345624573694,
+        "RMSE": 3.107471334135717,
+        "R2": 0.5413591642940847
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_x",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.6821943455825883,
+        "RMSE": 5.187567943650019,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_x",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.201334381387352,
+        "RMSE": 5.105263521935951,
+        "R2": -0.0834279615750062
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_x",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.7882627273830627,
+        "RMSE": 3.1761752313270764,
+        "R2": 0.6251294584601685
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_x",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.384782945254617,
+        "RMSE": 3.4448412932810295,
+        "R2": 0.5067101856317977
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.44694140814416,
+        "RMSE": 2.290899132594873,
+        "R2": 0.8049776704441745
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.4308178375996747,
+        "RMSE": 3.529377053184999,
+        "R2": 0.4822026460781381
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_x",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.5667211314618424,
+        "RMSE": 0.8459758793476951,
+        "R2": 0.9734057121428605
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_x",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.309939858001555,
+        "RMSE": 3.351683877990636,
+        "R2": 0.5330291060706523
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_x",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.44694140814416,
+        "RMSE": 2.290899132594873,
+        "R2": 0.8049776704441745
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_x",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.4308178375996747,
+        "RMSE": 3.529377053184999,
+        "R2": 0.4822026460781381
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_x",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.684742371424586,
+        "RMSE": 5.197784073136704,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_x",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.3196586168445905,
+        "RMSE": 5.268454131713197,
+        "R2": -0.08399527859590505
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_x",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.8744933548731433,
+        "RMSE": 3.310061426363059,
+        "R2": 0.5944581869331171
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_x",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.6623113744652547,
+        "RMSE": 3.9159321865593704,
+        "R2": 0.40113172264195585
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.2897099925653914,
+        "RMSE": 2.005317574422628,
+        "R2": 0.8511565075122417
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.6487328637740157,
+        "RMSE": 3.756974765148945,
+        "R2": 0.4487640415070997
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_x",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.5856365586343047,
+        "RMSE": 0.8761864816663354,
+        "R2": 0.9715844132215056
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_x",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.7015638221372176,
+        "RMSE": 3.909263893748158,
+        "R2": 0.40316956635786017
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_x",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.4682534953282158,
+        "RMSE": 2.3606733803369693,
+        "R2": 0.7937303471962899
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_x",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.637485459858286,
+        "RMSE": 3.8035533092529894,
+        "R2": 0.4350109914380149
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_x",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.6852623786272556,
+        "RMSE": 5.205301680012946,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_x",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.387842632061224,
+        "RMSE": 5.333674703868218,
+        "R2": -0.0892305183962725
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_x",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.9347762285112116,
+        "RMSE": 3.2848499770542277,
+        "R2": 0.6017651436778994
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_x",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.7013511738590283,
+        "RMSE": 4.075940661641248,
+        "R2": 0.3639043042505744
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.1842166697320335,
+        "RMSE": 1.8595357612967667,
+        "R2": 0.8723804349030855
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_x",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.5655524512656895,
+        "RMSE": 3.7118127957624303,
+        "R2": 0.47248006006770127
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_x",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.5870574071636716,
+        "RMSE": 0.8707541778715925,
+        "R2": 0.9720166744859451
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_x",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.7637982083149337,
+        "RMSE": 4.085665890248539,
+        "R2": 0.3608652236037212
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_x",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.3261996416961878,
+        "RMSE": 0.47175127075736384,
+        "R2": 0.9917863848883098
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_x",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.1343640154122805,
+        "RMSE": 4.396486541074129,
+        "R2": 0.2599207170330887
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_y",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.1402470175111583,
+        "RMSE": 4.000834002357013,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_y",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 4.438419146160014,
+        "RMSE": 7.0061039708862,
+        "R2": -0.10289371550025428
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_y",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.538246577633209,
+        "RMSE": 2.8163992167932608,
+        "R2": 0.504450132149586
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_y",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.5440128841063907,
+        "RMSE": 4.010735489157661,
+        "R2": 0.6385663796957874
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.2330970918933397,
+        "RMSE": 2.116119823588424,
+        "R2": 0.7202439765166855
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.4879168480032297,
+        "RMSE": 3.549193287296265,
+        "R2": 0.7169652180306405
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_y",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.6369264215428854,
+        "RMSE": 1.0521847308971564,
+        "R2": 0.9308355504179177
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_y",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.6407063648892644,
+        "RMSE": 3.7911182514170996,
+        "R2": 0.6770649618497344
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_y",
+        "Lead": 30,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.8499572726488537,
+        "RMSE": 1.3783361651467567,
+        "R2": 0.8813113369625877
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_y",
+        "Lead": 30,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.7956790392245647,
+        "RMSE": 4.130482639467782,
+        "R2": 0.6166617919414643
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_y",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.143548784450186,
+        "RMSE": 4.002519740265341,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_y",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 4.640251651616025,
+        "RMSE": 7.2734207104642365,
+        "R2": -0.11898471724362403
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_y",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.5953296351562603,
+        "RMSE": 2.850617716999038,
+        "R2": 0.4927629186006369
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_y",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.3806040464597844,
+        "RMSE": 5.137517386667483,
+        "R2": 0.44171835854644925
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.3234414837409265,
+        "RMSE": 2.197261080844323,
+        "R2": 0.6986325373661488
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.944705490667389,
+        "RMSE": 4.241803179152255,
+        "R2": 0.6194184207131301
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_y",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.5392436890545926,
+        "RMSE": 0.8239470979775305,
+        "R2": 0.9576228552484025
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_y",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.044842886942612,
+        "RMSE": 4.333525942754311,
+        "R2": 0.6027814341345502
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_y",
+        "Lead": 60,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.3044720461418833,
+        "RMSE": 2.153682130622243,
+        "R2": 0.7104682173517969
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_y",
+        "Lead": 60,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 2.9456042559375923,
+        "RMSE": 4.227681070708112,
+        "R2": 0.6219483200679772
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_y",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.148398158930574,
+        "RMSE": 4.006827668181364,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_y",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 4.863986352355169,
+        "RMSE": 7.568841805108256,
+        "R2": -0.13615286771132218
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_y",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.6770644681649935,
+        "RMSE": 2.9345426691718273,
+        "R2": 0.46361141212619916
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_y",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.870829483946707,
+        "RMSE": 5.795663110108899,
+        "R2": 0.3338313692374084
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.3650614076211889,
+        "RMSE": 2.235997626134276,
+        "R2": 0.6885836944273731
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.1094125486467217,
+        "RMSE": 4.528143596351124,
+        "R2": 0.5933523245962928
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_y",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.5591436519389132,
+        "RMSE": 0.8632369276036213,
+        "R2": 0.9535849638921882
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_y",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.39746490772771,
+        "RMSE": 5.036100531580323,
+        "R2": 0.49700149469627264
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_y",
+        "Lead": 90,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.3480413890531613,
+        "RMSE": 2.181053215672621,
+        "R2": 0.703700310669394
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_y",
+        "Lead": 90,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.707904964919585,
+        "RMSE": 5.637920489931742,
+        "R2": 0.36960057809205216
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_y",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 2.1517692652095084,
+        "RMSE": 4.009193888239585,
+        "R2": 0.0
+    },
+    {
+        "Model": "Dummy Regressor",
+        "Target": "wind_y",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 5.04190373741326,
+        "RMSE": 7.8017660175445345,
+        "R2": -0.15535131293800086
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_y",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 1.7260907345426921,
+        "RMSE": 2.94995570504008,
+        "R2": 0.45860172146972455
+    },
+    {
+        "Model": "Random Forest Regressor",
+        "Target": "wind_y",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.7282192129124,
+        "RMSE": 5.531925118268098,
+        "R2": 0.4191275149441366
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.31154249832553654,
+        "RMSE": 0.4553490728595088,
+        "R2": 0.987100443055838
+    },
+    {
+        "Model": "LGBM Regressor",
+        "Target": "wind_y",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 4.011440427844211,
+        "RMSE": 5.822286781169167,
+        "R2": 0.35654910993998523
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_y",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.8399054515423547,
+        "RMSE": 1.3450968749904435,
+        "R2": 0.8874376871316851
+    },
+    {
+        "Model": "XGBoost Regressor",
+        "Target": "wind_y",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 3.631036729099253,
+        "RMSE": 5.388127874566111,
+        "R2": 0.44893350328247617
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_y",
+        "Lead": 120,
+        "Set": "TRAIN",
+        "Size": 35185,
+        "MAE": 0.31154249832553654,
+        "RMSE": 0.4553490728595088,
+        "R2": 0.987100443055838
+    },
+    {
+        "Model": "AutoML Regressor",
+        "Target": "wind_y",
+        "Lead": 120,
+        "Set": "TEST",
+        "Size": 456,
+        "MAE": 4.011440427844211,
+        "RMSE": 5.822286781169167,
+        "R2": 0.35654910993998523
+    }
+]

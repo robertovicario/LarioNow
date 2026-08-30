@@ -1,0 +1,202 @@
+[
+    {
+        "Model": "Dummy Classifier",
+        "Target": "rain_flag",
+        "Set": "TRAIN",
+        "Size": 30643,
+        "Accuracy": 0.685083053225859,
+        "Precision": 0.0,
+        "Recall": 0.0,
+        "F1 Score": 0.0,
+        "Confusion Matrix": [
+            [
+                20993,
+                0
+            ],
+            [
+                9650,
+                0
+            ]
+        ]
+    },
+    {
+        "Model": "Dummy Classifier",
+        "Target": "rain_flag",
+        "Set": "TEST",
+        "Size": 7661,
+        "Accuracy": 0.6953400339381282,
+        "Precision": 0.0,
+        "Recall": 0.0,
+        "F1 Score": 0.0,
+        "Confusion Matrix": [
+            [
+                5327,
+                0
+            ],
+            [
+                2334,
+                0
+            ]
+        ]
+    },
+    {
+        "Model": "Random Forest Classifier",
+        "Target": "rain_flag",
+        "Set": "TRAIN",
+        "Size": 30643,
+        "Accuracy": 0.9997389289560422,
+        "Precision": 0.9998963085856492,
+        "Recall": 0.9992746113989638,
+        "F1 Score": 0.9995853633253862,
+        "Confusion Matrix": [
+            [
+                20992,
+                1
+            ],
+            [
+                7,
+                9643
+            ]
+        ]
+    },
+    {
+        "Model": "Random Forest Classifier",
+        "Target": "rain_flag",
+        "Set": "TEST",
+        "Size": 7661,
+        "Accuracy": 0.9917765304790497,
+        "Precision": 0.9875483039931301,
+        "Recall": 0.9854327335047129,
+        "F1 Score": 0.9864893845164058,
+        "Confusion Matrix": [
+            [
+                5298,
+                29
+            ],
+            [
+                34,
+                2300
+            ]
+        ]
+    },
+    {
+        "Model": "LGBM Classifier",
+        "Target": "rain_flag",
+        "Set": "TRAIN",
+        "Size": 30643,
+        "Accuracy": 0.9996083934340633,
+        "Precision": 0.9994817578772802,
+        "Recall": 0.9992746113989638,
+        "F1 Score": 0.9993781739040315,
+        "Confusion Matrix": [
+            [
+                20988,
+                5
+            ],
+            [
+                7,
+                9643
+            ]
+        ]
+    },
+    {
+        "Model": "LGBM Classifier",
+        "Target": "rain_flag",
+        "Set": "TEST",
+        "Size": 7661,
+        "Accuracy": 0.992298655527999,
+        "Precision": 0.989247311827957,
+        "Recall": 0.9854327335047129,
+        "F1 Score": 0.987336338270015,
+        "Confusion Matrix": [
+            [
+                5302,
+                25
+            ],
+            [
+                34,
+                2300
+            ]
+        ]
+    },
+    {
+        "Model": "XGBoost Classifier",
+        "Target": "rain_flag",
+        "Set": "TRAIN",
+        "Size": 30643,
+        "Accuracy": 0.9997389289560422,
+        "Precision": 0.9996890547263682,
+        "Recall": 0.9994818652849741,
+        "F1 Score": 0.9995854492693543,
+        "Confusion Matrix": [
+            [
+                20990,
+                3
+            ],
+            [
+                5,
+                9645
+            ]
+        ]
+    },
+    {
+        "Model": "XGBoost Classifier",
+        "Target": "rain_flag",
+        "Set": "TEST",
+        "Size": 7661,
+        "Accuracy": 0.9919070617412871,
+        "Precision": 0.9875536480686695,
+        "Recall": 0.9858611825192802,
+        "F1 Score": 0.9867066895368782,
+        "Confusion Matrix": [
+            [
+                5298,
+                29
+            ],
+            [
+                33,
+                2301
+            ]
+        ]
+    },
+    {
+        "Model": "AutoML Classifier",
+        "Target": "rain_flag",
+        "Set": "TRAIN",
+        "Size": 30643,
+        "Accuracy": 0.9997389289560422,
+        "Precision": 0.9998963085856492,
+        "Recall": 0.9992746113989638,
+        "F1 Score": 0.9995853633253862,
+        "Confusion Matrix": [
+            [
+                20992,
+                1
+            ],
+            [
+                7,
+                9643
+            ]
+        ]
+    },
+    {
+        "Model": "AutoML Classifier",
+        "Target": "rain_flag",
+        "Set": "TEST",
+        "Size": 7661,
+        "Accuracy": 0.9921681242657616,
+        "Precision": 0.9888220120378332,
+        "Recall": 0.9854327335047129,
+        "F1 Score": 0.9871244635193133,
+        "Confusion Matrix": [
+            [
+                5301,
+                26
+            ],
+            [
+                34,
+                2300
+            ]
+        ]
+    }
+]

@@ -49,13 +49,13 @@ bash cmd.sh <command>
 - [⚙] build
 - [⚙] setup
 - [♻] clean <target>
-    ├──  --env
-    ├──  --docker
-    └──  --all
+   ├──  --env
+   ├──  --docker
+   └──  --all
 - [⚙] deploy [option] <target>
-    ├──  --app
-    ├──  --jobs
-    └──  --all
+   ├──  --app
+   ├──  --jobs
+   └──  --all
 ```
 
 <br>
@@ -279,16 +279,25 @@ The predictive modeling task was conducted to forecast the weather parameters fo
 
 | <img src="docs/img/model-1.png" alt="model-1" width="512"> |
 | - |
-| **Figure 7:** Overview of the multi-state machine learning model used for weather nowcasting.** |
+| **Figure 7:** Overview of the multi-state machine learning model used for weather nowcasting. |
 
 <br>
 
-The model comparison was conducted under the following challenges:
+The ***models selected*** for the comparative evaluation were:
 
-- Baseline vs. Other Models: The ability of a model to outperform a simple baseline model.
-- Bagging vs. Boosting Models: Whather ensemble methods based on bagging or boosting techniques yield better results.
-- Best Model vs. AutoML Models: The performance of the best model is compared with that of AutoML models to assess their effectiveness.
-- Forecast horizon degradation: How the performance of the model changes as the forecast horizon increases (30, 60, 90, and 120 minutes ahead).
+- Dummy
+- Random Forest
+- LightGBM
+- XGBoost
+- AutoML
+
+The models were evaluated according to the ***following challenges:***
+
+- **Baseline vs. Other Models:** Assessing whether the evaluated models can outperform a simple baseline model.
+- **Bagging vs. Boosting Models:** Comparing ensemble methods based on bagging and boosting techniques to determine which approach achieves better predictive performance.
+- **Best Model vs. AutoML Models:** Comparing the performance of the best-performing model with that of AutoML models to assess whether automated approaches can achieve comparable or superior results.
+- **Forecast Horizon Degradation:** Analyzing how model performance changes as the forecast horizon increases, considering predictions 30, 60, 90, and 120 minutes ahead.
+
 
 > [!NOTE]
 > 
@@ -298,27 +307,39 @@ The model comparison was conducted under the following challenges:
 
 > ***Regression***
 
-... the insights obtained from the regression task are summarized below:
+- **Baseline vs. Other Models:** The **Dummy Regressor** provides a weak baseline across all target variables, with test $R^2$ values close to or below zero. In contrast, the machine learning models substantially improve upon the baseline for most weather parameters. For example, at the 30-minute horizon, $R^2$ reaches 0.982 for temperature, 0.965 for humidity, 0.704 for wind speed, and 0.728 for dew point with the best-performing models. This confirms the ability of the proposed models to ***capture relevant temporal patterns*** in the weather observations.
 
--
--
--
--
+- **Bagging vs. Boosting Models:** The comparison between Random Forest and the boosting-based models shows that ***boosting generally provides better predictive performance***, although the best algorithm depends on the target variable and forecast horizon. ***XGBoost performs particularly well*** for temperature and humidity, achieving test $R^2$ values of 0.982 and 0.965, respectively, at the 30-minute horizon. For wind-related variables, ***LGBM and XGBoost provide competitive results***, while Random Forest generally remains behind the boosting approaches.
 
-> ***Classification***
+- **Best Model vs. AutoML Models:** The comparison with AutoML shows that automated models can achieve competitive results, but do not consistently outperform the manually evaluated boosting models. For instance, at the 30-minute horizon, XGBoost achieves an $R^2$ of 0.982 for temperature, compared with 0.962 for AutoML, while for humidity it achieves 0.965 compared with 0.960. Similar differences are observed across several targets and horizons, ***supporting the use of a manually selected boosting model*** rather than relying exclusively on the AutoML solution.
 
-... the insights obtained from the classification task are summarized below:
-
--
--
--
--
+- **Forecast Horizon Degradation:** As the forecast horizon increases from 30 to 120 minutes, predictive performance generally ***deteriorates across all models***, as reflected by increasing MAE and RMSE and decreasing $R^2$. However, ***XGBoost exhibits a more limited degradation compared with the other evaluated models***, maintaining more stable predictive performance as the forecasting horizon increases. For example, for temperature, XGBoost $R^2$ decreases from 0.982 at 30 minutes to 0.934 at 120 minutes, while for wind speed it decreases from 0.689 to 0.620. Similar behavior is observed across the other weather parameters, indicating that XGBoost is ***more robust to increasing forecast horizons*** and better preserves its predictive capability as the prediction interval extends further into the future.
 
 <br>
 
-| <img src="docs/img/results-1.png" alt="results-1" width="512"> |
-| - |
-| **Figure 8:** Confusion Matrix of the final classification model. |
+> [!NOTE]
+> 
+> The metrics for this task can be found within the project as: `models/metrics_reg.json` and `models/stats_reg.json`.
+
+<br>
+
+> ***Classification***
+
+The key findings from the classification task are presented below:
+
+- **Baseline vs. Other Models:** The ***Dummy Classifier*** achieves a test accuracy of 69.53%, while ***completely failing to detect rainfall events***, resulting in 0.00 precision, recall, and F1 score. In contrast, all machine learning models achieve test accuracies above 99.1% and F1 scores above 98.6%, demonstrating a substantial ***improvement over the baseline***.
+
+- **Bagging vs. Boosting Models:** The Random Forest classifier, representing the bagging approach, achieves a test F1 score of 98.65%. The boosting-based models perform slightly better, with XGBoost reaching 98.67% and LGBM reaching 98.73%. Although LGBM obtains the highest F1 score, the difference with XGBoost is marginal, while ***XGBoost achieves a slightly higher recall (98.59% vs. 98.54%)***, which is particularly ***relevant for identifying rainfall events***.
+
+- **Best Model vs. AutoML Models:** The performance of XGBoost is comparable to that of the AutoML classifier, with test F1 scores of 98.67% and 98.71%, respectively. While AutoML achieves a marginally higher F1 score, ***XGBoost provides essentially equivalent predictive performance*** while offering a specific, interpretable, and reproducible model configuration, supporting its selection as the final classifier.
+
+<br>
+
+> [!NOTE]
+> 
+> The metrics for this task can be found within the project as: `models/metrics_clf.json` and `models/stats_clf.json`.
+
+<br>
 
 ## Credits
 
@@ -337,4 +358,4 @@ The model comparison was conducted under the following challenges:
 
 ## License
 
-This project is distributed under [GNU General Public License version 3](https://opensource.org/license/gpl-3-0). You can find the complete text of the license in the project repository.
+This project is distributed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</a>. You can find the complete text of the license in the project repository.
