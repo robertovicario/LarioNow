@@ -6,6 +6,7 @@
 This project is an AI-powered Python application for weather nowcasting in the Lake Como area. It combines data from a network of physical sensor stations, which collect environmental measurements every 5 minutes, with a multi-state machine learning model trained on these observations to generate short-term forecasts (30-60-90–120 minutes ahead). By leveraging high-frequency, real-time sensor data, the system aims to provide accurate hyperlocal predictions of rapidly evolving weather conditions.
 
 > [!NOTE]
+> 
 > LarioNow is accessible online at the following links:
 >
 > - **Web Interface:** <a href="https://larionow-app-289545143980.europe-west8.run.app/" target="_blank">https://larionow-app-289545143980.europe-west8.run.app</a>
@@ -14,7 +15,7 @@ This project is an AI-powered Python application for weather nowcasting in the L
 ## Prerequisites
 
 > [!IMPORTANT]
->
+> 
 > - uv
 > - Docker
 
@@ -60,6 +61,7 @@ bash cmd.sh <command>
 <br>
 
 > [!WARNING]
+> 
 > To perform some operations, it could be necessary to authenticate with Google Cloud using your Google account by running sequentially in the terminal the two following commands:
 >
 > ```sh
@@ -129,7 +131,7 @@ The dataset consists of environmental measurements collected from a network of p
 
 <br>
 
-| <img src="docs/img/summary-1.png" alt="summary-1" width="512"> |
+| <img src="docs/img/dataset-1.png" alt="dataset-1" width="512"> |
 | - |
 | **Figure 1:** Geographic overview of the provinces surrounding Lake Como (left) and distribution of the available meteorological sensor stations in the area (right). |
 
@@ -209,7 +211,7 @@ The first step consists of collecting the data from the web server of each physi
 
 <br>
 
-| <img src="docs/img/summary-2.png" alt="summary-2" width="512"> |
+| <img src="docs/img/dataset-2.png" alt="dataset-2" width="512"> |
 | - |
 | **Figure 2:** Example of the image retrieved from the web server of a physical meteorological sensor station, containing the current weather measurements. |
 
@@ -223,7 +225,7 @@ The first step is to separate the green and blue text into two different channel
 
 <br>
 
-| <img src="docs/img/summary-2.png" alt="summary-2" width="512"><img src="docs/img/summary-3.png" alt="summary-3" width="512"><img src="docs/img/summary-4.png" alt="summary-4" width="512"> |
+| <img src="docs/img/dataset-2.png" alt="dataset-2" width="512"><img src="docs/img/dataset-3.png" alt="dataset-3" width="512"><img src="docs/img/dataset-4.png" alt="dataset-4" width="512"> |
 | - |
 | **Figure 3:** Color-channel segmentation of the weather station image. The original image is shown on the left, while the segmented green and blue text channels are shown in the center and on the right, respectively. |
 
@@ -237,7 +239,7 @@ For each detected area, a bounding box is created and used to extract the corres
 
 <br>
 
-| <img src="docs/img/summary-5.png" alt="summary-5" width="512"> |
+| <img src="docs/img/dataset-5.png" alt="dataset-5" width="512"> |
 | - |
 | **Figure 4:** Example of the ROI extraction process after color segmentation, showing the identified measurement fields before they are merged into the final input regions. |
 
@@ -245,19 +247,9 @@ The extracted regions are then passed to the OCR model, which returns the corres
 
 <br>
 
-| <img src="docs/img/summary-6.png" alt="summary-6" width="512"><img src="docs/img/summary-7.png" alt="summary-7" width="512"><img src="docs/img/summary-8.png" alt="summary-8" width="512"><img src="docs/img/summary-9.png" alt="summary-9" width="512"><img src="docs/img/summary-10.png" alt="summary-10" width="512"><img src="docs/img/summary-11.png" alt="summary-11" width="512"><img src="docs/img/summary-12.png" alt="summary-11" width="512"><img src="docs/img/summary-13.png" alt="summary-13" width="512"> |
+| <img src="docs/img/dataset-6.png" alt="dataset-6" width="512"><img src="docs/img/dataset-7.png" alt="dataset-7" width="512"><img src="docs/img/dataset-8.png" alt="dataset-8" width="512"><img src="docs/img/dataset-9.png" alt="dataset-9" width="512"><img src="docs/img/dataset-10.png" alt="dataset-10" width="512"><img src="docs/img/dataset-11.png" alt="dataset-11" width="512"><img src="docs/img/dataset-12.png" alt="dataset-11" width="512"><img src="docs/img/dataset-13.png" alt="dataset-13" width="512"> |
 | - |
 | **Figure 5:** Input regions provided to the OCR model, showing the extracted weather parameters together with their corresponding OCR confidence scores. |
-
-<br>
-
-To provide a more general overview of the OCR model's performance, ***Figure 6*** shows the confidence scores obtained for each extracted parameter across all the samples collected in the dataset.
-
-<br>
-
-| <img src="docs/img/summary-15.png" alt="summary-15" width="512"> |
-| - |
-| **Figure 6:** Distribution of OCR confidence scores for each extracted weather parameter across all samples collected in the dataset. |
 
 <br>
 
@@ -267,7 +259,66 @@ The final step consists of loading the structured data into a ***Google BigQuery
 
 ## Results
 
-...
+The results of the project are divided into two main parts: ***Text Recognition***, perfromed through the OCR model, and ***Predictive Modeling***, relative to the inference step.
+
+### Text Recognition
+
+To provide a more general overview of the OCR model's performance, ***Figure 6*** shows the confidence scores obtained for each extracted parameter across all the samples collected in the dataset.
+
+<br>
+
+| <img src="docs/img/dataset-15.png" alt="dataset-15" width="512"> |
+| - |
+| **Figure 6:** Distribution of OCR confidence scores for each extracted weather parameter across all samples collected in the dataset. |
+
+### Predictive Modeling
+
+The predictive modeling task was conducted to forecast the weather parameters for the next 30, 60, 90, and 120 minutes. The designed approach involved to use a multi-state machine learning model, as shown in ***Figure 7***, which was trained on the historical data collected from the sensor stations.
+
+<br>
+
+| <img src="docs/img/model-1.png" alt="model-1" width="512"> |
+| - |
+| **Figure 7:** Overview of the multi-state machine learning model used for weather nowcasting.** |
+
+<br>
+
+The model comparison was conducted under the following challenges:
+
+- Baseline vs. Other Models: The ability of a model to outperform a simple baseline model.
+- Bagging vs. Boosting Models: Whather ensemble methods based on bagging or boosting techniques yield better results.
+- Best Model vs. AutoML Models: The performance of the best model is compared with that of AutoML models to assess their effectiveness.
+- Forecast horizon degradation: How the performance of the model changes as the forecast horizon increases (30, 60, 90, and 120 minutes ahead).
+
+> [!NOTE]
+> 
+> The metrics for this step can be queried using the API application at <a href="https://larionow-api-289545143980.europe-west8.run.app/api/model/metrics" target="_blank">https://larionow-api-289545143980.europe-west8.run.app/api/model/metrics</a>.
+
+<br>
+
+> ***Regression***
+
+... the insights obtained from the regression task are summarized below:
+
+-
+-
+-
+-
+
+> ***Classification***
+
+... the insights obtained from the classification task are summarized below:
+
+-
+-
+-
+-
+
+<br>
+
+| <img src="docs/img/results-1.png" alt="results-1" width="512"> |
+| - |
+| **Figure 8:** Confusion Matrix of the final classification model. |
 
 ## Credits
 
