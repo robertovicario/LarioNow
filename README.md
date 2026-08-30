@@ -241,6 +241,8 @@ For each detected area, a bounding box is created and used to extract the corres
 | - |
 | **Figure 4:** Example of the ROI extraction process after color segmentation, showing the identified measurement fields before they are merged into the final input regions. |
 
+<br>
+
 The extracted regions are then passed to the OCR model, which returns the corresponding weather measurements together with a confidence score. The final result of the transformation step is therefore a structured dataset containing the extracted parameters and their confidence scores, as shown in ***Figure 5***.
 
 <br>
