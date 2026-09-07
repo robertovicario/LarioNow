@@ -108,6 +108,7 @@ ARGS_TRAIN=(
     --service-account="${GCP_SERVICE_ACCOUNT}"
     --set-env-vars="GCP_PROJECT=${GCP_PROJECT},BQ_DATASET=${BQ_DATASET},BQ_TABLE_NAME=${BQ_TABLE_NAME},GCS_BUCKET=${GCS_BUCKET},GCS_PREFIX_MODELS=${GCS_PREFIX_MODELS}"
 )
+
 # =========================
 # Helpers
 # =========================

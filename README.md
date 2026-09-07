@@ -35,13 +35,20 @@ This project is an AI-powered Python application for weather nowcasting in the L
 
 ## Instructions
 
-1. Usage:
+1. Clone the repository and place yourself in the project:
+
+```sh
+git clone https://github.com/robertovicario/LarioNow.git
+cd LarioNow
+```
+
+2. Usage:
 
 ```sh
 bash cmd.sh <command>
 ```
 
-2. Commands:
+3. Commands:
 
 ```sh
 - [▶] start
@@ -296,8 +303,11 @@ The ***models selected*** for the comparative evaluation were:
 The models were evaluated according to the ***following challenges:***
 
 - **Baseline vs. Other Models:** Assessing whether the evaluated models can outperform a simple baseline model.
+
 - **Bagging vs. Boosting Models:** Comparing ensemble methods based on bagging and boosting techniques to determine which approach achieves better predictive performance.
+
 - **Best Model vs. AutoML Models:** Comparing the performance of the best-performing model with that of AutoML models to assess whether automated approaches can achieve comparable or superior results.
+
 - **Forecast Horizon Degradation:** Analyzing how model performance changes as the forecast horizon increases, considering predictions 30, 60, 90, and 120 minutes ahead.
 
 > [!NOTE]
