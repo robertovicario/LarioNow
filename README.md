@@ -264,31 +264,37 @@ The extracted regions are then passed to the OCR model, which returns the corres
 
 The final step consists of loading the structured data into a ***Google BigQuery*** table. The resulting table can then be used for the following analysis and modeling steps.
 
+<br>
+
+| <img src="docs/img/dataset-14.png" alt="dataset-14" width="512"> |
+| - |
+| **Figure 6:** Quantitative overview of the dataset, showing the number of samples collected. |
+
 ## Results
 
 The results of the project are divided into two main parts: ***Text Recognition***, perfromed through the OCR model, and ***Predictive Modeling***, relative to the inference step.
 
 ### Text Recognition
 
-To provide a more general overview of the OCR model's performance, ***Figure 6*** shows the confidence scores obtained for each extracted parameter across all the samples collected in the dataset.
+To provide a more general overview of the OCR model's performance, ***Figure 7*** shows the confidence scores obtained for each extracted parameter across all the samples collected in the dataset.
 
 <br>
 
 | <img src="docs/img/dataset-15.png" alt="dataset-15" width="512"> |
 | - |
-| **Figure 6:** Distribution of OCR confidence scores for each extracted weather parameter across all samples collected in the dataset. |
+| **Figure 7:** Distribution of OCR confidence scores for each extracted weather parameter across all samples collected in the dataset. |
 
 <br>
 
 ### Predictive Modeling
 
-The predictive modeling task was conducted to forecast the weather parameters for the next 30, 60, 90, and 120 minutes. The designed approach involved to use a multi-state machine learning model, as shown in ***Figure 7***, which was trained on the historical data collected from the sensor stations.
+The predictive modeling task was conducted to forecast the weather parameters for the next 30, 60, 90, and 120 minutes. The designed approach involved to use a multi-state machine learning model, as shown in ***Figure 8***, which was trained on the historical data collected from the sensor stations.
 
 <br>
 
 | <img src="docs/img/model-1.png" alt="model-1" width="512"> |
 | - |
-| **Figure 7:** Overview of the multi-state machine learning model used for weather nowcasting. |
+| **Figure 8:** Overview of the multi-state machine learning model used for weather nowcasting. |
 
 <br>
 
