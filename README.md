@@ -33,6 +33,12 @@ This project is an AI-powered Python application for weather nowcasting in the L
 | :-: | :-: |
 | **Weather Nowcasting** | **Insights** |
 
+## API
+
+| <img src="docs/img/api-1.png" alt="api-1" width="512"> |
+| :-: |
+| **Documentation - LarioNow API** |
+
 ## Instructions
 
 1. Clone the repository and place yourself in the project:
@@ -283,8 +289,6 @@ To provide a more general overview of the OCR model's performance, ***Figure 7**
 | <img src="docs/img/dataset-15.png" alt="dataset-15" width="512"> |
 | - |
 | **Figure 7:** Distribution of OCR confidence scores for each extracted weather parameter across all samples collected in the dataset. |
-
-<br>
 
 ### Predictive Modeling
 
