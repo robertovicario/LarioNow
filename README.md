@@ -218,7 +218,7 @@ To collect and prepare the data, an ***ETL pipeline*** has been implemented. The
 
 > ***Extraction***
 
-The first step consists of collecting the data from the web server of each physical sensor station. The server provides an image containing the current weather measurements, as shown in ***Figure 2***.
+The first step consists of collecting the data from the web server of each physical sensor station. The server provides an image containing the current weather measurements, as shown in **Figure 2**.
 
 <br>
 
@@ -256,7 +256,7 @@ For each detected area, a bounding box is created and used to extract the corres
 
 <br>
 
-The extracted regions are then passed to the OCR model, which returns the corresponding weather measurements together with a confidence score. The final result of the transformation step is therefore a structured dataset containing the extracted parameters and their confidence scores, as shown in ***Figure 5***.
+The extracted regions are then passed to the OCR model, which returns the corresponding weather measurements together with a confidence score. The final result of the transformation step is therefore a structured dataset containing the extracted parameters and their confidence scores, as shown in **Figure 5**.
 
 <br>
 
@@ -282,7 +282,7 @@ The results of the project are divided into two main parts: ***Text Recognition*
 
 ### Text Recognition
 
-To provide a more general overview of the OCR model's performance, ***Figure 7*** shows the confidence scores obtained for each extracted parameter across all the samples collected in the dataset.
+To provide a more general overview of the OCR model's performance, **Figure 7** shows the confidence scores obtained for each extracted parameter across all the samples collected in the dataset.
 
 <br>
 
@@ -292,7 +292,7 @@ To provide a more general overview of the OCR model's performance, ***Figure 7**
 
 ### Predictive Modeling
 
-The predictive modeling task was conducted to forecast the weather parameters for the next 30, 60, 90, and 120 minutes. The designed approach involved to use a multi-state machine learning model, as shown in ***Figure 8***, which was trained on the historical data collected from the sensor stations.
+The predictive modeling task was conducted to forecast the weather parameters for the next 30, 60, 90, and 120 minutes. The designed approach involved to use a multi-state machine learning model, as shown in **Figure 8**, which was trained on the historical data collected from the sensor stations.
 
 <br>
 
