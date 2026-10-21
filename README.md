@@ -216,7 +216,7 @@ To collect and prepare the data, an ***ETL pipeline*** has been implemented. The
 
 <br>
 
-> ***Extraction***
+> ***Extract***
 
 The first step consists of collecting the data from the web server of each physical sensor station. The server provides an image containing the current weather measurements, as shown in **Figure 2**.
 
@@ -228,7 +228,7 @@ The first step consists of collecting the data from the web server of each physi
 
 <br>
 
-> ***Transformation***
+> ***Transform***
 
 The second step converts the image into structured weather measurements. Since the image contains several parameters and additional information, applying OCR directly to the full image could introduce unnecessary noise. For this reason, the image is first processed to isolate the relevant areas before applying the ***OCR (Optical Character Recognition) model***.
 
@@ -266,7 +266,7 @@ The extracted regions are then passed to the OCR model, which returns the corres
 
 <br>
 
-> ***Loading***
+> ***Load***
 
 The final step consists of loading the structured data into a ***Google BigQuery*** table. The resulting table can then be used for the following analysis and modeling steps.
 
